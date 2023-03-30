@@ -1,0 +1,55 @@
+/* Global styles */
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(94, 76, 76, 0.25),
+     rgba(0.5, 0, 0, 0.50)), 
+     url(../images/foliage-background.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.search-container {
+  display: block;
+  margin: auto;
+  width: 40%;
+  padding: 10% 20%;
+  
+}
+
+.search-container form {
+  display: flex;
+  align-items:center;
+  overflow: hidden; 
+  
+}
+
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  margin-right: 1%; 
+}
+
+.search-container button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none; 
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.search-container button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
