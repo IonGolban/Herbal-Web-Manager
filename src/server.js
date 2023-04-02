@@ -33,8 +33,9 @@
 //     console.log('Server running on port 3000');
 // });
 
-const http = require('http');
-import { servePublicFiles, serveStaticFile } from "./handlers.js";
+
+import http from "http";
+import { servePublicFiles, serveStaticFile } from "./handler.js";
 
 const PORT = 5000;
 
