@@ -42,7 +42,13 @@ const PORT = 5000;
 const routes = {
     "/": (req, res) => {
         serveStaticFile(res, "./public/index.html", "text/html");
-    }
+    },
+    "/login":(req,res)=>{
+        serveStaticFile(res,"./public/login.html","text/html");
+    },
+    "/register":(req,res)=>{
+        serveStaticFile(res,"./public/register.html","text/html");
+    },
 };
 
 const server = http.createServer((req, res) => {

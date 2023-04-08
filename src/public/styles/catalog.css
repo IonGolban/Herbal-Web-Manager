@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #3b3b3b;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  #plants {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .plant {
+    margin: 20px;
+    width: 300px;
+  }
+  
+  .plant img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  h2 {
+    margin-top: 10px;
+  }
+  
+  p {
+    margin-top: 0;
+  }
