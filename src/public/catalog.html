@@ -2,42 +2,47 @@
 <html>
   <head>
     <title>Plant Catalog</title>
-    <link rel="stylesheet" type="text/css" href="./styles/catalog.css">
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/catalog.css" />
   </head>
   <body>
+
     <header>
-      <h1>Plant Catalog</h1>
+      <nav class="navbar">
+        <div class="left">
+          <div class="logo">
+            <a href="index.html">
+              <h1>Herbal</h1>
+              <p>Photos for every plant</p>
+            </a>
+          </div>
+          <div class="nav-search-form">
+            <form action="#" method="get">
+              <input type="text" placeholder="Search free plants photos...">
+            </form>
+          </div>
+        </div>
+        <ul class="nav">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </nav>
+
+      <div class="category-nav">
+        <div class="category">
+          <a href="#">Mountain plants</a>
+        </div>
+        <div class="category">
+          <a href="#">Exotic plants</a>
+        </div>
+        <div class="category">
+          <a href="#">Vdem plants</a>
+        </div>
+      </div>
+      </div>
     </header>
-    <section id="plants">
-        <div class="plant">
-          <img src="assets/plant1.avif" alt="Small Plant">
-          <h2>Small Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
-        <div class="plant">
-          <img src="assets/plant2.avif" alt="Medium Plant">
-          <h2>Medium Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
-        <div class="plant">
-          <img src="assets/plant3.avif" alt="Large Plant">
-          <h2>Large Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
-        <div class="plant">
-          <img src="assets/plant4.avif" alt="Extra Large Plant">
-          <h2>Extra Large Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
-        <div class="plant">
-          <img src="assets/plant5.avif" alt="Tall Plant">
-          <h2>Tall Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
-        <div class="plant">
-          <img src="assets/plant6.avif" alt="Short Plant">
-          <h2>Short Plant</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla. </p>
-        </div>
+
+    <section id="plants"></section>
+    <script src="./scripts/catalog.js"></script>
   </body>
 </html>

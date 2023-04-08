@@ -7,7 +7,6 @@
 body {
     background: rgb(253,253,246);
     background: linear-gradient(180deg, rgba(253,253,246,1) 12%, rgba(219,233,183,1) 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container{
@@ -45,7 +44,7 @@ form > p {
     font-size: 0.75rem;
 }
 
-    
+
 #register-btn {
     width: 100%;
     margin-top: 10px;

@@ -9,13 +9,11 @@
 	box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-body { 
+body {
     background: rgb(43,72,10);
-    background: linear-gradient(180deg, rgba(43,72,10,1) 7%, rgba(13,77,15,1) 100%); 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, rgba(43,72,10,1) 7%, rgba(13,77,15,1) 100%);
 }
 
 
@@ -25,7 +23,7 @@ body {
 	justify-content: center;
 	height: 100vh;
     width: 100vw;
-    
+
 }
 
 .center-box {
@@ -43,7 +41,7 @@ body {
     color: white;
     background-image: url(https://images.unsplash.com/photo-1528145913842-29edebe7bdb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=800);
     background-position: center;
-    
+
     align-items: center;
     justify-content: center;
 }
@@ -88,7 +86,7 @@ label {
     font-size: 1rem;
     color: rgb(76, 76, 76);
     font-weight: 700;
-    
+
 }
 
 input {
@@ -134,7 +132,7 @@ form > p {
     cursor: pointer;
     border: 2px ;
     padding: 10px;
-    
+
     border-radius: 10px;
     font-weight: 700;
     font-size: 0.9rem;

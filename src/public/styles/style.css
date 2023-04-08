@@ -1,14 +1,16 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;700&family=Inter:wght@300;600&display=swap");
+
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 ul {
   list-style: none;
 }
 
-a{
+a {
   color: #999;
   text-decoration: none;
 }
@@ -20,12 +22,12 @@ a{
   padding: 1rem;
 }
 
-.left{
+.left {
   display: flex;
   align-items: center;
 }
 
-.logo a{
+.logo a {
   color: #000;
 }
 
@@ -40,27 +42,27 @@ a{
 .nav {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .nav li {
-  margin-right: 1.2rem;
   font-weight: 550;
 }
 
 .nav li:last-child a {
   display: block;
-  background: #3cb46e;
+  background-color: #467562;
   color: #fff;
   padding: 0.5rem 0.6rem;
   transition: filter 0.5s;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .nav li:last-child a:hover {
   filter: brightness(85%);
 }
 
-.nav-search-form{
+.nav-search-form {
   margin-left: 1.5rem;
 }
 
@@ -78,14 +80,13 @@ a{
   background-color: #fff;
 }
 
-
-.category-nav{
+.category-nav {
   display: flex;
   padding-left: 0.6rem;
   overflow: hidden;
 }
 
-.category-nav .category{
+.category-nav .category {
   padding: 0.8rem;
 }
 
@@ -99,7 +100,7 @@ a{
 
 .hero {
   height: 600px;
-  background-image: url(../assets/hero-background.jpg);
+  background-image: url(../assets/foliage-background.png);
   background-size: 100% 770px;
   width: 100%;
   position: relative;
@@ -126,13 +127,13 @@ a{
   justify-content: center;
 }
 
-.hero-content h1{
+.hero-content h1 {
   font-size: 3rem;
   color: #fff;
   z-index: 2;
 }
 
-.hero-content p{
+.hero-content p {
   color: #fff;
   z-index: 2;
   margin: 1rem 0;
@@ -144,7 +145,7 @@ a{
   margin: 1rem 0.6rem 0 0;
 }
 
-.hero-search-form input{
+.hero-search-form input {
   width: 100%;
   padding: 1.2rem;
   border-radius: 5px;
@@ -157,18 +158,17 @@ a{
   z-index: 2;
 }
 
-.trending-search-tags a{
+.trending-search-tags a {
   color: #999;
-  transition: 0.5s ;
+  transition: 0.5s;
 }
 
-.trending-search-tags a:hover{
+.trending-search-tags a:hover {
   color: #fff;
 }
 
-@media(max-width: 900px){
-
-  .nav-search-form{
+@media (max-width: 900px) {
+  .nav-search-form {
     display: none;
   }
 
@@ -176,16 +176,16 @@ a{
     background-size: 200% 700px;
   }
 
-  .hero-container{
+  .hero-container {
     max-width: 80%;
   }
 
-  .category-nav{
+  .category-nav {
     display: none;
   }
 
-  .images{
+  .images {
     margin: 0.5rem;
   }
-
 }
+
