@@ -1,82 +1,49 @@
+<!DOCTYPE html>
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Herbarium</title>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"
-    integrity="sha256-ZKOGvp7YVwX26g2d0ooDvbSBQSEiIi4Bd9FuK+12Zk0=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./styles/style.css" />
+    <title>Plants Webpage</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel=" stylesheet" type="text/css" href="./styles/style.css" />
 </head>
 
 <body>
+    <div class="container">
+        <nav class="navbar2">
+            <div class="category-nav">
+                <div class="category">
+                    <a href="catalog.html   ">Mountain plants</a>
+                </div>
+                <div class="category">
+                    <a href="catalog.html">Exotic plants</a>
+                </div>
+                <div class="category">
+                    <a href="catalog.html">Other plants</a>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="window.location.href='login.html'">Login</button>
+                <button onclick="window.location.href='register.html'">Register</button>
+            </div>
 
-  <!--Header-ul-->
-  <header>
-    <nav class="navbar">
-      <div class="left">
-        <div class="logo">
-          <a href="index.html">
-            <h1>Herbal</h1>
-            <p>Photos for every plant</p>
-          </a>
-        </div>
-        <div class="nav-search-form">
-          <form action="#" method="get">
-            <input type="text" placeholder="Search free plants photos...">
-          </form>
-        </div>
-      </div>
-      <ul class="nav">
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
-      </ul>
-    </nav>
 
-    <div class="category-nav">
-      <div class="category">
-        <a href="#">Mountain plants</a>
-      </div>
-      <div class="category">
-        <a href="#">Exotic plants</a>
-      </div>
-      <div class="category">
-        <a href="#">Vdem plants</a>
-      </div>
+        </nav>
+
+        <div class="center-container">
+            <div class="title">
+                <h1>Search for plants ...</h1>
+            </div>
+            <div class="search-bar">
+                <form action="">
+                    <input type="text" placeholder="Search free high-resolution plants photos">
+                </form>
+            </div>
+            <div class="trending-search-tags">
+                <p>Trending searches: <a href="#">flower</a>, <a href="#">???</a>, <a href="#">???</a> </p>
+            </div>
+        </div>
     </div>
     </div>
-  </header>
-
-  <!--Main-->
-
-
-  <section class="hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1>Herbal</h1>
-        <p>Descriere frumoasa si interesanta vedem noi. <br> Ca nu avem
-          imaginatie
-        </p>
-        <div class="hero-search-form">
-          <form action="">
-            <input type="text" placeholder="Search free high-resolution plants photos">
-          </form>
-        </div>
-        <div class="trending-search-tags">
-          <p>Trending searches: <a href="#">flower</a>, <a href="#">???</a>, <a href="#">???</a> </p>
-        </div>
-      </div>
-    </div>
-    <div class="hero-overlay"></div>
-  </section>
-
-  <!--Galerie folosind API-->
-
-  <section class="images">
-    <div class="gallery">
-
-    </div>
-  </section>
-
 </body>
 
 </html>

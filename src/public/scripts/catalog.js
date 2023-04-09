@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(window.location.search);
 
-  const plants = 20;
+  const plants = 21;
 
   const container = document.getElementById("plants");
 
