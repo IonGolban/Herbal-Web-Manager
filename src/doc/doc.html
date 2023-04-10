@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="doc.css">
+    <title>Documentatie HeMa</title>
+</head>
+
+<body>
+    <header>
+        <h1><b>HeMa</b> (Herbal Web Manager)</h1>
+    </header>
+
+    <ol class = "panel">
+        <li>
+            <a href="#introduction">Introducere</a>
+            <ol>
+                <li><a href="#scopul-produsului"> Scopul produsului</a></li>
+                <li><a href="#audienta">Audienta Tinta si sugestii</a></li>
+                <li><a href="#referinta">Referinte</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#descriere-generala"> Descriere generala</a>
+            <ol>
+                <li><a href="#descriere-produsului">Descrierea produsului</a></li>
+                <li><a href="#functionalitati-produsului"> Functionalitatile produsului</a></li>
+                <li><a href="#categorii-utilizatori"> Categorii de utilizatori</a></li>
+                <li><a href="#mediu-de-operare"> Mediu de operare</a></li>
+                <li><a href="#design-si-constrangeri"> Design si constrangeri de implementare</a></li>
+                <li><a href="#dependente"> Dependente</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#cerintele-interfetei"> Cerintele interfetei</a>
+            <ol>
+                <li><a href="#interfete-utilizator"> Interfete utilizator</a></li>
+                <li><a href="#interfete-software"> Interfete software</a></li>
+            </ol>
+        </li>
+        <li>
+            <a href="#caracteristici">Caracteristicile sistemului</a>
+            <ol>
+                <li><a href="#home-pagee">Home page</a></li>
+                <li><a href="#login-page">Login and Sign up page</a></li>
+                <li><a href="#results-page"> Pagina de rezultate</a></li>
+                <li><a href="#plants-statistics-page"> Pagina de statistici a plantelor</a></li>
+
+            </ol>
+        </li>
+
+        <li>
+            <a href="#authors">Autori</a>
+        </li>
+
+    </ol>
+    <div id="documentation">
+        <h1>Proiect ierbar digital</h1>
+
+        <div id="introduction">
+
+            <h2>Introducere</h2>
+            <ol>
+                <li>
+                    <section id="scopul-produsului">
+                        <h2>Scopul produsului</h2>
+                        <p>Scopul produsului este de a oferi utilizatorilor o aplicație web de tip ierbar digital, care
+                            să permită organizarea și gestionarea colecțiilor de plante presate și atributelor aferente.
+                            Aceasta va oferi o serie de facilități de căutare multi-criterială și va permite
+                            utilizatorilor să genereze, recomande și partajeze albume tematice, precum plante medicinale
+                            sau flori din zona montană.</p>
+                    </section>
+                </li>
+                <li>
+                    <section id="audienta">
+                        <h3>Audienta tinta</h3>
+                    <p>Audienta vizata de aceasta aplicatie web de tip ierbar digital poate fi formata din persoane
+                        interesate de botanica, plante si flori, sau de utilizatori care doresc sa organizeze si
+                        sa-si gestioneze colectiile de imagini. De asemenea, aplicatia poate fi utila si pentru
+                        fotografi, mai ales pentru cei pasionati de natura si de fotografia de plante.
+                    </p>
+                    </section>
+                </li>
+                <li>
+                    <section id="referinte">
+                        <h2>Referințe</h2>
+                        <ul>
+                            <li><a href="https://unsplash.com/developers" target="_blank">Unsplash API</a></li>
+                            <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools HTML</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML" target="_blank">MDN Web
+                                    Docs: Learn HTML</a></li>
+                        </ul>
+                    </section>
+                </li>
+
+            </ol>
+        </div>
+
+        <section id="descriere-generala">
+            <h2>Descriere generală</h2>
+            <ol>
+                <li>
+                    <section id="descriere-produsului">
+                        <h2>Descrierea produsului</h2>
+                        <p>Această aplicație web oferă posibilitatea utilizatorilor de a organiza și gestiona colecțiile
+                            de plante. Utilizatorii pot căuta plante în funcție de
+                            diverse criterii, genera albume tematice și partaja colecțiile cu alți utilizatori.
+                            Aplicația oferă o interfață responsive si intuitiv de utilizat.</p>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="functionalitati-produsului">
+                        <h2>Funcționalități produsului</h2>
+                        <ul>
+                            <li>Căutare multi-criterială a plantelor</li>
+                            <li>Generarea de albume tematice</li>
+                            <li>Generarea de rapoarte statistice despre plante</li>
+                            <li>Clasamentul celor mai populare plante colectate</li>
+                        </ul>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="categorii-utilizatori">
+                        <h2>Categorii de utilizatori</h2>
+                        <ul>
+                            <li>Colecționari de plante</li>
+                            <li>Studenți sau cercetători în domeniul botanicii</li>
+                            <li>Pasionați de plante și grădinărit</li>
+                        </ul>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="mediu-de-operare">
+                        <h2>Mediu de operare</h2>
+                        <p>Aplicația este disponibilă pe platformele desktop, putând fi accesată prin
+                            intermediul unui browser web.</p>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="design-si-constrangeri">
+                        <h2>Design și constrângeri de implementare</h2>
+                        <p>Aplicația va fi dezvoltată folosind HTML, CSS și JavaScript, iar datele vor fi stocate într-o
+                            bază de date MongoDB. Interfața va fi creată cu ajutorul vanilla JS și va fi
+                            responsivă pentru a se adapta la diferite dimensiuni de ecran.</p>
+                        <p>Culori utilizate: 
+                            <span style="color: white; background-color: rgb(135, 135, 135);">white</span> 
+                            <span style="color: green;background-color: rgb(102, 134, 105);">green</span> 
+                            <span style="color: black;">black</span> 
+                        </p>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="dependente">
+                        <h2>Dependențe</h2>
+                        <ul>
+                            <li>API-ul public Unsplash pentru a obține fotografii ale plantelor</li>
+                            <li>Baza de date MongoDB pentru a stoca datele</li>
+                            <li>JavaScript</li>
+                            <li>NodeJS</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                        </ul>
+                    </section>
+                </li>
+
+            </ol>
+        </section>
+
+        <section id="cerintele-interfetei">
+
+            <h2>Cerințele Interfeței</h2>
+            <p>Pentru a asigura o utilizare facilă a produsului, interfața trebuie să îndeplinească următoarele cerințe:
+            </p>
+            <ul>
+                <li>Design simplu și intuitiv</li>
+                <li>Interfață responsivă și adaptabilă la diferite dispozitive</li>
+                <li>Posibilitatea de a filtra și căuta plante</li>
+                <li>Posibilitatea de a crea albume tematice</li>
+                <li>Posibilitatea de a vizualiza statistici despre colecție</li>
+            </ul>
+        </section>
+        <ol>
+            <li>
+                <section id="interfete-utilizator">
+                    <h2>Interfețe Utilizator</h2>
+                    <p>Interfața utilizator este formată din următoarele pagini:</p>
+                    <ul>
+                        <li>Pagina principală - unde se pot căuta, filtra și vizualiza plante,
+                            și se pot accesa statistici despre colecție.</li>
+                        <li>Pagina profil - unde se pot crea noi albume tematice, vizualiza imaginile apreciate, informatii despre utilizator, vizualizare cataloage</li>
+                        <li>Pagina catolog - se pot vizualiza plantele de un anumit tip sau criteriu prin intermediul acestei pagini putem adauga fotografii in colectiile noastre</li>
+                        <li>Pagina de vizualizare a statisticilor - unde se pot vizualiza diverse statistici despre
+                            colecție, cum ar fi cele mai populare plante.</li>
+                    </ul>
+                </section>
+            </li>
+
+            <li>
+                <section id="interfete-software">
+                    <h2>Interfețe Software</h2>
+                    <p>Produsul va rula pe un server web creat cu NodeJS și va fi accesat prin intermediul unui browser web. Este
+                        compatibil cu următoarele browsere:</p>
+                    <ul>
+                        <li>Google Chrome</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Microsoft Edge</li>
+                        <li>Safari</li>
+                        <li>Etc</li>
+                    </ul>
+                </section>
+            </li>
+        </ol>
+
+        </section>
+
+
+        <section class="caracteristici">
+            <h2>Caracteristicile Sistemului</h2>
+
+            <ol>
+                <li>
+                    <section id="home-page">
+                        <h2>Home Page</h2>
+                        <p>Aceasta sectiune va contine continutul paginii de start a aplicatiei, inclusiv:</p>
+                        <ul>
+                            <li>Butoane pentru autentificare si inregistrare</li>
+                            <li>Linkuri catre anumite colectii predefinite</li>
+                            <li>Bara de cautare pentru plantele descrise</li>
+                        </ul>
+                    </section>
+                </li>
+
+
+                <li>
+                    <section id="login-page">
+                        <h2>Login and Register Page</h2>
+                        <p>Aceasta sectiune va contine formularul de autentificare a utilizatorilor si orice alte
+                            informatii relevante, inclusiv:</p>
+                        <ul>
+                            <li>Camp pentru email si parola</li>
+                            <li>Link de uitare a parolei</li>
+                            <li>Buton de submit</li>
+                            <li>Buton de redirectionare catre campul de inregistrare</li>
+                            <li>Link de intoarcere la pagina de start</li>
+                        </ul>
+                        <p>Aceasta sectiune va contine formularul de inregistrare a utilizatorilor si orice alte
+                            informatii relevante, inclusiv:</p>
+                        <ul>
+                            <li>Camp pentru nume, e-mail si parola</li>
+                            <li>Buton de submit</li>
+                            <li>Link de intoarcere la pagina de start</li>
+                            <li>Buton de redirectionare catre campul de logare</li>
+                        </ul>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="results-page">
+                        <h2>Rezultate căutare (pagina Catalog)</h2>
+                        <ul>
+                            <li>Numele plantei: <span class="result-name">Numele plantei</span></li>
+                            <li>Taxonomia: <span class="result-taxonomy">Familia / Genul / Specia</span></li>
+                            <li>Descriere: <span class="result-description">Descriere scurta a plantei</span></li>
+                            <li>Imagine: img
+                            <li>Alte detalii: </li>
+                        </ul>
+                    </section>
+                </li>
+
+                <li>
+                    <section id="plants-statistics-page">
+                        <h2>Statistici plante</h2>
+                        <ul>
+                            <li>Cele mai căutate plante: <span class="popular-plants">Numele plantei 1, Numele plantei
+                                    2, Numele plantei 3</span></li>
+                            <li>Plante adăugate recent: <span class="recent-plants">Numele plantei 1, Numele plantei 2,
+                                    Numele plantei 3</span></li>
+                            <li>Numărul total de plante: <span class="total-plants">X</span></li>
+                            <li>Numărul total de utilizatori: <span class="total-users">Y</span></li>
+                        </ul>
+                    </section>
+                </li>
+
+
+            </ol>
+        </section>
+
+        <section id="autori">
+            <h2>Autori</h2>
+            <section>
+                <ol>
+                    <li>Duluman Sebastian Andrei</li>
+                    <li>Golban Ion</li>
+                </ol>
+            </section>
+        </section>
+
+    </div>
+</body>
+
+</html>
