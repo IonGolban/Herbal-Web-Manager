@@ -1,17 +1,20 @@
 {
   "name": "src",
   "version": "1.0.0",
-  "description": "",
+  "description": "Herbal Web Manager ",
   "main": "server.js",
+  "directories": {
+    "doc": "doc"
+  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http": "^0.0.1-security"
+    "node-fetch": "^3.3.1",
+    "unsplash-js": "^7.0.15"
   }
 }
