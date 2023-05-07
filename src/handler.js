@@ -12,6 +12,7 @@ const serveStaticFile = (res, filePath, contentType) => {
 };
 
 const servePublicFiles = (req, res) => {
+   // console.log("Request received from handler " + req.url);
     const filePath = `./public${req.url}`;
     const extension = req.url.split(".").pop();
     const contentType = {

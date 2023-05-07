@@ -7,18 +7,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const photos = await res.json();
 
-    for (const url of photos) {
+    for (const photo of photos) {
       const el = document.createElement("div");
       el.classList.add("plant");
-      el.style.backgroundImage = `url(${url})`;
+      el.style.backgroundImage = `url(${photo.url})`;
 
       el.innerHTML = `
     <div class="plant-desc">
       <div>
         <h2 class="plant-title">Small plant</h2>
         <p class="plant-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis lacus a orci malesuada, eget euismod
-          lectus interdum. Duis sit amet ex quis dolor tempor venenatis id id nulla.
+          ${photo.desc}
         </p>
         <div class="button-container">
           <button class="plant-btn">add</button>
@@ -37,3 +36,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     errorContainer.innerHTML = err.message;
   }
 });
+
+// document.addEventListener("DOMContentLoaded", async () => {
+//     const thisPath = window.location.pathname;
+//     //const split = thisPath.split("/");
+//     console.log(thisPath);
+// });

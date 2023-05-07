@@ -1,40 +1,53 @@
-import http from "http";
-import { servePublicFiles, serveStaticFile } from "./handler.js";
-import unsplash from "./api/unsplash.js";
+        import http from "http";
+        import { servePublicFiles, serveStaticFile } from "./handler.js";
+        import unsplash from "./api/unsplash.js";
+        import catalogController from "./controllers/catalogController.js";
 
-const PORT = 5000;
+        const PORT = 5000;
 
-const routes = {
-    "/": (req, res) => {
-        serveStaticFile(res, "./public/index.html", "text/html");
-    },
-    "/login":(req,res)=>{
-        serveStaticFile(res,"./public/login.html","text/html");
-    },
-    "/register":(req,res)=>{
-        serveStaticFile(res,"./public/register.html","text/html");    },
-    "/random-img":async (req, res, params)=>{
-       
-        const count = +params.split("&")[0].split("=")[1];
-        const photos = await unsplash.photos.getRandom({ query: 'plants', count });
-        const result = photos.response.map(pic => pic.urls.regular);
-        
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(result));
-    }
-};
+        const routes = {
+            "/": async (req, res) => {
+                console.log("Request received for /");
+                serveStaticFile(res, "./public/index.html", "text/html");
+            },
+            "/login": async (req,res)=>{
 
-const server = http.createServer(async (req, res) => {
-    const split = req.url.split("?");
-    const routeHandler = routes[split[0]];
+                serveStaticFile(res,"./public/login.html","text/html");
+            },
+            "/register": async (req,res)=>{
+                serveStaticFile(res,"./public/register.html","text/html");
+            },
+            "/catalog": async (req,res)=>{
+                serveStaticFile(res,"./public/catalog.html","text/html");
+            },
+            
+            "/catalog/random-img": async (req,res,params)=>{
+                console.log("Request received for /catalog/random-img");
+                serveStaticFile(res,"./public/catalog.html","text/html");
+            },
 
-    if (routeHandler) {
-        routeHandler(req, res, split[1]);
-    } else {
-        servePublicFiles(req, res);
-    }
-});
+            "/random-img": async (req, res, params)=>{
+                console.log("Request received for /random-img");
+                catalogController.getRandomImages(req,res,params);
+            },
+            // /random-img/search?query=$query
+            "/random-img/search" : async (req,res,params)=>{
+                catalogController.getImagesByTag(params);
+            }
+        };
 
-server.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-});
+        const server = http.createServer(async (req, res) => {
+            console.log("Request received to " + req.url + " using " + req.method + " method");
+            const split = req.url.split("?");
+            
+            const routeHandler = routes[split[0]];
+            if (routeHandler) {
+                routeHandler(req, res, split[1]);
+            } else {
+                servePublicFiles(req, res);
+            }
+        });
+
+        server.listen(PORT, () => {
+            console.log(`Server listening on port ${PORT}`);
+        });
