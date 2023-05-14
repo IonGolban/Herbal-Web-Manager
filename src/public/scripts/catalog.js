@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
     const container = document.getElementById("plants");
-
     const res = await fetch(`/random-img?count=${[plants]}`);
 
     const photos = await res.json();
@@ -37,8 +36,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// document.addEventListener("DOMContentLoaded", async () => {
-//     const thisPath = window.location.pathname;
-//     //const split = thisPath.split("/");
-//     console.log(thisPath);
-// });
+document.addEventListener("DOMContentLoaded", async () => {
+    const thisPath = window.location.pathname;
+    //const split = thisPath.split("/");
+    console.log(thisPath);
+});
