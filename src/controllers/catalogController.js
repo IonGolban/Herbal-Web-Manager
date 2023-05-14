@@ -16,9 +16,9 @@ class catalogController{
         }
     }
     async getImagesByTag(req,res,params){
-        const query = params.split("=")[1];
+        const tag = params.split("=")[1];
         try{
-            const photos = await CatalogService.getImagesByTag(query);
+            const photos = await CatalogService.getImagesByTag(tag);
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(photos))
         }catch(error){

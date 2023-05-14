@@ -1,10 +1,20 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
+    
     const container = document.getElementById("plants");
-    const res = await fetch(`/random-img?count=${[plants]}`);
+   // await fetch("/save-random-imgs");
+    const query = window.location.search;
+    const searchParam = query.split("=")[0];
+    let photos = [];
 
-    const photos = await res.json();
+    if(searchParam == "?query"){
+      photos = await getByQuery(query);
+    }else if(searchParam== "?count"){
+      photos = await getRandom(query);
+    }else {
+      photos = await(getRandom("?count=21"));
+    }
 
     for (const photo of photos) {
       const el = document.createElement("div");
@@ -35,6 +45,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     errorContainer.innerHTML = err.message;
   }
 });
+
+async function getRandom(pathname){
+  const res = await fetch(`/random-img${pathname}`);
+  const photos = await res.json();
+  return photos;
+}
+
+async function getByQuery(query){
+  const res = await fetch(`/img-by-tag${query}`);
+  const photos = await res.json();
+  return photos;
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     const thisPath = window.location.pathname;

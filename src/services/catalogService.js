@@ -18,8 +18,12 @@ class CatalogService {
         return plantsUrl;
     }
     async getImagesByTag(query) {
-        const result = await unsplash.search.getPhotos({ query, count: 21 });
-        const photos = result.response.results.map(pic => pic.urls.regular);
+        await connect();
+        const result = await Plant.find({ tags: query });
+        const photos = result.map(pic => ({
+            url: pic.urls.regular,
+            desc: pic.alt_description
+        }));
         return photos;
     }
 
