@@ -1,62 +1,69 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title>Login Page</title>
-	<link rel="stylesheet" type="text/css" href="./styles/login.css">
-	<link rel=" stylesheet" type="text/css" href="./styles/style.css" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/login.css">
+	<title>Document</title>
 </head>
-
 <body>
-	<div class="container" id="main">
-		<div class="sign-up">
-			<form action="#">
-				<h1>Create Account</h1>
-				<input type="text" name="txt" placeholder="Name" required="">
-				<input type="text" name="txt" placeholder="Email" required="">
-				<input type="text" name="txt" placeholder="Password" required="">
-				<button id="createAccount">Create Account</button>
-			</form>
-		</div>
+	<div class="login-frame">
 
-		<div class="sign-in">
-			<form action="#">
-				<h1>Login</h1>
-				<input type="text" name="txt" placeholder="Email" required="">
-				<input type="text" name="txt" placeholder="Password" required="">
-				<a href="#">Forget your Password?</a>
-				<button>Sign-in</button>
-			</form>
-		</div>
+		<div class="login-container">
 
-		<div class="overlay-container">
-			<div class="overlay">
-				<div class="overlay-left">
-					<h1>Hello, Friend!</h1>
-					<p>Enter your personal details and start journey with us</p>
-					<button id="signIn">Sign In</button>
+			<div class="left-login-container">
+				
+				<div class="left-login-content">
+					<h1>Welcome to Herbal Web Manager</h1>
+					<div class="site-description">
+						<p>
+							Welcome to our digital herb management application! Here you can explore a variety of flowers, plants, and herbs from all over the world,
+							add them to your personal collection, and organize them according to your preferences. Whether you are a plant enthusiast or simply want
+							 to learn more about their fascinating world, this application is for you. Enter the necessary data and join us in a wonderful vegetal 
+							 dimension.
+						</p>
+					</div>
 				</div>
-				<div class="overlay-right">
-					<h1>Welcome Back!</h1>
-					<p>To keep connected with us please login wit your personal info</p>
-					<button id="signUp">Sign Up</button>
-				</div>
+
 			</div>
+
+			<div class="right-login-container">
+
+				<div class="right-login-content">
+					<h2>LOGIN</h2>
+
+					<div class="right-components">
+						
+						<form class="login-form">
+
+							<div class="input-values">
+
+								<input type="text" id="username" name="username" required>
+								<label class="form-data" for="username">Username</label>
+
+							</div>
+
+							<div class="input-values">
+								
+								<input type="password" id="password" name="password" required>
+								<label class="form-data" for="password">Password</label>
+							
+							</div>
+
+							<input type="submit" class="login-button" value="Log In">
+							<div class="register-question">You don't have an account? <span class="link-to-register">Click here for register!</span> </div>
+						
+						</form>
+					
+
+					</div>	
+				</div>
+
+			</div>
+
 		</div>
+
 	</div>
-	<script type="text/javascript">
-		const signUpButton = document.getElementById('signUp');
-		const signInButton = document.getElementById('signIn');
-		const main = document.getElementById('main');
-
-		signUpButton.addEventListener('click', () => {
-			main.classList.add("right-panel-active");
-		});
-
-		signInButton.addEventListener('click', () => {
-			main.classList.remove("right-panel-active");
-		});
-	</script>
 </body>
-
 </html>
