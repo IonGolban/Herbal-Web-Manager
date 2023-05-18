@@ -36,6 +36,7 @@
     display: flex;
     border-radius: 7px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fade-in 1s both;
 }
 
 
@@ -191,6 +192,7 @@ h2{
     margin-top: 10px;
 }
 
+.link-to-login,
 .link-to-register{
     font-size: 13px;
     margin-top: 10px;
@@ -198,6 +200,19 @@ h2{
     cursor: pointer;
 }
 
+.link-to-login:hover,
 .link-to-register:hover{
     font-weight: bolder;
+}
+
+.right-register-container{
+    height: 100%;
+    width: 45%;
+    background-color: #ececec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: none;
 }
