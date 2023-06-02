@@ -6,7 +6,7 @@
 }
 
 .profile-frame{
-    height: 150vh;
+    height: 200vh;
     width: 100vw;
     display: flex;
 
@@ -16,8 +16,8 @@
 {
     height: 100vh;
     width: 15%;
-    background: white;
-    border-right: 1px solid gray;
+    background-color: #e0e0e0;
+    border-right: 5px solid #e0e0e0;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -33,14 +33,15 @@
     font-weight: 700;
 }
 
-.log-out-but{
-    margin-left: -50%;
-    margin-top: 75%;
+.logo a {
+    text-decoration: none;
 }
 
 ul{
     list-style: none;
     padding: 0;
+    margin-right: 5vw;
+    margin-top: 5vw;
 }
 
 li{
@@ -54,12 +55,34 @@ li a{
     transition: 0.5s;
 }
 
+.log-out-but {
+    margin-left: -35%;
+    margin-top: 55%;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+  }
+  
+  .log-out-but:hover {
+    background-color: #f5f5f5;
+    color: black;
+  }
+
+
 
 .right-frame
 {
     height: 100%;
     width: 85%;
-    background: white;
+    background: #f5f5f5;
     display: flex;
     flex-direction: column;
     margin-left: 15vw;
@@ -78,7 +101,7 @@ li a{
     position: relative;
     height: 10%;
     width: 100%;
-    background-color: white;
+    background-color: #f5f5f5;
     display: flex;
     justify-content: space-around;
     margin-top: 30px;
@@ -193,19 +216,19 @@ li a{
     margin-top: 20px;
 }
 
-
-
 .photos{
     height: 100%;
     width: 80%;
-    background: white;
+    background: #f5f5f5;
     display: grid;
-    grid-template-columns: repeat(3, 0.75fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    grid-row-gap: 2px;
 }
 
 .photo {
     height: 0;
-    padding-bottom: 100%; 
+    padding-top: 100%; 
     background-color: black; 
+    border-radius: 10px;
 }
