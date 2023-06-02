@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
-    
+    await saveRandomImgs();    
     const container = document.getElementById("plants");
-   // await fetch("/save-random-imgs");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
     let photos = [];
@@ -56,6 +55,10 @@ async function getByQuery(query){
   const res = await fetch(`/img-by-tag${query}`);
   const photos = await res.json();
   return photos;
+}
+
+async function saveRandomImgs(){
+  await fetch("/save-random-imgs");
 }
 
 

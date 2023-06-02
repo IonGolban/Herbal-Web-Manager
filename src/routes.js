@@ -11,7 +11,10 @@ const routes = {
         serveStaticFile(res, "./public/login.html", "text/html");
     },
     "/register": async (req, res) => {
-        serveStaticFile(res, "./public/register.html", "text/html");
+        serveStaticFile(res, "./public/login.html", "text/html");
+    },
+    "/profile": async (req, res) => {
+        serveStaticFile(res, "./public/profile.html", "text/html");
     },
     "/catalog": async (req, res) => {
         serveStaticFile(res, "./public/catalog.html", "text/html");
