@@ -61,6 +61,48 @@ body {
   font-size: 1.1rem;
   background-color: rgba(252, 252, 252, 0.5);;
   font-weight: bold;
+  display: absolute;
+}
+
+.search-bar .suggestions {
+  flex-direction: column;
+  width: 30%;
+  position: absolute;
+
+  left: 10;
+  justify-content: center;
+  background-color: rgba(252, 252, 252, 0.5);
+  display: none;
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  padding: 1rem;
+  padding-right: 30; 
+  opacity: 0;
+}
+.search-bar .suggestions.active{
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+}
+
+
+.suggestions ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.suggestions ul li{
+  
+  padding: 0.5rem;
+  font-size: 1.1rem ;
+  font-weight: bold;
+  border-bottom: 0.5px solid #ccc;
+  cursor: pointer;
+  color : #252222;
+}
+.suggestions ul li a{
+  text-decoration: none;
+  color : #252222;
 }
 
 .trending-search-tags {

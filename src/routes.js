@@ -1,6 +1,7 @@
 import { servePublicFiles, serveStaticFile } from "./handler.js";
 import catalogController from "./controllers/catalogController.js";
-
+import plantService from "./services/plantService.js";
+import plantController from "./controllers/plantController.js";
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
@@ -38,6 +39,10 @@ const routes = {
         console.log("Request received for /save-random-imgs");
         console.log("Saving images");
         catalogController.saveImages(req, res);
+    },
+    "/search": async (req,res,params) => {
+        console.log("Request received for /search");
+        plantController.serchByKey(req,res,params);
     }
 };
 
