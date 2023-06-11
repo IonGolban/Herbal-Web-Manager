@@ -1,9 +1,10 @@
 import http from "http";
 import { servePublicFiles, serveStaticFile } from "./handler.js";
 import routes from "./routes.js";
+import dotenv from "dotenv";
+dotenv.config();
+
 const PORT = 5000;
-
-
 
 const server = http.createServer(async (req, res) => {
 

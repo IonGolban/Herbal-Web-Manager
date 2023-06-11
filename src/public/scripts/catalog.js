@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
-   // await saveRandomImgs();    
+    await saveRandomImgs();    
     const container = document.getElementById("plants");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
