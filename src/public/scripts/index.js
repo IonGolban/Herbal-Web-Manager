@@ -18,7 +18,7 @@ input.addEventListener("keyup", async () => {
             const tags = await response.json();
             console.log(tags);
     
-            if (tags.length < 4) {
+            if (tags.length <= 0) {
                 suggestions.classList.remove("active");
                 trendings.style.display = "flex";
                 return;
@@ -26,7 +26,7 @@ input.addEventListener("keyup", async () => {
     
             const ul = document.querySelector(".suggestions ul");
             ul.innerHTML = "";
-            for(let i = 0; i < 5; i++){
+            for(let i = 0; i < tags.length; i++){
                 const li = document.createElement("li");
                 //li.innerHTML = `<a href='/catalog?query=${tags[i]}>` + tags[i] + "</a>";
                 li.innerHTML = tags[i];

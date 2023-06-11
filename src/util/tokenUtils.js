@@ -3,8 +3,8 @@ import Jwt  from "jsonwebtoken";
 
 
 class TokenUtils {
-    static generateToken(payload) {
-        return Jwt.sign(payload, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRE });
+    static generateToken(key) {
+        return Jwt.sign(key, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRE });
     }
 
     static verifyToken(token) {

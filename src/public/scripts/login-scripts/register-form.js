@@ -29,26 +29,22 @@ function register(event) {
     const password = document.getElementById("register-password").value;
     const email  = document.getElementById("register-email").value; 
     console.log(username, password,email);
-    // if (password !== repeatPassword) {
-    //     alert("Passwords don't match!");
-    //     return;
-    // }
 
-    // fetch("/register", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({ username, password,email })
-    // }).then(res => res.json())
-    //     .then(data => {
-    //         if (data.error) {
-    //             alert(data.error);
-    //         } else {
-    //             localStorage.setItem("token", data.token);
-    //             window.location.href = "/";
-    //         }
-    //     });
+    fetch("/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password,email })
+    }).then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                localStorage.setItem("token", data.token);
+                window.location.href = "/";
+            }
+        });
 
 }
 
@@ -60,21 +56,21 @@ function login(event){
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
         console.log(username, password);
-        // fetch("/login", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ username, password })
-        // }).then(res => res.json())
-        //     .then(data => {
-        //         if (data.error) {
-        //             alert(data.error);
-        //         } else {
-        //             localStorage.setItem("token", data.token);
-        //             window.location.href = "/";
-        //         }
-        //     });
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, password })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "/";
+                }
+            });
 }
 
 registerLink.addEventListener('click', registerHandle);
