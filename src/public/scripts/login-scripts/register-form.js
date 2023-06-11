@@ -21,12 +21,13 @@ function loginHandle() {
 
 }
 
-function register() {
+function register(event) {
 
-    const username = document.querySelector(".register-username");
-    
-    const password = document.querySelector(".register-password");
-    const email  = document.querySelector(".register-email"); 
+    event.preventDefault();
+
+    const username = document.getElementById("register-username").value;
+    const password = document.getElementById("register-password").value;
+    const email  = document.getElementById("register-email").value; 
     console.log(username, password,email);
     // if (password !== repeatPassword) {
     //     alert("Passwords don't match!");
@@ -51,10 +52,13 @@ function register() {
 
 }
 
-function login(){
+function login(event){
+
+        event.preventDefault();
     
-        const username = document.querySelector(".login-username");
-        const password = document.querySelector(".login-password");
+
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
         console.log(username, password);
         // fetch("/login", {
         //     method: "POST",
@@ -87,6 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (path === "/register") {
         registerHandle();
     }
+
 
 
 }
