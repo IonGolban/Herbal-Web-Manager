@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
