@@ -5,7 +5,7 @@ const registerForm = document.querySelector(".right-register-container")
 const registerButton = document.querySelector(".register-button");
 const loginButton = document.querySelector(".login-button");
 
-
+console.log("token = ",window.localStorage.getItem("token"));
 
 function registerHandle() {
 
@@ -47,7 +47,7 @@ function register(event) {
                     window.localStorage.setItem("token", data);
                     const token = window.localStorage.getItem("token"); 
                     console.log("local storage token", token);
-                    //window.location.href = "/";
+                    window.location.href = "/";
                 }
             } catch (error) {
                 console.error(error);
@@ -65,7 +65,7 @@ function login(event) {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
     console.log(username, password);
-    fetch("/login", {
+    fetch("/login-user", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -74,10 +74,13 @@ function login(event) {
     }).then(res => res.json())
         .then(data => {
             if (data.error) {
-                alert(data.error);
+                console.log(data);
+                alert(data.error.toString());
             } else {
-                localStorage.setItem("token", data.token);
-                window.location.href = "/";
+                console.log("data.token = ", data);
+                localStorage.setItem("token", data);
+                console.log(window.localStorage.getItem("token"));
+                window.location.href = "/"; 
             }
         });
 }

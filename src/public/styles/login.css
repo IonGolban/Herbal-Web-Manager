@@ -168,7 +168,8 @@ h2{
     transition: 0.4s;
 }
 
-.login-button{
+.login-button,
+.register-button{
     margin-top: 25px;
     width: 80%;
     height: 35px;
@@ -181,6 +182,7 @@ h2{
     transition:  0.5s;
 }
 
+.register-button,
 .login-button:hover{
     background: black;
     transition: 0.5s;

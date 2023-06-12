@@ -11,8 +11,8 @@ class catalogController{
             res.end(JSON.stringify(photos))
         } catch (error) {
             console.error(error);
-            res.writeHead(500, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: error.message }));
         }
     }
     async getImagesByTag(req,res,params){
@@ -23,7 +23,7 @@ class catalogController{
             res.end(JSON.stringify(photos))
         }catch(error){
             console.error(error);
-            res.writeHead(500, { "Content-Type": "application/json" });
+            res.writeHead(500, { "Content-Type": "text/plain" });
             res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
         }
     };
@@ -35,8 +35,8 @@ class catalogController{
             res.end(JSON.stringify({ message: "Photo saved" }));
         }catch(error){
             console.error(error);
-            res.writeHead(500, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: error.message }));
         }
     }
 }

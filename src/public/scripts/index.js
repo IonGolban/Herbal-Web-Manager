@@ -2,6 +2,7 @@ const searchInput = document.querySelector(".searchInput");
 const input = document.querySelector("input");
 const suggestions = document.querySelector(".suggestions");
 const trendings = document.querySelector(".trending-search-tags");
+console.log("token = ",window.localStorage.getItem("token"));
 
 let timeoutId;
 

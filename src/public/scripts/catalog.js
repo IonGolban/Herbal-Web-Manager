@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
-    await saveRandomImgs();    
+    await saveRandomImgs();
     const container = document.getElementById("plants");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
     let photos = [];
 
-    if(searchParam == "?query"){
+    if (searchParam == "?query") {
       photos = await getByQuery(query);
-    }else if(searchParam== "?count"){
+    } else if (searchParam == "?count") {
       photos = await getRandom(query);
-    }else {
-      photos = await(getRandom("?count=21"));
+    } else {
+      photos = await (getRandom("?count=21"));
     }
 
     for (const photo of photos) {
@@ -45,25 +45,48 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-async function getRandom(pathname){
-  const res = await fetch(`/random-img${pathname}`);
+async function getRandom(pathname) {
+  const res = await fetch(`/random-img${pathname}`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    }
+  })
+    .then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      }
+      return res;
+    });
   const photos = await res.json();
   return photos;
 }
 
-async function getByQuery(query){
-  const res = await fetch(`/img-by-tag${query}`);
+async function getByQuery(query) {
+  const res = await fetch(`/img-by-tag${query}`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    }
+  }).then(res => {
+    if (res.status == 401) {
+      window.location.href = "/login";
+      alert("You are not logged in!");
+    }
+    return res;
+  });
   const photos = await res.json();
   return photos;
 }
 
-async function saveRandomImgs(){
+async function saveRandomImgs() {
   await fetch("/save-random-imgs");
 }
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const thisPath = window.location.pathname;
-    //const split = thisPath.split("/");
-    console.log(thisPath);
+  const thisPath = window.location.pathname;
+  //const split = thisPath.split("/");
+  console.log(thisPath);
 });

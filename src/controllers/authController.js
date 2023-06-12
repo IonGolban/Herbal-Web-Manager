@@ -3,14 +3,21 @@ import authService from "../services/authService.js";
 class AuthController{
     async login(req,res){
         try{
-            const {username,password} = req.body;
+            let data = "";
+            await req.on("data", (chunk) => {
+                data += chunk;
+            });
+
+            data = JSON.parse(data);
+            const {username,password} = data;
+            
             const token = await authService.login(username,password);
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(token));
         }catch(err){
             console.error(err);
-            res.writeHead(500, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: err.message }));
         }
         
     }
@@ -28,8 +35,8 @@ class AuthController{
             res.end(JSON.stringify(token));
         }catch(err){
             console.error(err);
-            res.writeHead(500, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: err.message }));
         }
     }
     async logout(req,res){

@@ -13,8 +13,8 @@ class plantController{
             res.end(JSON.stringify(plants))
         }catch(error){
             console.error(error);
-            res.writeHead(500, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "An error occurred while processing your request" }));
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: error.message }));
         }
     }
 }

@@ -1,4 +1,4 @@
-import { servePublicFiles, serveStaticFile } from "./handler.js";
+    import { servePublicFiles, serveStaticFile } from "./handler.js";
 import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
@@ -28,29 +28,30 @@ const routes = {
 
     "/random-img": async (req, res, params) => {
         console.log("Request received for /random-img");
-        catalogController.getRandomImages(req, res, params);
+        await catalogController.getRandomImages(req, res, params);
     },
 
     "/img-by-tag": async (req, res, params) => {
         console.log(params);
-        catalogController.getImagesByTag(req, res, params);
+        await catalogController.getImagesByTag(req, res, params);
     },
     "/save-random-imgs": async (req, res) => {
         console.log("Request received for /save-random-imgs");
         console.log("Saving images");
-        catalogController.saveImages(req, res);
+        await catalogController.saveImages(req, res);
     },
     "/search": async (req,res,params) => {
         console.log("Request received for /search");
-        plantController.serchByKey(req,res,params);
+        await plantController.serchByKey(req,res,params);
     },
     "/login-user": async (req,res,params) => {
         console.log("Request received for /login-user");
-       // authController.login(req,res,params);
+
+        await authController.login(req,res,params);
     },
     "/register-user": async (req,res,params) => {
         console.log("Request received for /register-user");
-        authController.register(req,res,params);
+        await authController.register(req,res,params);
     }
 };
 

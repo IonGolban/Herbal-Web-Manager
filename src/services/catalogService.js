@@ -20,7 +20,12 @@ class CatalogService {
     async getImagesByTag(query) {
         await this.deleteDuplicatesFromDB();
         await connect();
-        const result = await Plant.find({ tags: query }).sort({ likes: -1 }).limit(21);
+        const result = await Plant.find({
+            $or: [
+                { tags: { $regex: query, $options: 'i' } }
+            ]
+        }).sort({ likes: -1 }).limit(21);
+        console.log(result.length+ result[0]);
         const photos = result.map(pic => ({
             url: pic.urls.regular,
             desc: pic.alt_description
@@ -55,9 +60,9 @@ class CatalogService {
 
     async saveImages() {
         await connect();
-        const result = await unsplash.photos.getRandom({ query: 'plant', count: 30 });
+        const result = await unsplash.photos.getRandom({ query: 'flower', count: 30 });
         console.log(result.response.length);
-        result.response.forEach((pic)=> console.log(pic.id));
+        result.response.forEach((pic) => console.log(pic.id));
         const filteredResult = await Promise.all(
             result.response.map(async (pic) => {
                 const docs = await Plant.find({ id: pic.id }).exec();
@@ -77,7 +82,7 @@ class CatalogService {
         console.log('Final length:', filteredResponse.length);
         for (const id of filteredResponse) {
             try {
-               
+
                 const photo = (await unsplash.photos.get({ photoId: id.id })).response;
                 const plant = new Plant({
                     id: photo.id,
