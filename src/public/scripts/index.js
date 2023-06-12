@@ -3,7 +3,6 @@ const input = document.querySelector("input");
 const suggestions = document.querySelector(".suggestions");
 const trendings = document.querySelector(".trending-search-tags");
 
-
 let timeoutId;
 
 input.addEventListener("keyup", async () => {

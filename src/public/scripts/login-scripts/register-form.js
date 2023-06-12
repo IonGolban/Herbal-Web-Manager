@@ -22,20 +22,55 @@ function loginHandle() {
 }
 
 function register(event) {
-
     event.preventDefault();
 
     const username = document.getElementById("register-username").value;
     const password = document.getElementById("register-password").value;
-    const email  = document.getElementById("register-email").value; 
-    console.log(username, password,email);
+    const email = document.getElementById("register-email").value;
 
-    fetch("/register", {
+    console.log(username, password, email);
+
+    fetch("/register-user", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password, email }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            try {
+                if (data.error) {
+                    throw new Error(data.error);
+                } else {
+                    console.log("data.token = ", data);
+                    window.localStorage.setItem("token", data);
+                    const token = window.localStorage.getItem("token"); 
+                    console.log("local storage token", token);
+                    //window.location.href = "/";
+                }
+            } catch (error) {
+                console.error(error);
+                alert("An error occurred while registering. Please try again later.");
+            }
+        });
+}
+
+
+function login(event) {
+
+    event.preventDefault();
+
+
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+    console.log(username, password);
+    fetch("/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password,email })
+        body: JSON.stringify({ username, password })
     }).then(res => res.json())
         .then(data => {
             if (data.error) {
@@ -45,32 +80,6 @@ function register(event) {
                 window.location.href = "/";
             }
         });
-
-}
-
-function login(event){
-
-        event.preventDefault();
-    
-
-        const username = document.getElementById("login-username").value;
-        const password = document.getElementById("login-password").value;
-        console.log(username, password);
-        fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password })
-        }).then(res => res.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    localStorage.setItem("token", data.token);
-                    window.location.href = "/";
-                }
-            });
 }
 
 registerLink.addEventListener('click', registerHandle);

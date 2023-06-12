@@ -1,10 +1,11 @@
-import Jwt  from "jsonwebtoken";
-
-
+import Jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+const time = '1h';
 
 class TokenUtils {
-    static generateToken(key) {
-        return Jwt.sign(key, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRE });
+    static generateToken(payload) {
+        return Jwt.sign({id: payload}, process.env.JWT_KEY, { expiresIn: time});
     }
 
     static verifyToken(token) {

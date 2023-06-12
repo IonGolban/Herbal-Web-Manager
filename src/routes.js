@@ -46,7 +46,7 @@ const routes = {
     },
     "/login-user": async (req,res,params) => {
         console.log("Request received for /login-user");
-        authController.login(req,res,params);
+       // authController.login(req,res,params);
     },
     "/register-user": async (req,res,params) => {
         console.log("Request received for /register-user");
