@@ -18,7 +18,7 @@ const server = http.createServer(async (req, res) => {
         console.log(req.headers.authorization);
         const token  = req.headers.authorization.split(" ")[1];
     
-        const requiresAuthentication = ['/profile', '/catalog','/random-img','/img-by-tag'];
+        const requiresAuthentication = ['/like','/profile', '/catalog','/random-img','/img-by-tag'];
         console.log(verifyToken(token) );
         console.log(requiresAuthentication.includes(split[0]));
         if (requiresAuthentication.includes(split[0]) && !verifyToken(token).valueOf()) {

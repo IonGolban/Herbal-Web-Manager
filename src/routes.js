@@ -52,6 +52,10 @@ const routes = {
     "/register-user": async (req,res,params) => {
         console.log("Request received for /register-user");
         await authController.register(req,res,params);
+    },
+    "/like" : async (req,res,params) => {
+        console.log("Request received for /like");
+        await plantController.likePlant(req,res,params);
     }
 };
 

@@ -1,9 +1,10 @@
 
 
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
-    await saveRandomImgs();
+    // await saveRandomImgs();
     const container = document.getElementById("plants");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const el = document.createElement("div");
       el.classList.add("plant");
       el.style.backgroundImage = `url(${photo.url})`;
-
+        
       el.innerHTML = `
     <div class="plant-desc">
       <div>
@@ -30,14 +31,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           ${photo.desc}
         </p>
         <div class="button-container">
-          <button class="plant-btn">add</button>
-          <button class="plant-btn">like</button>
+          <button class="add-btn">add</button>
+          <button class="like-btn">like</button>
         </div>
       </div>
     </div>
   `;
 
       container.appendChild(el);
+      const likeButton = el.querySelector(".like-btn");
+      likeButton.addEventListener("click", like);
     }
 
   } catch (err) {
@@ -46,6 +49,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     errorContainer.innerHTML = err.message;
   }
 });
+
+const likeButton = document.querySelector(".like-btn");
+
+
+async function like(event){
+  const likeButton = event.target;
+  const plant = likeButton.parentElement.parentElement.parentElement.parentElement;
+  const plant_url = plant.style.backgroundImage;
+  const urlStartIndex = plant_url.indexOf('url("') + 5;
+  const urlEndIndex = plant_url.indexOf('")');
+  const url = plant_url.substring(urlStartIndex, urlEndIndex);
+  console.log(url);
+
+  const res = await fetch(`/like?url=${url}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    }
+  });
+  const data = await res.json(); // TODO : current nr of likes
+  console.log(data);
+  
+}
+
 
 async function getRandom(pathname) {
   const res = await fetch(`/random-img${pathname}`, {

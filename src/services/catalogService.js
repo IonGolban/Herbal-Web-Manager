@@ -18,14 +18,16 @@ class CatalogService {
         return plantsUrl;
     }
     async getImagesByTag(query) {
-        await this.deleteDuplicatesFromDB();
+        // await this.deleteDuplicatesFromDB();
         await connect();
         const result = await Plant.find({
             $or: [
                 { tags: { $regex: query, $options: 'i' } }
             ]
         }).sort({ likes: -1 }).limit(21);
-        console.log(result.length+ result[0]);
+
+        console.log(result.length + result[0]);
+        
         const photos = result.map(pic => ({
             url: pic.urls.regular,
             desc: pic.alt_description

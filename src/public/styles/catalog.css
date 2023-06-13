@@ -97,7 +97,8 @@ header {
   gap: 10px;
 }
 
-.plant-btn {
+.add-btn,
+.like-btn {
   outline: none;
   border: 1px solid white;
   border-radius: 6px;
@@ -108,7 +109,8 @@ header {
   cursor: pointer;
 }
 
-.plant-btn:hover {
+.add-btn,
+.like-btn  {
   background-color: white;
   color: #555;
 }

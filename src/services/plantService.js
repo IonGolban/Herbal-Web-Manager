@@ -1,7 +1,7 @@
 import connect from "../db/mongoDatabase.js";
 import Plant from '../models/PLantModel.js';
-
-
+import User from '../models/userModel.js';
+import TokenUtils from "../util/tokenUtils.js";
 class PlantService {
 
     async searchByKey(key) {
@@ -28,7 +28,27 @@ class PlantService {
            console.error(error);
         };
     }
+    async likePlant(url,user_id) {
+        try {
+            await connect();
+            console
+            const plant = await Plant.findOne({ urls: { regular: url } });
+            console.log(plant);
+            // plant.likes++;
+            // plant.views++;
+            await plant.save();
+            const _id = plant._id;
+           
+            const user = await User.findOne({ _id:user_id });
+            user.likedPlants.push(_id);
+            await user.save();
+            
 
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
 export default new PlantService();
