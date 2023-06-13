@@ -14,6 +14,7 @@ class CatalogService {
             url: pic.urls.regular,
             desc: pic.alt_description
         }));
+        
         //console.log(plantsUrl);
         return plantsUrl;
     }
@@ -27,7 +28,7 @@ class CatalogService {
         }).sort({ likes: -1 }).limit(21);
 
         console.log(result.length + result[0]);
-        
+        console.log(result[0]);
         const photos = result.map(pic => ({
             url: pic.urls.regular,
             desc: pic.alt_description

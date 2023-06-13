@@ -62,12 +62,13 @@ async function like(event){
   const url = plant_url.substring(urlStartIndex, urlEndIndex);
   console.log(url);
 
-  const res = await fetch(`/like?url=${url}`, {
+  const res = await fetch(`/like`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-    }
+    },
+    body: JSON.stringify({ url }) 
   });
   const data = await res.json(); // TODO : current nr of likes
   console.log(data);

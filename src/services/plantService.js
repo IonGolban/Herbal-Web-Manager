@@ -31,20 +31,28 @@ class PlantService {
     async likePlant(url,user_id) {
         try {
             await connect();
-            console
-            const plant = await Plant.findOne({ urls: { regular: url } });
-            console.log(plant);
-            // plant.likes++;
-            // plant.views++;
-            await plant.save();
-            const _id = plant._id;
-           
-            const user = await User.findOne({ _id:user_id });
-            user.likedPlants.push(_id);
-            await user.save();
+            const user = await User.findOne({ _id:user_id.id });
+            const plant = await Plant.findOne({ "urls.regular": url.url });
+        
+            if (user && user.liked_photos.some(photo => photo._id.toString() === plant._id.toString())) {
+                return "You have already liked this photo";
+              }
             
+            console.log(plant);
+            plant.likes++;
+            plant.views++;
 
+            await plant.save();
+           
+            if (user) {
+                if (!user.liked_photos) {
+                  user.liked_photos = [];
+                }
+                user.liked_photos.push(plant._id);
+                await user.save();
+            }            
 
+            return plant.likes;
         } catch (error) {
             console.error(error);
         }

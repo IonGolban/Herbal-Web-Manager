@@ -42,6 +42,16 @@ class AuthController{
     async logout(req,res){
     }
     async getUser(req,res){
+        try{
+            const token = req.headers.authorization.split(" ")[1];
+            const user = await authService.getUser(token);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(user));
+        }catch(err){
+            console.error(err);
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: err.message }));
+        }
     }
 }
 
