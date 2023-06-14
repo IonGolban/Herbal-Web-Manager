@@ -72,6 +72,20 @@ class PlantService {
         } catch (error) {
             console.error(error);
         }
+            
+    }
+    async getLikedPlants(_id){
+        await connect();
+        const user = await User.findById(_id);
+        let photos = [];
+
+        for(const id of user.liked_photos){
+            const plant = await Plant.findOne({_id : id});
+            photos.push({url:id.urls.regular,description: plant.description}); 
+        }
+
+        return photos;
+
     }
 }
 

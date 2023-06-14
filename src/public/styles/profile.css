@@ -1,19 +1,18 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
     font-size: 1rem;
 }
 
-.profile-frame{
+.profile-frame {
     height: 200vh;
     width: 100vw;
     display: flex;
 
 }
 
-.left-frame
-{
+.left-frame {
     height: 100vh;
     width: 15%;
     background-color: #e0e0e0;
@@ -27,7 +26,7 @@
     max-width: 15%;
 }
 
-.logo{
+.logo {
     margin-top: 20%;
     margin-left: -50%;
     font-weight: 700;
@@ -37,19 +36,19 @@
     text-decoration: none;
 }
 
-ul{
+ul {
     list-style: none;
     padding: 0;
     margin-right: 5vw;
     margin-top: 5vw;
 }
 
-li{
+li {
     width: 100%;
     margin: 50px 50px;
 }
 
-li a{
+li a {
     text-decoration: none;
     color: black;
     transition: 0.5s;
@@ -69,17 +68,16 @@ li a{
     font-size: 16px;
     transition-duration: 0.3s;
     cursor: pointer;
-  }
-  
-  .log-out-but:hover {
+}
+
+.log-out-but:hover {
     background-color: #f5f5f5;
     color: black;
-  }
+}
 
 
 
-.right-frame
-{
+.right-frame {
     height: 100%;
     width: 85%;
     background: #f5f5f5;
@@ -88,7 +86,7 @@ li a{
     margin-left: 15vw;
 }
 
-.cover-photo-container{
+.cover-photo-container {
     height: 30%;
     width: 100%;
     background-image: url("../assets/login-background.jpg");
@@ -97,7 +95,7 @@ li a{
     background-repeat: no-repeat;
 }
 
-.info-container{
+.info-container {
     position: relative;
     height: 10%;
     width: 100%;
@@ -109,22 +107,22 @@ li a{
 
 }
 
-.content{
-    width: 30% ;
+.content {
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.left-description{
-    width: 100% ;
+.left-description {
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.post-info p, 
+.post-info p,
 .left-description p {
     font-size: 2.4vmin;
     white-space: normal;
@@ -132,7 +130,7 @@ li a{
     color: black;
 }
 
-.post-info{
+.post-info {
     width: 80%;
     height: 100%;
     display: flex;
@@ -142,7 +140,7 @@ li a{
 
 .collections-container,
 .likes-container,
-.posts-container{
+.posts-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -158,7 +156,7 @@ li a{
     justify-content: center;
 }
 
-.p-img{
+.p-img {
     height: 150px;
     width: 150px;
     position: absolute;
@@ -170,23 +168,22 @@ li a{
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
-  
 
-.linie
-{
+
+.linie {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.horizontal{
+.horizontal {
     border: none;
     border-top: 2px solid black;
     width: 80%;
 }
 
-.elements{
+.elements {
     width: 80%;
     display: flex;
     justify-content: space-around;
@@ -195,40 +192,81 @@ li a{
 
 .like-icon,
 .upload-icon,
-.collection-icon{
+.collection-icon {
     color: rgb(78, 76, 76);
     transition: 0.5s;
     cursor: pointer;
 }
 
-.like-icon:hover{
+.like-icon:hover {
     color: black;
 }
 
 
-.photo-container{
+.photo-container {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    padding: 10px 10px;
+
+    justify-items: center;
 }
 
-.photos{
-    height: 100%;
-    width: 80%;
-    background: #f5f5f5;
+.photos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 5px;
-    grid-row-gap: 2px;
+    grid-template-columns: repeat(3, calc((100% - 20px * 2 - 5px * 2) / 3));
+    grid-gap: 20px;
+    justify-content: space-between;
+    padding: 5px;
+    max-width: 1200px;
+    margin: 0px auto;
 }
 
 .photo {
-    height: 0;
-    padding-top: 100%; 
-    background-color: black; 
-    border-radius: 10px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: auto;
+    background-position: center;
+    background-size: cover;
+    border-radius: 40px;
+    align-content: center;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-end;
+
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    ;
+    
+}
+
+.add-btn,
+.like-btn {
+    background-color: white;
+    opacity: 0.6;
+    color: black;
+    font-weight: bold;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 6px;
+    padding: 5px 18px;
+    transition: 0.3s ease all;
+    cursor: pointer;
+
+}
+
+@media only screen and (max-width: 992px) {
+    .photos {
+        grid-template-columns: repeat(2, calc((100% - 20px * 2 - 5px * 2) / 2));
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .photos {
+        grid-template-columns: 100%;
+    }
 }
