@@ -60,6 +60,10 @@ const routes = {
     "/views" : async (req,res,params) => {
         console.log("Request received for /views");
         await plantController.viewPlant(req,res,params);
+    },
+    "/profile/liked" : async (req,res,params) => {
+        console.log("Request received for /profile/liked");
+        await plantController.getLikedPlants(req,res,params);
     }
 };
 
