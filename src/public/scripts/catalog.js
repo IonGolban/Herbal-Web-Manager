@@ -1,4 +1,5 @@
-
+const modalLikeButton = document.querySelector(".like-btn-modal");
+const modalAddButton = document.querySelector(".add-btn-modal");
 
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -26,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       el.innerHTML = `
       <div class="plant-desc">
         <div>
-          <h2 class="plant-title">Small plant</h2>
           <p class="plant-text">
             ${photo.desc}
           </p>
@@ -109,6 +109,22 @@ async function like(event){
   console.log(data);
   
 }
+
+modalLikeButton.addEventListener("click", async () => {
+  const modImg = document.querySelector(".modal-image");
+  const url = modImg.src;
+  const res = await fetch(`/like`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({ url }) 
+  });
+
+  const data = await res.json(); // TODO : current nr of likes
+  console.log(data);
+});
 
 
 async function getRandom(pathname) {

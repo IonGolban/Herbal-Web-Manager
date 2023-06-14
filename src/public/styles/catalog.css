@@ -43,6 +43,8 @@ header {
 .plant,
 .plant-desc {
   border-radius: 40px;
+  text-overflow: ellipsis ;
+  align-content: center;
 }
 
 .plant {
@@ -65,11 +67,13 @@ header {
   opacity: 0;
   transition: 0.6s ease opacity;
   backdrop-filter: blur(4px) brightness(0.6);
+  
+  overflow: hidden;
 }
 
 .plant-desc > div {
   padding: 40px;
-  padding-top: 130px;
+  align-items: center;
 }
 
 .plant-desc:hover {
@@ -88,6 +92,7 @@ header {
 
 .plant-text {
   margin: 25px 0px;
+  
 }
 
 .button-container {
@@ -97,23 +102,44 @@ header {
   gap: 10px;
 }
 
+/* like and add buttons */
+.add-btn-modal,
+.like-btn-modal,
 .add-btn,
 .like-btn {
   outline: none;
   border: 1px solid white;
   border-radius: 6px;
   padding: 5px 18px;
-  background-color: transparent;
-  color: white;
   transition: 0.3s ease all;
   cursor: pointer;
 }
-
 .add-btn,
-.like-btn  {
+.like-btn {
+  background-color: transparent;
+  color: white;
+}
+.add-btn:hover,
+.like-btn:hover  {
   background-color: white;
   color: #555;
 }
+
+
+.add-btn-modal,
+.like-btn-modal {
+  background-color: white;
+  opacity: 0.6;
+  color: black;
+  font-weight: bold;    
+}
+.add-btn-modal:hover,
+.like-btn-modal:hover {
+  background-color: darkslategrey;
+  color: #fff;
+}
+
+
 
 .modal {
   display: none;
@@ -150,12 +176,11 @@ header {
   display: flex;
   justify-content: space-around;
   position: absolute;
-  top: 40%;
+  bottom: 15%;
+
 }
 
-.modal-image:hover {
-  filter: brightness(50%);
-}
+
 
 .close-modal {
   color: #fff;
@@ -166,10 +191,6 @@ header {
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
-}
-
-.close-modal:hover {
-  transform: rotate(360deg);
 }
 
 
