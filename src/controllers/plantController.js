@@ -71,7 +71,7 @@ class plantController {
             res.end(JSON.stringify({ error: error.message }));
         }
     }
-    async getLikedPlant(req, res) {
+    async getLikedPlants(req, res) {
         try{
             if(!req.headers.authorization){
                 res.writeHead(401,{"Content-Type" : "text/plain"});
