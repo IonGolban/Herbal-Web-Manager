@@ -56,6 +56,10 @@ const routes = {
     "/like" : async (req,res,params) => {
         console.log("Request received for /like");
         await plantController.likePlant(req,res,params);
+    },
+    "/views" : async (req,res,params) => {
+        console.log("Request received for /views");
+        await plantController.viewPlant(req,res,params);
     }
 };
 

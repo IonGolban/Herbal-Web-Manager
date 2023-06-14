@@ -28,6 +28,23 @@ class PlantService {
            console.error(error);
         };
     }
+
+    async viewPlantPhoto(url, user_id) {
+        try{
+            await connect();
+
+            const plant = await Plant.findOne({"urls.regular" : url.url});
+
+            plant.views++;
+            //console.log(plant);
+
+            await plant.save();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async likePlant(url,user_id) {
         try {
             await connect();
@@ -36,11 +53,10 @@ class PlantService {
         
             if (user && user.liked_photos.some(photo => photo._id.toString() === plant._id.toString())) {
                 return "You have already liked this photo";
-              }
+            }
             
             console.log(plant);
             plant.likes++;
-            plant.views++;
 
             await plant.save();
            

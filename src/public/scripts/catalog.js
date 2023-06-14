@@ -24,23 +24,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       el.style.backgroundImage = `url(${photo.url})`;
         
       el.innerHTML = `
-    <div class="plant-desc">
-      <div>
-        <h2 class="plant-title">Small plant</h2>
-        <p class="plant-text">
-          ${photo.desc}
-        </p>
-        <div class="button-container">
-          <button class="add-btn">add</button>
-          <button class="like-btn">like</button>
+      <div class="plant-desc">
+        <div>
+          <h2 class="plant-title">Small plant</h2>
+          <p class="plant-text">
+            ${photo.desc}
+          </p>
+          <div class="button-container">
+            <button class="add-btn">add</button>
+            <button class="like-btn">like</button>
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
 
       container.appendChild(el);
       const likeButton = el.querySelector(".like-btn");
       likeButton.addEventListener("click", like);
+
+      const viewButton = el;
+      viewButton.addEventListener("click", viewPhoto);
+
     }
 
   } catch (err) {
@@ -53,7 +57,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 const likeButton = document.querySelector(".like-btn");
 
 
+async function viewPhoto(event){
+  const plantDesc = event.target.closest(".plant");
+  //console.log(plantDesc.style.backgroundImage);
+
+  const modal = document.querySelector(".modal");
+  const modImg = document.querySelector(".modal-image");
+  const closeBut = document.querySelector(".close-modal");
+
+  const url = plantDesc.style.backgroundImage.slice(5,-2);
+  modal.style.display = "block";
+  modImg.src = url;
+
+
+  const res = await fetch(`/views`, {
+    method : "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({ url }) 
+  });
+
+  closeBut.addEventListener("click", function(){
+    modal.style.display = "none";
+  });
+}
+
 async function like(event){
+
+  event.stopPropagation();
+
   const likeButton = event.target;
   const plant = likeButton.parentElement.parentElement.parentElement.parentElement;
   const plant_url = plant.style.backgroundImage;
@@ -70,6 +104,7 @@ async function like(event){
     },
     body: JSON.stringify({ url }) 
   });
+
   const data = await res.json(); // TODO : current nr of likes
   console.log(data);
   
