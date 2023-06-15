@@ -36,7 +36,7 @@ class plantController {
 
             const response =  await plantService.viewPlantPhoto(url, user_id);
             res.writeHead(201, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ message: response }));
+            res.end(JSON.stringify(response));
 
         } catch (error) {
             console.error(error);
@@ -83,7 +83,7 @@ class plantController {
             const photos = await plantService.getLikedPlants(user_id);
 
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(Json.stringify({response : photos}));
+            res.end(JSON.stringify({response : photos}));
 
 
         }catch (error){

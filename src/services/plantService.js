@@ -76,14 +76,14 @@ class PlantService {
     }
     async getLikedPlants(_id){
         await connect();
-        const user = await User.findById(_id);
+        const user = await User.findById(_id.id);
         let photos = [];
 
         for(const id of user.liked_photos){
             const plant = await Plant.findOne({_id : id});
-            photos.push({url:id.urls.regular,description: plant.description}); 
+            photos.push({url:plant.urls.regular,description: plant.description}); 
         }
-
+        console.log(photos);
         return photos;
 
     }
