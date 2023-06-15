@@ -1,26 +1,61 @@
-
+const likedSection = document.querySelector(".like-icon");
+const uploadSection = document.querySelector(".upload-icon");
+const collectionSection = document.querySelector(".collectionSection");
+const photoStorage = document.querySelector(".photos");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const plants = 6;
-  const container = document.querySelector(".photos");
-  for (let i = 0; i < plants; i++) {
-    const randomNum = Math.floor(Math.random() * 1000);
-    const url = `https://picsum.photos/600/?random=${randomNum}`;
+  
+  // const path = window.location.pathname;
+  // if ( path === "/profile/liked") {
+  //   getLikedPhotos();
+  // }
 
-    const el = document.createElement("div");
-    el.classList.add("photo");
-    el.style.backgroundImage = `url(${url})`;
-    el.innerHTML = `
-    <div class="button-container">
-            <button class="add-btn">add</button>
-            <button class="like-btn">like</button>
-    </div>
-    `;
+  getLikedPhotos();
+  likedSection.addEventListener("click", getLikedPhotos);
 
-    container.appendChild(el);
-  }
 }); 
 
 
+
+async function getLikedPhotos(){
+  
+  try{
+    const res = await fetch (`/profile/liked`, {
+      method : "GET",
+      headers : {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+      }
+    }).then(res => {
+        if(res.status == 401) {
+          window.location.href = "/login";
+          alert("You are not logged in!");
+        }
+        return res;
+      })
+
+    const plants = await res.json();
+    for(const plant of plants.response){
+      
+      const el = document.createElement("div");
+      el.classList.add("photo");
+      el.style.backgroundImage = `url(${plant.url})`;
+      el.innerHTML = `
+      <div class="button-container">
+              <button class="add-btn">add</button>
+              <button class="like-btn">like</button>
+      </div>
+      `;
+
+      photoStorage.appendChild(el);
+
+    }
+
+
+  } catch (error) {
+    console.log(error);
+  }
+
+
+
+}
   
