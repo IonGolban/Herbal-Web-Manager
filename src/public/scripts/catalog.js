@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
     // await saveRandomImgs();
+
     const container = document.getElementById("plants");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
@@ -41,11 +42,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(el);
       const likeButton = el.querySelector(".like-btn");
       likeButton.addEventListener("click", like);
-
+      
       const viewButton = el;
       viewButton.addEventListener("click", viewPhoto);
+      const addButton = el.querySelector(".add-btn");
+      addButton.addEventListener("click", (event) =>{
+        addToCollection(event,photo._id);
+      });
+      const addButtonModal = document.querySelector(".add-btn-modal");
+      addButtonModal.addEventListener("click", (event) =>{
+        addToCollection(event,photo._id);
 
-    }
+      });
+    } 
 
   } catch (err) {
     console.error(err);
@@ -53,6 +62,98 @@ document.addEventListener("DOMContentLoaded", async () => {
     errorContainer.innerHTML = err.message;
   }
 });
+
+async function addToCollection(event,photoId){
+  event.stopPropagation();
+  const modal = document.querySelector(".modal-collections");
+  modal.style.display = "flex";
+  const list = document.getElementById("collection-list");
+  const closeBtn = document.querySelector(".collection-close-btn");
+  closeBtn.addEventListener("click", () => {
+    console.log("close");
+    list.innerHTML = "";
+    modal.style.display = "none";
+  });
+
+  const collections = await getListOfCollections();
+  console.log(collections);
+  for(const collection of collections){
+    const elementList = createListItem(collection);
+    elementList.addEventListener("click", (event) => {
+      console.log("clicked");
+      console.log(collection._id);
+      console.log(photoId);
+      addPlantToCollection(collection._id, photoId);
+      elementList.style.display = "none";
+    });
+    list.appendChild(elementList);
+
+  } 
+
+  // for(let i = 0; i < 6; i++){
+  //   const randomNum = Math.floor(Math.random() * 1000);
+  //   const url = `https://picsum.photos/600/?random=${randomNum}`;
+  //   list.appendChild(createListItem());  
+  // }
+  
+}
+async function getListOfCollections() {
+  const res = await fetch(`/collection/getList`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    }
+  })
+    .then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      }
+      return res;
+    });
+    const data = await res.json();
+    return data;
+}
+async function addPlantToCollection(collection_id, photo_id){
+  const res = await fetch(`/collection/addPlant`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({ collection_id, photo_id })
+  })
+    .then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      }
+      return res;
+    });
+  const data = await res.json();
+  return data;
+}
+function createListItem(collection) {
+  const listCollection = document.createElement("li");
+  const collectionContainer = document.createElement("div");
+  const collectionImage = document.createElement("img");
+  const collectionName = document.createElement("span");
+  
+  // collectionImage.src = item.imgSrc;
+  collectionImage.src = collection.cover_img;
+  collectionImage.classList.add("collection-image");
+
+  collectionName.textContent = collection.name;
+  collectionName.classList.add("collection-name");
+
+  collectionContainer.classList.add("collection");
+  collectionContainer.appendChild(collectionImage);
+  collectionContainer.appendChild(collectionName);
+
+  listCollection.appendChild(collectionContainer);
+
+  return listCollection;
+}
 
 const likeButton = document.querySelector(".like-btn");
 

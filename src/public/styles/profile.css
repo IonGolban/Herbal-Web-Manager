@@ -45,6 +45,7 @@ ul {
 li {
     width: 100%;
     margin: 50px 50px;
+    cursor: pointer;
 }
 
 li a {
@@ -270,6 +271,7 @@ li a {
         grid-template-columns: 100%;
     }
 
+
     .p-img {
         height: 130px;
         width: 130px;
@@ -283,5 +285,6 @@ li a {
         height: 120px;
         width: 120px;
     }
+
 }
 
