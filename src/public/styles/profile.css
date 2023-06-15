@@ -212,7 +212,7 @@ li a {
 }
 
 .photos {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, calc((100% - 20px * 2 - 5px * 2) / 3));
     grid-gap: 20px;
     justify-content: space-between;
@@ -271,7 +271,6 @@ li a {
         grid-template-columns: 100%;
     }
 
-
     .p-img {
         height: 130px;
         width: 130px;
@@ -285,6 +284,4 @@ li a {
         height: 120px;
         width: 120px;
     }
-
 }
-

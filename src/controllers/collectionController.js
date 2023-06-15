@@ -1,4 +1,4 @@
-import {createCollectionService,getCollectionByIdService,addPlantToCollectionService} from "../services/collectionService.js";
+import {createCollectionService,getCollectionByIdService,addPlantToCollectionService,getPlantsByCollectionIdService} from "../services/collectionService.js";
 import TokenUtils from "../util/tokenUtils.js";
 import getBodyFromReq from "../util/utilFunctions.js";
 // import getCollectionByIdService from "../services/collectionService.js";
@@ -57,6 +57,20 @@ export async function addPlantToCollection(req, res, params) {
         const data = await getBodyFromReq(req);
         // console.log(data);
         const response = await addPlantToCollectionService(data.collection_id, data.photo_id);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(response));
+    } catch (error) {
+        console.error(error);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: error.message }));
+    }
+
+}
+
+export async function getPlantsByCollectionId(req, res, params) {
+    try {
+        const collection_id = params.split("=")[1];
+        const response = await getPlantsByCollectionIdService(collection_id);
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(response));
     } catch (error) {

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/profile.css">
   <link rel="stylesheet" href="styles/collection-modal.css">
-
+  <link rel="stylesheet" href="styles/collection-list.css">
   <title>Document</title>
 </head>
 
@@ -24,18 +24,15 @@
   </div>
   <div class="profile-frame">
 
-    <div class="left-frame">
+    <iv class="left-frame">
       <div class="logo">HerbalWM</div>
-
+      
       <ul>
         <li><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px;"></i>Home</li>
-        <li><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px;"></i>Favourite Plants</a>
-        </li>
-        <li><i class="fa-solid fa-bell fa-xl" style="color: #000000; margin-right: 10px;"></i>Notifications</a></li>
-        <li><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px;"></i>Edit
-          Profile</a></li>
-        <li id="create-collection"><i class="fa-solid fa-book-medical fa-xl"
-            style="color: #000000; margin-right: 10px;"></i>Create Collection</li>
+        <li><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px;"></i>Favourite Plants</li>
+        <li><i class="fa-solid fa-bell fa-xl" style="color: #000000; margin-right: 10px;"></i>Notifications</li>
+        <li><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px;"></i>Edit Profile</li>
+        <li id = "create-collection"><i  class="fa-solid fa-book-medical fa-xl" style="color: #000000; margin-right: 10px;"></i>Create Collection</li>
       </ul>
 
       <button class="log-out-but">Log-out</button>
@@ -60,32 +57,26 @@
               adipiscing elit, sed do eiusmod tempor.
             </p>
           </div>
+        </div>
 
-  
-          <div class="content">
-            <div class="post-info">
-              
-              <div class="likes-container">
-                <p>Likes</p>
-                <div class="number-of-likes"><p>0</p></div>
-              </div>
+        <div class="profile-image">
+          <div class="p-img"></div>
+        </div>
 
-              <div class="posts-container">
-                <p>Uploads</p>
-                <div class="number-of-uploads"><p>0</p></div>
+        <div class="content">
+          <div class="post-info">
 
             <div class="likes-container">
               <p>Likes</p>
               <div class="number-of-likes">
-                <p>189</p>
+                <p>0</p>
               </div>
             </div>
 
-
-              <div class="collections-container">
-                <p>Collections</p>
-                <div class="number-of-collections"><p>0</p></div>
-
+            <div class="posts-container">
+              <p>Uploads</p>
+              <div class="number-of-uploads">
+                <p>0</p>
               </div>
 
             </div>
@@ -93,7 +84,7 @@
             <div class="collections-container">
               <p>Collections</p>
               <div class="number-of-collections">
-                <p>5</p>
+                <p>0</p>
               </div>
             </div>
 
@@ -130,11 +121,20 @@
 
 
     </div>
+    <div id="modal-collections" class="modal-collections">
 
+      <div class="collection-close-btn">&times;</div>
+      <div class="modal-container-collections">
+        <span>Click to view</span>
+        <ul id="collection-list">
+  
+        </ul>
+      </div>
+    </div>
 
   </div>
   <script src="scripts/profile.js"></script>
-
 </body>
 
 </html>
+

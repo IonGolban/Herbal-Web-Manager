@@ -3,7 +3,7 @@ import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
-import {createCollection,getCollectionOfCurrentUser,addPlantToCollection} from "./controllers/collectionController.js";
+import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
@@ -25,6 +25,10 @@ const routes = {
     "/catalog/random-img": async (req, res, params) => {
         console.log("Request received for /catalog/random-img");
         serveStaticFile(res, "./public/catalog.html", "text/html");
+    },
+    "/profile/collection": async (req, res) => {
+        console.log("Request received for /profile/collection");
+        serveStaticFile(res, "./public/profile.html", "text/html");
     },
 
     "/random-img": async (req, res, params) => {
@@ -77,6 +81,10 @@ const routes = {
     "/collection/addPlant" : async (req,res,params) => {
         console.log("Request received for /collection/addPlant");
         await addPlantToCollection(req,res,params);
+    },
+    "/collection/plants" : async (req,res,params) => {
+        console.log("Request received for /collection/getPlants");
+        await getPlantsByCollectionId(req,res,params);
     }
 
 

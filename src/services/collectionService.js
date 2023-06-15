@@ -9,7 +9,7 @@ export async function createCollectionService(collection, user_id) {
     if (!user) {
         throw new Error("User not found");
     }
-    if(!user.collections){
+    if (!user.collections) {
         user.collections = [];
     }
     const collectionEntity = new Collection({
@@ -20,7 +20,7 @@ export async function createCollectionService(collection, user_id) {
     });
 
     const createdCollection = await Collection.create(collectionEntity);
-    user.collections.push({_id :createdCollection._id});
+    user.collections.push({ _id: createdCollection._id });
     await user.save();
 
     return "Created collection";
@@ -28,15 +28,15 @@ export async function createCollectionService(collection, user_id) {
 
 export async function getCollectionByIdService(id) {
     await connect();
-    
-    const collections = await Collection.find( {user_id:id});
+
+    const collections = await Collection.find({ user_id: id });
     if (!collections) {
         throw new Error("You don't have any collections");
     }
-    for(let collection of collections){
-        if(!collection.cover_img){
-           collection.cover_img = collection.plants.length>0 ? collection.plants[0].url :"https://fomantic-ui.com/images/wireframe/image.png";
-        } 
+    for (let collection of collections) {
+        if (!collection.cover_img) {
+            collection.cover_img = collection.plants.length > 0 ? collection.plants[0].url : "https://fomantic-ui.com/images/wireframe/image.png";
+        }
     }
     return collections;
 }
@@ -47,20 +47,34 @@ export async function addPlantToCollectionService(collection_id, plant_id) {
     if (!collection) {
         throw new Error("Collection not found");
     }
-    if(!collection.plants){
+    if (!collection.plants) {
         collection.plants = [];
     }
-    if(collection.plants.some(plant => plant._id.toString() === plant_id.toString())){
+    if (collection.plants.some(plant => plant._id.toString() === plant_id.toString())) {
         return "You have already added this plant to the collection";
     }
 
-    collection.plants.push({_id:plant_id});
-    
-    if(collection.cover_img=="https://fomantic-ui.com/images/wireframe/image.png"){
+    collection.plants.push({ _id: plant_id });
+
+    if (collection.cover_img == "https://fomantic-ui.com/images/wireframe/image.png") {
         const plant = await Plant.findById(plant_id);
         collection.cover_img = plant.urls.regular;
     }
 
     await collection.save();
     return "Added plant to collection";
+}
+
+export async function getPlantsByCollectionIdService(req, res, params) {
+    try {
+        await connect();
+        const collection = await Collection.findById(params.collection_id);
+        if (!collection) {
+            throw new Error("Collection not found");
+        }
+        const plants = await Plant.find({ _id: { $in: collection.plants } });
+        return plants;
+    } catch (error) {
+        console.log(error);
+    }
 }
