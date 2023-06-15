@@ -11,6 +11,7 @@ class CatalogService {
         await connect();
         const result = await Plant.aggregate([{ $sample: { size: count } }]);
         const plantsUrl = result.map(pic => ({
+            _id: pic._id,
             url: pic.urls.regular,
             desc: pic.alt_description
         }));
@@ -30,6 +31,7 @@ class CatalogService {
         console.log(result.length + result[0]);
         console.log(result[0]);
         const photos = result.map(pic => ({
+            _id: pic._id,
             url: pic.urls.regular,
             desc: pic.alt_description
         }));
@@ -124,6 +126,7 @@ class CatalogService {
         await connect();
         const result = await Plant.find({ tags: query });
         const photos = result.map(pic => ({
+            _id: pic._id,
             url: pic.urls.regular,
             desc: pic.alt_description
         }));

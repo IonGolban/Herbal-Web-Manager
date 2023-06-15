@@ -3,6 +3,7 @@ import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
+import {createCollection,getCollectionOfCurrentUser,addPlantToCollection} from "./controllers/collectionController.js";
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
@@ -64,7 +65,21 @@ const routes = {
     "/profile/liked" : async (req,res,params) => {
         console.log("Request received for /profile/liked");
         await plantController.getLikedPlants(req,res,params);
+    },
+    "/collection/create" : async (req,res,params) => {
+        console.log("Request received for /collection/create");
+        await createCollection(req,res,params);
+    },
+    "/collection/getList" : async (req,res,params) => {
+        console.log("Request received for /collection/getList");
+        await getCollectionOfCurrentUser(req,res,params);
+    },
+    "/collection/addPlant" : async (req,res,params) => {
+        console.log("Request received for /collection/addPlant");
+        await addPlantToCollection(req,res,params);
     }
+
+
 };
 
 export default routes;

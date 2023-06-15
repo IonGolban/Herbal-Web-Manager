@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/profile.css">
+  <link rel="stylesheet" href="styles/collection-modal.css">
 
   <title>Document</title>
 </head>
+
 <body>
   <script src="https://kit.fontawesome.com/d0ee975ea0.js" crossorigin="anonymous"></script>
+  <div class="modal">
+    <div class="modal-container">
+      <button id="collection-close-button">X</button>
+      <h2 id="modal-title">Add a new collection</h2>
+      <input type="text" id="collection-name-input" placeholder="Enter name"></input>
+      <textarea type="text" id="collection-description-input" placeholder="Enter description"></textarea>
+      <button id="collection-add-button">Add</button>
+    </div>
+  </div>
   <div class="profile-frame">
 
     <div class="left-frame">
       <div class="logo">HerbalWM</div>
-      
+
       <ul>
-        <li><a href="index.html"><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px;"></i>Home</a></li>
-        <li><a href="index.html"><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px;"></i>Favourite Plants</a></li>
-        <li><a href="index.html"><i class="fa-solid fa-bell fa-xl" style="color: #000000; margin-right: 10px;"></i>Notifications</a></li>
-        <li><a href="index.html"><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px;"></i>Edit Profile</a></li>
-        <li><a href="index.html"><i class="fa-solid fa-book-medical fa-xl" style="color: #000000; margin-right: 10px;"></i>Create Collection</a></li>
+        <li><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px;"></i>Home</li>
+        <li><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px;"></i>Favourite Plants</a>
+        </li>
+        <li><i class="fa-solid fa-bell fa-xl" style="color: #000000; margin-right: 10px;"></i>Notifications</a></li>
+        <li><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px;"></i>Edit
+          Profile</a></li>
+        <li id="create-collection"><i class="fa-solid fa-book-medical fa-xl"
+            style="color: #000000; margin-right: 10px;"></i>Create Collection</li>
       </ul>
 
       <button class="log-out-but">Log-out</button>
@@ -30,56 +45,62 @@
     <div class="right-frame">
 
       <div class="cover-photo-container">
-  
+
       </div>
-      
-  
+
+
       <div class="info-container">
-          
-          <div class="content">
-            <div class="left-description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor.
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor.
-              </p>
+
+        <div class="content">
+          <div class="left-description">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do eiusmod tempor.
+              Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-image">
+          <div class="p-img"></div>
+        </div>
+
+        <div class="content">
+          <div class="post-info">
+
+            <div class="likes-container">
+              <p>Likes</p>
+              <div class="number-of-likes">
+                <p>189</p>
+              </div>
             </div>
-          </div>
-  
-          <div class="profile-image">
-              <div class="p-img"></div>
-          </div>
-  
-          <div class="content">
-            <div class="post-info">
-              
-              <div class="likes-container">
-                <p>Likes</p>
-                <div class="number-of-likes"><p>189</p></div>
-              </div>
 
-              <div class="posts-container">
-                <p>Uploads</p>
-                <div class="number-of-uploads"><p>27</p></div>
-
-              </div>
-
-              <div class="collections-container">
-                <p>Collections</p>
-                <div class="number-of-collections"><p>5</p></div>
+            <div class="posts-container">
+              <p>Uploads</p>
+              <div class="number-of-uploads">
+                <p>27</p>
               </div>
 
             </div>
+
+            <div class="collections-container">
+              <p>Collections</p>
+              <div class="number-of-collections">
+                <p>5</p>
+              </div>
+            </div>
+
           </div>
+        </div>
       </div>
-  
+
       <div class="linie">
         <hr class="horizontal">
       </div>
 
       <div class="photo-container">
-  
+
         <div class="elements">
 
           <div class="like-icon">
@@ -100,8 +121,8 @@
         </div>
 
       </div>
-  
-  
+
+
     </div>
 
 
@@ -109,4 +130,5 @@
   <script src="scripts/profile.js"></script>
 
 </body>
+
 </html>

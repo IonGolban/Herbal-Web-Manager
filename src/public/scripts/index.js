@@ -7,7 +7,19 @@ console.log("token = ", window.localStorage.getItem("token"));
 
 let timeoutId;
 
-
+document.addEventListener("DOMContentLoaded", async () => {
+    if(window.localStorage.getItem("token")){
+        document.querySelector(".logout-button").style.display = "block";
+        document.querySelector(".login-button").style.display = "none";
+        document.querySelector(".signup-button").style.display = "none";
+        document.querySelector(".profile-button").style.display = "block";
+    }else{
+        document.querySelector(".logout-button").style.display = "none";
+        document.querySelector(".login-button").style.display = "block";
+        document.querySelector(".signup-button").style.display = "block";
+        document.querySelector(".profile-button").style.display = "none";
+    }
+});
 const getTagsImagesbyKey = async (key) => {
     const res = await fetch(`/img-by-tag?key=${key}`);
     const tags = await res.json();

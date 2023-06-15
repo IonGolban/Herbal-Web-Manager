@@ -46,6 +46,7 @@ ul {
 li {
     width: 100%;
     margin: 50px 50px;
+    cursor: pointer;
 }
 
 li a {
@@ -270,3 +271,4 @@ li a {
         grid-template-columns: 100%;
     }
 }
+
