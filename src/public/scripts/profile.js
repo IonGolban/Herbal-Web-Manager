@@ -4,38 +4,43 @@ const collectionSection = document.querySelector(".collectionSection");
 const photoStorage = document.querySelector(".photos");
 const createCollectionButton = document.getElementById("create-collection");
 const collectionIcon = document.querySelector(".collection-icon");
-
+const likeIcon = document.querySelector(".like-icon");
 
 
 collectionIcon.addEventListener("click", displayCollectionList);
+likeIcon.addEventListener("click",() =>{
+  if(window.location.search===""){
+    
+  }else{
+    window.location.href = "/profile";
+  }
+});
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const photoContainer = document.querySelector(".photo-container");
-  const path = window.location.pathname;
+  const query = window.location.search;
+  const searchParam = query.split("=")[0];
+  console.log(searchParam);
   let plants;
-  if (path === "/profile") {
-    document.querySelector(".photos").style.display = "grid";
-    plants = await getLikedPhotos();
-
-    document.querySelector(".like-icon").style.borderBottom = "2px solid #000000";
-  }
-  else if (path === "/profile/upload") {    //TODO
-    plants = getUploadedPhotos();
-    document.querySelector(".photos").style.display = "grid";
-    document.querySelector(".upload-icon").style.borderBottom = "2px solid #000000";
-  } else if (path === "/profile/collection") {
-    params = window.location.search;
-    const id = params.split("=")[1];
+  if (searchParam === "?collection_id") {
+    console.log("collection");
+    const id = query.split("=")[1];
     plants = await getPlantsByCollectionId(id);
     document.querySelector(".photos").style.display = "grid";
-    document.querySelector(".collection-icon").style.borderBottom = "2px solid #000000";
+    collectionIcon.style.borderBottom = "2px solid #000000";
+
+  } else  {  
+    document.querySelector(".photos").style.display = "grid";
+    plants = await getLikedPhotos();
+    likeIcon.style.borderBottom = "2px solid #000000";
   }
   console.log(plants);
   displayPlants(plants);
-  likedSection.addEventListener("click", getLikedPhotos);
 
 });
-async function displayPlants(plants) {
+
+function displayPlants(plants) {
   console.log(plants);
   for (const plant of plants) {
 
@@ -154,7 +159,7 @@ async function displayPlants(plants) {
       elementList.addEventListener("click", (event) => {
         event.preventDefault();
         console.log(collection._id);
-        window.location.href = `/profile/collection?id=${collection._id}`;
+        window.location.href = `/profile?collection_id=${collection._id}`;
       });
       list.appendChild(elementList);
 
@@ -199,7 +204,7 @@ async function displayPlants(plants) {
     return listCollection;
   }
   async function getPlantsByCollectionId(id) {
-    const res = await fetch(`/profile/collection?id=${id}`, {
+    const res = await fetch(`/collection/plants?id=${id}`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${window.localStorage.getItem("token")}`

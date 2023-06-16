@@ -65,14 +65,20 @@ export async function addPlantToCollectionService(collection_id, plant_id) {
     return "Added plant to collection";
 }
 
-export async function getPlantsByCollectionIdService(req, res, params) {
+export async function getPlantsByCollectionIdService(collection_id) {
     try {
         await connect();
-        const collection = await Collection.findById(params.collection_id);
+        const collection = await Collection.findById(collection_id);
         if (!collection) {
             throw new Error("Collection not found");
         }
-        const plants = await Plant.find({ _id: { $in: collection.plants } });
+        const result = await Plant.find({ _id: { $in: collection.plants } });
+        const plants = result.map(pic => ({
+            _id: pic._id,
+            url: pic.urls.regular,
+            desc: pic.alt_description
+        }));
+        console.log(plants[0]);
         return plants;
     } catch (error) {
         console.log(error);
