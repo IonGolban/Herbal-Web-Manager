@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     collectionIcon.style.borderBottom = "2px solid #000000";
 
   } else  {  
+
     document.querySelector(".photos").style.display = "grid";
     plants = await getLikedPhotos();
     likeIcon.style.borderBottom = "2px solid #000000";
@@ -140,6 +141,7 @@ function displayPlants(plants) {
       console.log(error);
     }
   }
+  
   //se repeta codul :(de aici in jos) trebuie de rezolvat
   async function displayCollectionList() {
     const modal = document.querySelector(".modal-collections");
