@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector(".photos").style.display = "grid";
     plants = await getLikedPhotos();
 
-    document.querySelector(".like-icon").style.borderBottom = "2px solid #000000";
+    document.querySelector(".like-icon").style.background = "#ada9a9";
+    document.querySelector(".like-icon").style.color = "black";
+
   }
   else if (path === "/profile/upload") {    //TODO
     plants = getUploadedPhotos();
@@ -135,6 +137,7 @@ async function displayPlants(plants) {
       console.log(error);
     }
   }
+  
   //se repeta codul :(de aici in jos) trebuie de rezolvat
   async function displayCollectionList() {
     const modal = document.querySelector(".modal-collections");
