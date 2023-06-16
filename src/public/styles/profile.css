@@ -32,20 +32,40 @@ body {
     margin-top: 10%;
 }
 
+.logo2 {
+    display: none;
+    font-weight: 700;
+    margin-top: 10%;
+
+}
+
 .logo a {
     text-decoration: none;
+}
+
+
+.icons-list{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ul {
     width: 100%;
     list-style: none;
     padding: 0;
-    margin-right: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25%;
 }
 
 li {
     display: flex;
-    width: 80%;
+    width: 100%;
     margin: 50px 50px;
     cursor: pointer;
 }
@@ -53,6 +73,9 @@ li {
 .tex-li{
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 li a {
@@ -61,8 +84,17 @@ li a {
     transition: 0.5s;
 }
 
+.log-out{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .log-out-but {
-    margin-left: -35%;
+    width: 60%;
+    height: 25%;
     background-color: black;
     color: white;
     padding: 10px 20px;
@@ -71,9 +103,20 @@ li a {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     transition-duration: 0.3s;
     cursor: pointer;
+}
+
+.log-out-icon{
+    display: none;
+}
+
+.text-but{
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .log-out-but:hover {
@@ -209,6 +252,8 @@ li a {
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
+    display: flex;
+    padding: 16px 10px 16px 10px;
 }
 
 
@@ -281,11 +326,43 @@ li a {
     .text-li{
         display: none;
     }
+
+    .icons-list > ul{
+        margin-left: 0;
+    }
+
+    li {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .log-out-but{
+        display: none;
+    }
+
+    .log-out-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 @media only screen and (max-width: 992px) {
     .photos {
         grid-template-columns: repeat(2, calc((100% - 20px * 2 - 5px * 2) / 2));
+    }
+
+    .upload-icon,
+    .collection-icon,
+    .like-icon{
+        padding: 8px 5px 16px 10px;
+    }
+
+    .upload-icon > p,
+    .collection-icon > p,
+    .like-icon > p{
+        display: none;
     }
 
 }
@@ -308,4 +385,22 @@ li a {
         height: 120px;
         width: 120px;
     }
+
+    .logo{
+        display: none;
+    }
+
+    .logo2{
+        display: block;
+    }
 }
+
+@media only screen and (max-width: 450px) {
+    
+    .p-img {
+        height: 90px;
+        width: 90px;
+        margin-bottom: 35px;
+    }
+}
+

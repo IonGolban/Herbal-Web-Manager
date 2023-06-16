@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.querySelector(".photos").style.display = "grid";
     plants = await getLikedPhotos();
-    likeIcon.style.borderBottom = "2px solid #000000";
+    likeIcon.style.background = "#ada9a9";
+    likeIcon.style.color = "black";
+
   }
   console.log(plants);
   displayPlants(plants);
