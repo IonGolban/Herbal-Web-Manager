@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Image</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+
+  <link rel="stylesheet" type="text/css" href="styles/upload.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Upload Image</h1>
+    <form id="uploadForm">
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="3" required></textarea>
+      </div>
+      <div>
+        <label for="altDescription">Alternative Description:</label>
+        <textarea id="altDescription" name="altDescription" rows="5" required></textarea>
+      </div>
+      <div>
+        <label for="tags">Tags:</label>
+        <input type="text" id="tags" name="tags" required>
+      </div>
+      <div>
+        <button type="submit" id="uploadButton">Upload</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="scripts/upload.js"></script>
+</body>
+</html>
