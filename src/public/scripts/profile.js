@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const id = query.split("=")[1];
     plants = await getPlantsByCollectionId(id);
     document.querySelector(".photos").style.display = "grid";
-    collectionIcon.style.borderBottom = "2px solid #000000";
+    collectionIcon.style.background = "#ada9a9";
+    collectionIcon.style.color = "black";
+
 
   } else  {  
 
