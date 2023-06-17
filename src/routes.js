@@ -4,6 +4,8 @@ import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
+import {uploadPhoto} from "./controllers/uploadController.js";
+
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
@@ -20,6 +22,9 @@ const routes = {
     },
     "/catalog": async (req, res) => {
         serveStaticFile(res, "./public/catalog.html", "text/html");
+    },
+    "/upload": async (req, res) => {
+        serveStaticFile(res, "./public/upload.html", "text/html");
     },
 
     "/catalog/random-img": async (req, res, params) => {
@@ -85,6 +90,10 @@ const routes = {
     "/collection/plants" : async (req,res,params) => {
         console.log("Request received for /collection/getPlants");
         await getPlantsByCollectionId(req,res,params);
+    },
+    "/upload/photo" : async (req,res,params) => {
+        console.log("Request received for /uppload/photo");
+        await uploadPhoto(req,res,params);
     }
 
 

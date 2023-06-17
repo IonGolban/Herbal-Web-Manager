@@ -5,11 +5,15 @@ const photoStorage = document.querySelector(".photos");
 const createCollectionButton = document.getElementById("create-collection");
 const collectionIcon = document.querySelector(".collection-icon");
 const likeIcon = document.querySelector(".like-icon");
+const uploadPhoto = document.getElementById("upload-photo");
 
+uploadPhoto.addEventListener("click", () => {
+  window.location.href = "/upload";
+});
 
 collectionIcon.addEventListener("click", displayCollectionList);
 likeIcon.addEventListener("click",() =>{
-  if(window.location.search===""){
+  if(window.location.search ===""){
     
   }else{
     window.location.href = "/profile";

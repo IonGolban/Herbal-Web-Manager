@@ -1,77 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Plant Catalog</title>
-    <base href=".">
-    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
-    <link rel="stylesheet" type="text/css" href="./styles/catalog.css" />
-    
-    <link rel="stylesheet" type="text/css" href="./styles/collection-list.css" />
-    <link rel="shortcut icon" href="#" />
-  </head>
-  <body>
 
-    <header>
-      <nav class="navbar">
-        <div class="left">
-          <div class="logo">
-            <a href="index.html">
-              <h1>Herbal Web Manger</h1>
-            </a>
-          </div>
-          <div class="nav-search-form">
-            <form action="#" method="get">
-              <input type="text" placeholder="Search free plants photos...">
-            </form>
-            <div class="suggestions">
-              
-            </div>
-          </div>
-        </div>
-        <ul class="nav">
-          <li><a href="login.html">Login</a></li>
-          <li><a href="login.html">Register</a></li>
-        </ul>
-      </nav>
+<head>
+  <title>Plant Catalog</title>
+  <base href=".">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+  <link rel="stylesheet" type="text/css" href="./styles/catalog.css" />
 
-      <div class="category-nav">  
-        <div class="category">
-          <a href="/catalog?query=forest">Forest plants</a>
+  <link rel="stylesheet" type="text/css" href="./styles/collection-list.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="left">
+        <div class="logo">
+          <a href="index.html">
+            <h1>Herbal Web Manger</h1>
+          </a>
         </div>
-        <div class="category">
-          <a href="/catalog?query=jungle">Jungle plants</a>
-        </div>
-        <div class="category">
-          <a href="/catalog?count=21">Other plants</a>
+        <div class="nav-search-form">
+          <form action="#" method="get">
+            <input type="text" placeholder="Search free plants photos...">
+          </form>
+          <div class="suggestions">
+
+          </div>
         </div>
       </div>
+      <ul class="nav">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="login.html">Register</a></li>
+      </ul>
+    </nav>
+
+    <div class="category-nav">
+      <div class="category">
+        <a href="/catalog?query=forest">Forest plants</a>
       </div>
-    </header>
-
-    <section id="plants"></section>
-
-    <div class="modal">
-      <div class="close-modal">&times;</div>
-      <div class="container-modal">
-        <img class="modal-image">
-        <div class="button-container">
-          <button class="add-btn-modal">add</button>
-          <button class="like-btn-modal">like</button>
-        </div>
+      <div class="category">
+        <a href="/catalog?query=jungle">Jungle plants</a>
+      </div>
+      <div class="category">
+        <a href="/catalog?count=21">Other plants</a>
       </div>
     </div>
+    </div>
+  </header>
 
-    <div id="modal-collections" class="modal-collections">
+  <section id="plants"></section>
 
-      <div class="collection-close-btn">&times;</div>
-      <div class="modal-container-collections">
-          <span>Click to add</span>
-          <ul id="collection-list">
-            
-          </ul>
+  <div class="modal">
+    <div class="close-modal">&times;</div>
+    <div class="container-modal">
+      <img class="modal-image">
+      <div class="button-container">
+        <button class="add-btn-modal">add</button>
+        <button class="like-btn-modal">like</button>
       </div>
+    </div>
   </div>
 
-    <script type="module" src="./scripts/catalog.js"></script>
-  </body>
+  <div id="modal-collections" class="modal-collections">
+
+    <div class="collection-close-btn">&times;</div>
+    <div class="modal-container-collections">
+      <span>Click to add</span>
+      <ul id="collection-list">
+
+      </ul>
+    </div>
+  </div>
+
+  <script type="module" src="./scripts/catalog.js"></script>
+</body>
+
 </html>
