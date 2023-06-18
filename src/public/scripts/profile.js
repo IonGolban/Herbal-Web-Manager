@@ -6,6 +6,12 @@ const createCollectionButton = document.getElementById("create-collection");
 const collectionIcon = document.querySelector(".collection-icon");
 const likeIcon = document.querySelector(".like-icon");
 const uploadPhoto = document.getElementById("upload-photo");
+const homeIcon = document.getElementById("home-icon");
+
+homeIcon.addEventListener("click", () => {
+  window.location.href = "/";
+});
+
 
 uploadPhoto.addEventListener("click", () => {
   window.location.href = "/upload";

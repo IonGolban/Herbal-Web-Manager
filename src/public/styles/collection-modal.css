@@ -17,7 +17,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: aliceblue;
+    background-color: #e0e0e0;
     border-radius: 20px;
     /* padding: 20px; */
 }
@@ -51,7 +51,17 @@
     cursor: pointer;
     align-self: center;
     margin: 10px 10px 10px 10px;
+    transition: 0.5s;
 }
+
+#collection-close-button{
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    margin: 10px 10px 10px 10px;
+}
+
+
 
 #collection-close-button {
     top: 10px;
@@ -61,7 +71,15 @@
     align-self: self-end;
     cursor: pointer;
 }
+
 #collection-close-button:hover{
+    color: #ccc;
+    background-color: green;
+    opacity: 0.8 ;
+    
+}
+
+#collection-add-button:hover{
     color: #ccc;
     background-color: green;
     opacity: 0.8 ;

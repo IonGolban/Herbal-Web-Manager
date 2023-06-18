@@ -13,15 +13,54 @@
 
 <body>
   <script src="https://kit.fontawesome.com/d0ee975ea0.js" crossorigin="anonymous"></script>
+  
   <div class="modal">
     <div class="modal-container">
-      <button id="collection-close-button">X</button>
+      <button id="collection-close-button">&times</button>
       <h2 id="modal-title">Add a new collection</h2>
       <input type="text" id="collection-name-input" placeholder="Enter name"></input>
       <textarea type="text" id="collection-description-input" placeholder="Enter description"></textarea>
       <button id="collection-add-button">Add</button>
     </div>
   </div>
+
+  <div class="modal-edit">
+    <div class="modal-edit-container">
+      <div class="close">
+        <button class="close-modal-edit"><p>Cancel</p></button>
+        <button class="save-modal-edit"><p>Save</p></button>
+      </div>
+      <div class="form-edit">
+        <form>
+          <div class="section-form">
+
+            <section>
+              <label for="edit-email"><b>Edit your personal e-mail</b></label><br>
+              <input type="text" name="edit-email" id="edit-email">
+            </section>
+
+            <section>
+              <label for="edit-description"><b>Edit your description</b></label><br>
+              <textarea id="edit-description" rows="4" cols="55"></textarea>
+            </section>
+
+          </div>
+        </form>
+      </div>
+      <div class="photos-edit">
+
+        <div class="edit-profile-photo">
+          <div class="change-prof-photo">Change photo</div>
+        </div>
+
+        <div class="edit-cover-photo">
+          <div class="change-cov-photo">Change photo</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="profile-frame">
 
     <div class="left-frame">
@@ -30,9 +69,9 @@
       
       <div class="icons-list">
         <ul>
-          <li><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Home</div></li>
-          <li><i id = "upload-photo" class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Upload photo</div></li>
-          <li><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Edit Profile</div></li>
+          <li id="home-icon"><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Home</div></li>
+          <li id = "upload-photo"><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Upload photo</div></li>
+          <li id="edit-profile"><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Edit Profile</div></li>
           <li id = "create-collection"><i  class="fa-solid fa-book-medical fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Create Collection</div></li>
         </ul>
       </div>
@@ -143,6 +182,7 @@
 
   </div>
   <script src="scripts/profile.js"></script>
+  <script src="scripts/editProfile.js"></script>
 </body>
 
 </html>

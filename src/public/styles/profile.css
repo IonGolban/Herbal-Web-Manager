@@ -322,6 +322,161 @@ li a {
 
 }
 
+.modal-edit{
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-edit-container{
+    height: 90%;
+    width: 40%;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-edit{
+    height: 40%;
+    width: 90%;
+    padding: 10% 10% 0% 10%;
+}
+
+.close{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 20px;
+}
+
+.close-modal-edit{
+    height: 35px;
+    width: 80px;
+    border: none;
+    border-radius: 30px;
+    margin-right: 10px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.save-modal-edit{
+    height: 35px;
+    width: 80px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.save-modal-edit:hover{
+    color: #ccc;
+    background-color: green;
+    opacity: 0.8 ;
+}
+
+.close-modal-edit:hover{
+    color: black;
+    background-color: #ada9a9;
+    opacity: 0.8 ;
+}
+
+.section-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
+section > input {
+    margin-top: 10px;
+    height: 35px;
+    width: 88%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+section > textarea {
+    margin-top: 10px;
+    width: 95%;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+}
+
+.photos-edit{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.edit-profile-photo{
+    height: 170px;
+    width: 170px;
+    border-radius: 100%;
+    background-color: #ada9a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-cover-photo{
+    height: 70%;
+    width: 65%;
+    background-color: #4caf50;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change-cov-photo,
+.change-prof-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.change-cov-photo{
+    background-color: #4caf50;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.change-cov-photo:hover{
+    background-color: rgb(0, 102, 0);
+}
+
+.change-prof-photo{
+    background-color: #ada9a9;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.change-prof-photo:hover{
+    background-color: #e0e0e0;
+}
+
 @media only screen and (max-width: 1300px) {
     .text-li{
         display: none;

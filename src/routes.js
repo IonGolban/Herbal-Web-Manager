@@ -3,6 +3,7 @@ import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
+import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import {uploadPhoto} from "./controllers/uploadController.js";
 
@@ -94,6 +95,10 @@ const routes = {
     "/upload/photo" : async (req,res,params) => {
         console.log("Request received for /uppload/photo");
         await uploadPhoto(req,res,params);
+    },
+    "/edit" : async (req, res, params) => {
+        console.log("Request received for /edit");
+        await editController.editData(req, res, params);
     }
 
 
