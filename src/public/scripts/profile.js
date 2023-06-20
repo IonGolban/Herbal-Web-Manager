@@ -1,3 +1,4 @@
+
 const likedSection = document.querySelector(".like-icon");
 const uploadSection = document.querySelector(".upload-icon");
 const collectionSection = document.querySelector(".collectionSection");
@@ -12,12 +13,16 @@ homeIcon.addEventListener("click", () => {
   window.location.href = "/";
 });
 
+uploadSection.addEventListener("click", () => {
+  window.location.href = "/profile?uploaded_photos=this";
+});
 
 uploadPhoto.addEventListener("click", () => {
   window.location.href = "/upload";
 });
 
 collectionIcon.addEventListener("click", displayCollectionList);
+
 likeIcon.addEventListener("click",() =>{
   if(window.location.search ===""){
     
@@ -42,6 +47,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     collectionIcon.style.color = "black";
 
 
+  } if(searchParam === "?uploaded_photos"){
+    console.log("uploaded");
+    plants = await getUploadedPhotos();
+    document.querySelector(".photos").style.display = "grid";
+    uploadSection.style.background = "#ada9a9";
+    uploadSection.style.color = "black";
+
   } else  {  
 
     document.querySelector(".photos").style.display = "grid";
@@ -54,6 +66,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   displayPlants(plants);
 
 });
+
+async function getUploadedPhotos() {
+  try {
+    const res = await fetch(`/profile/uploaded`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+      }
+    }).then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      }
+      return res;
+    })
+
+    const plants = await res.json();
+
+
+    return plants;
+
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function displayPlants(plants) {
   console.log(plants);

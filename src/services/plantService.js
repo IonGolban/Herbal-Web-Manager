@@ -2,6 +2,7 @@ import connect from "../db/mongoDatabase.js";
 import Plant from '../models/PLantModel.js';
 import User from '../models/userModel.js';
 import TokenUtils from "../util/tokenUtils.js";
+import {uploadToImgur} from "../services/uploadService.js";
 class PlantService {
 
     async searchByKey(key) {
@@ -87,6 +88,70 @@ class PlantService {
         return photos;
 
     }
+
+    async savePlant(fields,imageFile,user_id){
+        try {
+            await connect();
+            const link = await uploadToImgur(imageFile);
+            console.log(link);
+
+            console.log("fileds : ",fields);
+
+
+            const plant = new Plant({
+                name: fields.name[0],
+                description: fields.description[0],
+                alt_description: fields.altDescription[0],
+                tags: fields.tags,
+                urls: {
+                    regular: link
+                },
+                likes: 0,
+                views: 1,
+                created_at: new Date(),
+                updated_at: new Date(),
+                downloads: 0,
+                user_id: user_id.id
+            });
+            
+            const savedPlant = await plant.save();
+            const user = await User.findById(user_id.id);
+            if(!user.uploaded_plants)user.uploaded_plants = [];
+            user.uploaded_plants.push(savedPlant._id);
+            await user.save();
+
+            return link;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+    async getPlantsByUser(user_id){
+        try {
+            await connect();
+            let response = [];
+            const user = await User.findById(user_id.id);
+            if(!user.uploaded_plants)user.uploaded_plants = [];
+            console.log(user.uploaded_plants);
+            for(const id of user.uploaded_plants){
+                const plant = await Plant.findById(id);
+                response.push(plant);
+            }
+
+            const plants = response.map(plant => ({
+                _id: plant._id,
+                name: plant.name,
+                url: plant.urls.regular,
+                desc: plant.alt_description
+            }));
+
+            return plants;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
 }
 
 export default new PlantService();

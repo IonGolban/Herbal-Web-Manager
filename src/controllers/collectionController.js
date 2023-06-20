@@ -1,6 +1,6 @@
 import {createCollectionService,getCollectionByIdService,addPlantToCollectionService,getPlantsByCollectionIdService} from "../services/collectionService.js";
 import TokenUtils from "../util/tokenUtils.js";
-import getBodyFromReq from "../util/utilFunctions.js";
+import {getBodyFromReq} from "../util/utilFunctions.js";
 // import getCollectionByIdService from "../services/collectionService.js";
 
 export async function createCollection(req, res, params) {

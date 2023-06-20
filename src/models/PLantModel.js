@@ -2,6 +2,7 @@
 
   const plantSchema = new mongoose.Schema({
       id: String,
+      name: String,
       slug: String,
       created_at: Date,
       updated_at: Date,

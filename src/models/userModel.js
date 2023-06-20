@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
     faviroute_plants: [{
         _id: String,
     }],
+    uploaded_plants: [{
+        _id: String,
+    }],
     profile_img: { type: String },
     cover_img: { type: String },
     email:{type:String,required:true}
