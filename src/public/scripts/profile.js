@@ -29,6 +29,7 @@ likeIcon.addEventListener("click",() =>{
   if(window.location.search ===""){
     
   }else{
+    console.log("liked");
     window.location.href = "/profile";
   }
 });
@@ -40,30 +41,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchParam = query.split("=")[0];
   console.log(searchParam);
   let plants;
-  if (searchParam === "?collection_id") {
-    console.log("collection");
-    const id = query.split("=")[1];
-    plants = await getPlantsByCollectionId(id);
-    document.querySelector(".photos").style.display = "grid";
-    collectionIcon.style.background = "#ada9a9";
-    collectionIcon.style.color = "black";
+if (searchParam === "?collection_id") {
+  console.log("collection");
+  const id = query.split("=")[1];
+  plants = await getPlantsByCollectionId(id);
+  document.querySelector(".photos").style.display = "grid";
+  collectionIcon.style.background = "#ada9a9";
+  collectionIcon.style.color = "black";
+} else if (searchParam === "?uploaded_photos") {
+  console.log("uploaded");
+  plants = await getUploadedPhotos();
+  document.querySelector(".photos").style.display = "grid";
+  uploadSection.style.background = "#ada9a9";
+  uploadSection.style.color = "black";
+} else {
+  console.log("liked");
+  document.querySelector(".photos").style.display = "grid";
+  plants = await getLikedPhotos();
+  likeIcon.style.background = "#ada9a9";
+  likeIcon.style.color = "black";
+}
 
-
-  } if(searchParam === "?uploaded_photos"){
-    console.log("uploaded");
-    plants = await getUploadedPhotos();
-    document.querySelector(".photos").style.display = "grid";
-    uploadSection.style.background = "#ada9a9";
-    uploadSection.style.color = "black";
-
-  } else  {  
-
-    document.querySelector(".photos").style.display = "grid";
-    plants = await getLikedPhotos();
-    likeIcon.style.background = "#ada9a9";
-    likeIcon.style.color = "black";
-
-  }
   console.log(plants);
   displayPlants(plants);
 

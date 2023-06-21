@@ -12,11 +12,14 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #555;
+    background-color: #FFECEC;
     min-width: 150px;
     padding: 0.8rem;
-    border-radius: 6px;
+    border-radius: 20px;
+    column-count: 3;
+    column-gap: 0.5rem;
     z-index: 1;
+  
 }
 
 .dropdown-content.show {
@@ -25,15 +28,20 @@
 
 .dropdown-content .category {
     margin-bottom: 0.8rem;
+    border-bottom: #333;
+    cursor: pointer;
+
 }
 
-.dropdown-content .category input[type="checkbox"] {
-    margin-right: 0.5rem;
+.dropdown-content .category input {
+  display: none;
+
 }
 
 .dropdown-content .category label {
-    background-color: #333;
-    color: white;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
 }
 
 #search-button {
