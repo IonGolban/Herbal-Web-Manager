@@ -125,7 +125,6 @@ body {
 }
 
 .navbar1 {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -135,7 +134,7 @@ body {
 }
 
 .navbar2 {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -192,7 +191,7 @@ body {
 
 .about-us{
   height: 90vh;
-  width: 100%;
+  width: calc(100% - 20px);
   background-color: rgb(255, 255, 255);
   display: flex;
 }
@@ -241,9 +240,12 @@ body {
   height: 50px;
   margin-left: 50px;
   margin-top: 35px;
-  padding: 5px;
 }
 
+.desc-ion > p,
+.desc-sebi > p {
+  padding: 2.5px;
+}
 
 .about-us-desc{
   width: 60%;
@@ -269,9 +271,9 @@ body {
 
 
 .contact-us{
-  height: 70vh;
-  width: 100%;
-  background-color: #1c1a1a;
+  height: 100vh;
+  width: calc(100% + 20px);
+  background-color: #252222;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -283,11 +285,91 @@ body {
   height: 20%;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.title-contact-us p {
+  margin: 10px 10px 10px 10px;
+}
+
+.title-contact{
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.form-contact{
+  height: 80%;
+  width: 60%;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 70px;
+  margin-bottom: 8%;
+  margin-top: 60px 
 }
 
+.middle-form{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.middle-form > input {
+  width: 45%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #252222;
+  border-bottom: 2px solid #bebebe;
+  color: white;
+}
+
+.last-form{
+  width: 100%;
+}
+
+.mesaj{
+  width: calc(100% - 60px);
+  height: 120px;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: #ccc;
+  padding: 30px;
+}
+
+.mesaj > input{
+  height: 200px;
+}
+
+.form-contact > input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #252222;
+  border-bottom: 2px solid #bebebe;
+  color: white;
+}
+
+.submit-contact{
+  padding: 10px;
+  width: 140px;
+  border: none;
+  background-color: white;
+  color: black;
+  transition: 0.5s ;
+}
+
+.submit-contact:hover{
+  background-color: #000;
+  color: white;
+}
 
 
 
