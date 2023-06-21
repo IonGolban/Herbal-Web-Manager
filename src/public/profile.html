@@ -13,7 +13,7 @@
 
 <body>
   <script src="https://kit.fontawesome.com/d0ee975ea0.js" crossorigin="anonymous"></script>
-  
+
   <div class="modal">
     <div class="modal-container">
       <button id="collection-close-button">&times</button>
@@ -27,8 +27,12 @@
   <div class="modal-edit">
     <div class="modal-edit-container">
       <div class="close">
-        <button class="close-modal-edit"><p>Cancel</p></button>
-        <button class="save-modal-edit"><p>Save</p></button>
+        <button class="close-modal-edit">
+          <p>Cancel</p>
+        </button>
+        <button class="save-modal-edit">
+          <p>Save</p>
+        </button>
       </div>
       <div class="form-edit">
         <form>
@@ -50,11 +54,18 @@
       <div class="photos-edit">
 
         <div class="edit-profile-photo">
-          <div class="change-prof-photo">Change photo</div>
+          <div class="change-prof-photo">
+            <label for="profile-photo-edit" id="change-profile-photo-label">Change profile photo</label>
+              <input type="file" id="profile-photo-edit"  accept="image/*">
+          </div>
         </div>
 
         <div class="edit-cover-photo">
-          <div class="change-cov-photo">Change photo</div>
+          <div class="change-cov-photo">
+            <label for="cover-photo-edit" id="change-cover-photo-label">Change cover photo</label>
+            <input type="file" id="cover-photo-edit"  accept="image/*">
+
+          </div>
         </div>
 
       </div>
@@ -66,13 +77,25 @@
     <div class="left-frame">
       <div class="logo">HerbalWM</div>
       <div class="logo2">HeMa</div>
-      
+
       <div class="icons-list">
         <ul>
-          <li id="home-icon"><i class="fa-brands fa-fort-awesome-alt fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Home</div></li>
-          <li id = "upload-photo"><i class="fa-brands fa-pagelines fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Upload photo</div></li>
-          <li id="edit-profile"><i class="fa-solid fa-wand-magic-sparkles fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Edit Profile</div></li>
-          <li id = "create-collection"><i  class="fa-solid fa-book-medical fa-xl" style="color: #000000; margin-right: 10px; margin-top: 8px;"></i><div class="text-li">Create Collection</div></li>
+          <li id="home-icon"><i class="fa-brands fa-fort-awesome-alt fa-xl"
+              style="color: #000000; margin-right: 10px; margin-top: 8px;"></i>
+            <div class="text-li">Home</div>
+          </li>
+          <li id="upload-photo"><i class="fa-brands fa-pagelines fa-xl"
+              style="color: #000000; margin-right: 10px; margin-top: 8px;"></i>
+            <div class="text-li">Upload photo</div>
+          </li>
+          <li id="edit-profile"><i class="fa-solid fa-wand-magic-sparkles fa-xl"
+              style="color: #000000; margin-right: 10px; margin-top: 8px;"></i>
+            <div class="text-li">Edit Profile</div>
+          </li>
+          <li id="create-collection"><i class="fa-solid fa-book-medical fa-xl"
+              style="color: #000000; margin-right: 10px; margin-top: 8px;"></i>
+            <div class="text-li">Create Collection</div>
+          </li>
         </ul>
       </div>
 
@@ -149,15 +172,18 @@
         <div class="elements">
 
           <div class="like-icon">
-            <i class="fa-solid fa-heart fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px;"></i> <p>Liked photos</p>
+            <i class="fa-solid fa-heart fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px;"></i>
+            <p>Liked photos</p>
           </div>
 
           <div class="upload-icon">
-            <i class="fa-solid fa-spa fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px"></i> <p>Uploaded photos</p>
+            <i class="fa-solid fa-spa fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px"></i>
+            <p>Uploaded photos</p>
           </div>
 
           <div class="collection-icon">
-            <i class="fa-solid fa-book-open fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px"></i> <p>My collections</p>
+            <i class="fa-solid fa-book-open fa-lg" style="color: #000000; margin-right: 5px; margin-top: 8px"></i>
+            <p>My collections</p>
           </div>
 
         </div>
@@ -175,7 +201,7 @@
       <div class="modal-container-collections">
         <span>Click to view</span>
         <ul id="collection-list">
-  
+
         </ul>
       </div>
     </div>
@@ -186,4 +212,3 @@
 </body>
 
 </html>
-

@@ -9,6 +9,8 @@ const likeIcon = document.querySelector(".like-icon");
 const uploadPhoto = document.getElementById("upload-photo");
 const homeIcon = document.getElementById("home-icon");
 
+
+
 homeIcon.addEventListener("click", () => {
   window.location.href = "/";
 });

@@ -17,11 +17,9 @@ export async function getFormDataFromRequest(req) {
                 console.error(err);
                 reject(err);
             }
-
-            const { name,description, altDescription, tags } = fields;
-            const imageFile = files.image;
-
-            resolve({ fields,imageFile });
+            // console.log(fields,files);
+            console.log(files);
+            resolve({ fields,files });
         });
     });
 

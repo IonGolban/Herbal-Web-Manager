@@ -102,11 +102,11 @@ class plantController {
             const token = req.headers.authorization.split(" ")[1];
             const user_id = TokenUtils.verifyToken(token);
             
-            const {fields,imageFile} = await getFormDataFromRequest(req);
+            const {fields,files} = await getFormDataFromRequest(req);
             // console.log(fields);
             // console.log(imageFile);
-
-            const response = await plantService.savePlant(fields, imageFile, user_id);
+            // console.log(files.image[0].filepath);
+            const response = await plantService.savePlant(fields, files.image[0].filepath, user_id);
 
             res.writeHead(201, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ message: response }));
@@ -125,6 +125,10 @@ class plantController {
             }
             const token = req.headers.authorization.split(" ")[1];
             const user_id = TokenUtils.verifyToken(token);
+            if(!user_id){
+                res.writeHead(401,{"Content-Type" : "text/plain"});
+                res.end(Json.stringify({error:"Unauthorized"}));
+            }
 
             const plants = await plantService.getPlantsByUser(user_id);
 
