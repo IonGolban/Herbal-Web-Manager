@@ -6,7 +6,7 @@
   <base href=".">
   <link rel="stylesheet" type="text/css" href="./styles/style.css" />
   <link rel="stylesheet" type="text/css" href="./styles/catalog.css" />
-
+  <link rel="stylesheet" type="text/css" href="./styles/drop-down-serach.css" />
   <link rel="stylesheet" type="text/css" href="./styles/collection-list.css" />
   <link rel="shortcut icon" href="#" />
 </head>
@@ -35,7 +35,63 @@
         <li><a href="login.html">Register</a></li>
       </ul>
     </nav>
-
+    <div class="category-nav">
+      <div class="dropdown">
+        <button class="dropdown-button">Select Categories</button>
+        <div class="dropdown-content">
+          <div class="category">
+            <input type="checkbox" id="category1" name="category" value="category1">
+            <label for="category1">Category 1</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category2" name="category" value="category2">
+            <label for="category2">Category 2</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category3" name="category" value="category3">
+            <label for="category3">Category 3</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category1" name="category" value="category1">
+            <label for="category1">Category 1</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category2" name="category" value="category2">
+            <label for="category2">Category 2</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category3" name="category" value="category3">
+            <label for="category3">Category 3</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category1" name="category" value="category1">
+            <label for="category1">Category 1</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category2" name="category" value="category2">
+            <label for="category2">Category 2</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category3" name="category" value="category3">
+            <label for="category3">Category 3</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category1" name="category" value="category1">
+            <label for="category1">Category 1</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category2" name="category" value="category2">
+            <label for="category2">Category 2</label>
+          </div>
+          <div class="category">
+            <input type="checkbox" id="category3" name="category" value="category3">
+            <label for="category3">Category 3</label>
+          </div>
+        </div>
+      </div>
+      <button id="search-button">Search</button>
+      
+    </div>
     <div class="category-nav">
       <div class="category">
         <a href="/catalog?query=forest">Forest plants</a>
@@ -75,6 +131,7 @@
   </div>
 
   <script type="module" src="./scripts/catalog.js"></script>
+  <script type="module" src="./scripts/criteriaSearch.js"></script>
 </body>
 
 </html>

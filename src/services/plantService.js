@@ -89,10 +89,10 @@ class PlantService {
 
     }
 
-    async savePlant(fields,imageFile,user_id){
+    async savePlant(fields,imagePath,user_id){
         try {
             await connect();
-            const link = await uploadToImgur(imageFile);
+            const link = await uploadToImgur(imagePath);
             console.log(link);
 
             console.log("fileds : ",fields);
@@ -113,7 +113,7 @@ class PlantService {
                 downloads: 0,
                 user_id: user_id.id
             });
-            
+            console.log(plant);
             const savedPlant = await plant.save();
             const user = await User.findById(user_id.id);
             if(!user.uploaded_plants)user.uploaded_plants = [];

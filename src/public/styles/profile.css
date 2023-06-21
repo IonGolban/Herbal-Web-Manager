@@ -559,3 +559,10 @@ section > textarea {
     }
 }
 
+#profile-photo-edit {
+    display: none; 
+}
+
+#cover-photo-edit {
+    display: none; 
+}

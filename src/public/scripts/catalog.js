@@ -90,11 +90,7 @@ async function addToCollection(event,photoId){
 
   } 
 
-  // for(let i = 0; i < 6; i++){
-  //   const randomNum = Math.floor(Math.random() * 1000);
-  //   const url = `https://picsum.photos/600/?random=${randomNum}`;
-  //   list.appendChild(createListItem());  
-  // }
+  
   
 }
 async function getListOfCollections() {

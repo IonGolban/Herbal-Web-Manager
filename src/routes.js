@@ -6,6 +6,8 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
+import {editProfileInfo} from "./controllers/userController.js";
+
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
@@ -98,11 +100,19 @@ const routes = {
     },
     "/edit" : async (req, res, params) => {
         console.log("Request received for /edit");
-        await editController.editData(req, res, params);
+        await editProfileInfo(req, res, params);
     },
     "/profile/uploaded" : async (req, res, params) => {
         console.log("Request received for /profile/uploaded");
         await plantController.getUploadedPlants(req, res, params);
+    },
+    "/profile/change/profile-picture" : async (req, res, params) => {
+        console.log("Request received for /profile/change/profile-picture");
+        await authController.changeProfilePicture(req, res, params);
+    },
+    "profile/change/cover-photo" : async (req, res, params) => {
+        console.log("Request received for /profile/change/cover-photo");
+        await authController.changeCoverPhoto(req, res, params);
     }
 
 
