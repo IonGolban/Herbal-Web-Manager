@@ -1,7 +1,8 @@
 import TokenUtils from "../util/tokenUtils.js";
 import { getBodyFromReq, getFormDataFromRequest, parseToCSV, parseToPDF } from "../util/utilFunctions.js";
-import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON } from "../services/userService.js";
+import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON,getData } from "../services/userService.js";
 import fs from "fs";
+
 export async function editProfileInfo(req, res) {
     try {
 
@@ -9,9 +10,16 @@ export async function editProfileInfo(req, res) {
         const token = req.headers.authorization.split(" ")[1];
         const user_id = TokenUtils.verifyToken(token);
         // console.log(fields,files);
-        fields.email = fields.email[0];
-        fields.description = fields.description[0];
-        if (files.coverPhoto) {
+
+        if(fields.email)
+        {
+            fields.email = fields.email[0];
+        }
+        if(fields.description)
+        {
+            fields.description = fields.description[0];
+        }
+        if(files.coverPhoto){
             fields.coverPhoto = files.coverPhoto[0].filepath;
             console.log("cover photo :", fields.coverPhoto);
         }
@@ -77,6 +85,17 @@ export async function downloadPDFLikedPlants(req, res) {
             'Content-Disposition': 'attachment; filename=likedPlants.pdf'
         });
         fileStream.pipe(res);
+
+export async function getUser(req, res) {
+    try{
+        
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const response = await getData(user_id);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
 
     } catch (err) {
         console.log(err);

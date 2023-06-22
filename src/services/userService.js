@@ -20,11 +20,11 @@ export async function editInfo(fields, user_id){
                 user.description = value;
             }
             else if (key == "coverPhoto"){
-                user.profile_img = await uploadToImgur(value);
+                user.cover_img = await uploadToImgur(value);
 
             }
             else if (key == "profilePhoto"){
-                user.cover_img = await uploadToImgur(value);
+                user.profile_img = await uploadToImgur(value);
             }
          
         }
@@ -33,6 +33,34 @@ export async function editInfo(fields, user_id){
         await user.save();
 
         return "Data changed";
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getData(user_id){
+
+    try {
+
+        await connect();
+        const user = await User.findOne({_id: user_id.id});
+        const { description, cover_img, profile_img, liked_photos, uploaded_plants, collections } = user;
+
+        const newUserObject = {
+            description,
+            cover_img,
+            profile_img,
+            liked_photos,
+            uploaded_plants,
+            collections
+          };
+
+
+        console.log(newUserObject);
+        await user.save();
+
+        return newUserObject;
 
     } catch (error) {
         console.log(error);

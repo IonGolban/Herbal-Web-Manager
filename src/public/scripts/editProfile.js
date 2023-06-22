@@ -8,6 +8,8 @@ const profilePhotoEditLabel = document.getElementById("change-profile-photo-labe
 const coverPhotoEditLabel = document.getElementById("change-cover-photo-label");
 const mail = document.getElementById("edit-email");
 const description = document.getElementById("edit-description");
+
+
 editIcon.addEventListener("click", () => {
 
     modal.style.display = "flex";
@@ -25,8 +27,6 @@ saveBtn.addEventListener("click", async () => {
 
 
     const formData = new FormData();
-    formData.append("email", mail.value);
-    formData.append("description", description.value);
 
     if (profilePhotoEdit.files.length > 1) {
         alert("You can only upload one profile photo");
@@ -66,6 +66,8 @@ saveBtn.addEventListener("click", async () => {
     console.log(res);
 
     resetInputs();
+
+    window.location.href = "/profile";
 
     modal.style.display = "none";
 })

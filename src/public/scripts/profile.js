@@ -8,8 +8,15 @@ const collectionIcon = document.querySelector(".collection-icon");
 const likeIcon = document.querySelector(".like-icon");
 const uploadPhoto = document.getElementById("upload-photo");
 const homeIcon = document.getElementById("home-icon");
+const logOutB = document.querySelector(".log-out");
 
 
+logOutB.addEventListener("click", () => {
+
+  localStorage.removeItem('token');
+  window.location.href = "/login";
+
+});
 
 homeIcon.addEventListener("click", () => {
   window.location.href = "/";
@@ -102,10 +109,32 @@ function displayPlants(plants) {
     el.style.backgroundImage = `url(${plant.url})`;
     el.innerHTML = `
     <div class="button-container">
-            <button class="add-btn">add</button>
-            <button class="like-btn">like</button>
+        <button class="remove-btn">remove</button>
     </div>
     `;
+    
+    document.addEventListener("click", async (event) => {
+      if (event.target.classList.contains("remove-btn")) {
+
+        const query = window.location.search;
+        const searchParam = query.split("=")[0];
+        
+        if(searchParam === "?collection_id"){
+
+        }
+        else if(searchParam === "?uploaded_photos") {
+
+        }
+        else {
+
+        }
+
+
+      }
+  });
+
+
+    
 
     photoStorage.appendChild(el);
   }
@@ -162,6 +191,7 @@ function displayPlants(plants) {
     });
     return res;
   }
+  
 
   createCollectionButton.addEventListener("click", createCollection);
 
@@ -259,6 +289,22 @@ function displayPlants(plants) {
   }
   async function getPlantsByCollectionId(id) {
     const res = await fetch(`/collection/plants?id=${id}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+      }
+    }).then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      } return res;
+    });
+    const data = await res.json();
+    return data;
+  }
+
+  async function deleteLikePhoto(idPlant, idCollection) {
+    const res = await fetch(`/collection/plants/remove?id=${idPlant}`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${window.localStorage.getItem("token")}`

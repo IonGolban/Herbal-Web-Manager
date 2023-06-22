@@ -1,4 +1,4 @@
-    import { servePublicFiles, serveStaticFile } from "./handler.js";
+import { servePublicFiles, serveStaticFile } from "./handler.js";
 import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
@@ -6,7 +6,8 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {editProfileInfo,downloadCSVLikedPlants,downloadPDFLikedPlants} from "./controllers/userController.js";
+import {editProfileInfo,downloadCSVLikedPlants,downloadPDFLikedPlants,getUser} from "./controllers/userController.js";
+
 
 const routes = {
     "/": async (req, res) => {
@@ -127,6 +128,16 @@ const routes = {
     "/statistics/liked/download/pdf" : async (req, res, params) => {
         console.log("Request received for /statistics/liked/download");
         downloadPDFLikedPlants(req, res, params);
+
+    "/getUserData" : async (req, res, params) => {
+        console.log("Request received for /getUserData");
+        await getUser(req, res, params);
+    },
+    "/collection/plants/remove" : async (req, res, params) => {
+        console.log("Request received for /collection/plant/remove");
+    },
+    "/like/remove" : async (req, res, params) => {
+        console.log("Request received for /like/remove");
     }
 
 
