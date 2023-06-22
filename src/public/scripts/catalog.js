@@ -1,12 +1,20 @@
+import { appendTagsToDropDown, getPlantsByTags } from "./criteriaSearch.js";
+
 const modalLikeButton = document.querySelector(".like-btn-modal");
 const modalAddButton = document.querySelector(".add-btn-modal");
+const logoutButton = document.querySelector(".logout-button");
 
+logoutButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  window.localStorage.removeItem("token");
+  window.location.href = "/login";
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const plants = 21;
+    await appendButtons();
     // await saveRandomImgs();
-
     const container = document.getElementById("plants");
     const query = window.location.search;
     const searchParam = query.split("=")[0];
@@ -16,6 +24,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       photos = await getByQuery(query);
     } else if (searchParam == "?count") {
       photos = await getRandom(query);
+    } else if (searchParam == "?tags") {
+      console.log(query);
+      photos = await getPlantsByTags(query);
     } else {
       photos = await (getRandom("?count=21"));
     }
@@ -24,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const el = document.createElement("div");
       el.classList.add("plant");
       el.style.backgroundImage = `url(${photo.url})`;
-        
+
       el.innerHTML = `
       <div class="plant-desc">
         <div>
@@ -42,19 +53,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.appendChild(el);
       const likeButton = el.querySelector(".like-btn");
       likeButton.addEventListener("click", like);
-      
+
       const viewButton = el;
       viewButton.addEventListener("click", viewPhoto);
       const addButton = el.querySelector(".add-btn");
-      addButton.addEventListener("click", (event) =>{
-        addToCollection(event,photo._id);
+      addButton.addEventListener("click", (event) => {
+        addToCollection(event, photo._id);
       });
       const addButtonModal = document.querySelector(".add-btn-modal");
-      addButtonModal.addEventListener("click", (event) =>{
-        addToCollection(event,photo._id);
+      addButtonModal.addEventListener("click", (event) => {
+        addToCollection(event, photo._id);
 
       });
-    } 
+
+    }
+    await appendTagsToDropDown();
 
   } catch (err) {
     console.error(err);
@@ -63,7 +76,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-async function addToCollection(event,photoId){
+async function appendButtons() {
+  if (window.localStorage.getItem("token") === null || !await isLoggedIn()) {
+    window.localStorage.removeItem("token");
+    document.querySelector(".logout-button").style.display = "none";
+    document.querySelector(".login-button").style.display = "block";
+    document.querySelector(".signup-button").style.display = "block";
+    document.querySelector(".profile-button").style.display = "none";
+  } else {
+    document.querySelector(".logout-button").style.display = "block";
+    document.querySelector(".login-button").style.display = "none";
+    document.querySelector(".signup-button").style.display = "none";
+    document.querySelector(".profile-button").style.display = "block";
+
+  }
+}
+
+async function addToCollection(event, photoId) {
   event.stopPropagation();
   const modal = document.querySelector(".modal-collections");
   modal.style.display = "flex";
@@ -77,7 +106,7 @@ async function addToCollection(event,photoId){
 
   const collections = await getListOfCollections();
   console.log(collections);
-  for(const collection of collections){
+  for (const collection of collections) {
     const elementList = createListItem(collection);
     elementList.addEventListener("click", (event) => {
       console.log("clicked");
@@ -88,10 +117,10 @@ async function addToCollection(event,photoId){
     });
     list.appendChild(elementList);
 
-  } 
+  }
 
-  
-  
+
+
 }
 async function getListOfCollections() {
   const res = await fetch(`/collection/getList`, {
@@ -107,10 +136,10 @@ async function getListOfCollections() {
       }
       return res;
     });
-    const data = await res.json();
-    return data;
+  const data = await res.json();
+  return data;
 }
-async function addPlantToCollection(collection_id, photo_id){
+async function addPlantToCollection(collection_id, photo_id) {
   const res = await fetch(`/collection/addPlant`, {
     method: "POST",
     headers: {
@@ -134,7 +163,7 @@ function createListItem(collection) {
   const collectionContainer = document.createElement("div");
   const collectionImage = document.createElement("img");
   const collectionName = document.createElement("span");
-  
+
   // collectionImage.src = item.imgSrc;
   collectionImage.src = collection.cover_img;
   collectionImage.classList.add("collection-image");
@@ -154,7 +183,7 @@ function createListItem(collection) {
 const likeButton = document.querySelector(".like-btn");
 
 
-async function viewPhoto(event){
+async function viewPhoto(event) {
   const plantDesc = event.target.closest(".plant");
   //console.log(plantDesc.style.backgroundImage);
 
@@ -162,26 +191,26 @@ async function viewPhoto(event){
   const modImg = document.querySelector(".modal-image");
   const closeBut = document.querySelector(".close-modal");
 
-  const url = plantDesc.style.backgroundImage.slice(5,-2);
+  const url = plantDesc.style.backgroundImage.slice(5, -2);
   modal.style.display = "block";
   modImg.src = url;
 
 
   const res = await fetch(`/views`, {
-    method : "POST",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${window.localStorage.getItem("token")}`
     },
-    body: JSON.stringify({ url }) 
+    body: JSON.stringify({ url })
   });
 
-  closeBut.addEventListener("click", function(){
+  closeBut.addEventListener("click", function () {
     modal.style.display = "none";
   });
 }
 
-async function like(event){
+async function like(event) {
 
   event.stopPropagation();
 
@@ -199,12 +228,21 @@ async function like(event){
       "Content-Type": "application/json",
       "Authorization": `Bearer ${window.localStorage.getItem("token")}`
     },
-    body: JSON.stringify({ url }) 
+    body: JSON.stringify({ url })
+  }).then(res => {
+    if (res.status == 401) {
+      window.location.href = "/login";
+      alert("You are not logged in!");
+    }
+    if (res.status == 400) {
+      alert("You already liked this photo!");
+    }
+    return res;
   });
 
   const data = await res.json(); // TODO : current nr of likes
   console.log(data);
-  
+
 }
 
 modalLikeButton.addEventListener("click", async () => {
@@ -216,7 +254,16 @@ modalLikeButton.addEventListener("click", async () => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${window.localStorage.getItem("token")}`
     },
-    body: JSON.stringify({ url }) 
+    body: JSON.stringify({ url })
+  }).then(res => {
+    if (res.status == 401) {
+      window.location.href = "/login";
+      alert("You are not logged in!");
+    }
+    if (res.status == 400) {
+      alert("You already liked this photo!");
+    }
+    return res;
   });
 
   const data = await res.json(); // TODO : current nr of likes
@@ -269,3 +316,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   //const split = thisPath.split("/");
   console.log(thisPath);
 });
+
+async function isLoggedIn() {
+  const res = await fetch(`/authorized`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+    }
+  })
+    .then(res => {
+      if (res.status == 401) {
+        return false;
+      }
+      return true;
+    });
+  ;
+  return res;
+}

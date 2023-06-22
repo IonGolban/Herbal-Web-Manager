@@ -1,23 +1,23 @@
 import TokenUtils from "../util/tokenUtils.js";
-import { getBodyFromReq, getFormDataFromRequest } from "../util/utilFunctions.js";
-import {editInfo  } from "../services/userService.js";
-
+import { getBodyFromReq, getFormDataFromRequest, parseToCSV, parseToPDF } from "../util/utilFunctions.js";
+import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON } from "../services/userService.js";
+import fs from "fs";
 export async function editProfileInfo(req, res) {
     try {
 
-        const {fields,files} = await getFormDataFromRequest(req);
+        const { fields, files } = await getFormDataFromRequest(req);
         const token = req.headers.authorization.split(" ")[1];
         const user_id = TokenUtils.verifyToken(token);
         // console.log(fields,files);
         fields.email = fields.email[0];
         fields.description = fields.description[0];
-        if(files.coverPhoto){
+        if (files.coverPhoto) {
             fields.coverPhoto = files.coverPhoto[0].filepath;
-            console.log("cover photo :",fields.coverPhoto);
+            console.log("cover photo :", fields.coverPhoto);
         }
-        if(files.profilePhoto){
+        if (files.profilePhoto) {
             fields.profilePhoto = files.profilePhoto[0].filepath;
-            console.log("profile photo :",fields.profilePhoto);
+            console.log("profile photo :", fields.profilePhoto);
         }
 
         console.log(fields);
@@ -25,6 +25,59 @@ export async function editProfileInfo(req, res) {
 
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ response }));
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+
+
+}
+
+export async function downloadCSVLikedPlants(req, res) {
+    try {
+
+        const data = await getStatLikedPlantsCSV();
+        const path = parseToCSV(data);
+        console.log(path);
+
+        const fileStream = fs.createReadStream(`${path}`);
+        res.writeHead(200, {
+            'Content-Type': 'text/csv',
+            'Content-Disposition': 'attachment; filename=likedPlants.csv'
+        });
+        fileStream.pipe(res);
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+export async function downloadPDFLikedPlants(req, res) {
+    try {
+
+        const data = await getStatLikedPlantsJSON();
+        let stats = [];
+        data.forEach((plant) => {
+            let stat = {
+                name: plant.name,
+                value: `${plant.likes} likes, ${plant.views} views, ${plant.description}`
+            };
+            stats.push(stat);
+        });
+
+        const path = "./liked_plants.pdf";
+        parseToPDF("By Likes", stats, path);
+
+        const fileStream = fs.createReadStream(`${path}`);
+        res.writeHead(200, {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment; filename=likedPlants.pdf'
+        });
+        fileStream.pipe(res);
+
     } catch (err) {
         console.log(err);
         res.writeHead(500, { "Content-Type": "text/plain" });

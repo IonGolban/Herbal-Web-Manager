@@ -103,9 +103,7 @@ class plantController {
             const user_id = TokenUtils.verifyToken(token);
             
             const {fields,files} = await getFormDataFromRequest(req);
-            // console.log(fields);
-            // console.log(imageFile);
-            // console.log(files.image[0].filepath);
+          
             const response = await plantService.savePlant(fields, files.image[0].filepath, user_id);
 
             res.writeHead(201, { "Content-Type": "application/json" });
@@ -136,6 +134,31 @@ class plantController {
             res.end(JSON.stringify(plants));
         }
         catch (error){
+            console.error(error);
+            res.writeHead(400, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: error.message }));
+        }
+    }
+
+    async getTags(req, res) {
+        try{
+            const tags = await plantService.getTags();
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(tags));
+        }catch (error){
+            console.error(error);
+            res.writeHead(400, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: error.message }));
+        }
+    }
+    async searchByTags(req, res, params) {
+        try{
+            const tags = params.split("=")[1];
+            const plants = await plantService.searchByTags(tags);
+            console.log("plants",plants);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(plants));
+        }catch (error){
             console.error(error);
             res.writeHead(400, { "Content-Type": "text/plain" });
             res.end(JSON.stringify({ error: error.message }));

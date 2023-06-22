@@ -8,16 +8,18 @@ console.log("token = ", window.localStorage.getItem("token"));
 let timeoutId;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if(window.localStorage.getItem("token")){
-        document.querySelector(".logout-button").style.display = "block";
-        document.querySelector(".login-button").style.display = "none";
-        document.querySelector(".signup-button").style.display = "none";
-        document.querySelector(".profile-button").style.display = "block";
-    }else{
+    if(window.localStorage.getItem("token") === null || !await isLoggedIn()){
+        window.localStorage.removeItem("token");
         document.querySelector(".logout-button").style.display = "none";
         document.querySelector(".login-button").style.display = "block";
         document.querySelector(".signup-button").style.display = "block";
         document.querySelector(".profile-button").style.display = "none";
+    }else{
+        document.querySelector(".logout-button").style.display = "block";
+        document.querySelector(".login-button").style.display = "none";
+        document.querySelector(".signup-button").style.display = "none";
+        document.querySelector(".profile-button").style.display = "block";
+        
     }
 });
 const getTagsImagesbyKey = async (key) => {
@@ -25,7 +27,23 @@ const getTagsImagesbyKey = async (key) => {
     const tags = await res.json();
     return photos;
 }
-
+async function isLoggedIn() {
+    const res = await fetch(`/authorized`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+      }
+    })
+      .then(res => {
+        if (res.status == 401) {
+          return false;
+        }
+        return true;
+      });
+    ;
+    console.log("res = ", res); 
+    return res;
+  }
 const logout = async () => {
     window.localStorage.removeItem("token");
     window.location.href = "/login";

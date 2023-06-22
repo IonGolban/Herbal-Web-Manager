@@ -9,7 +9,12 @@ class TokenUtils {
     }
 
     static verifyToken(token) {
-        return Jwt.verify(token, process.env.JWT_KEY);
+        return Jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+            if (err) {
+                return null;
+            }
+            return decoded;
+        });
     }
 }
 
