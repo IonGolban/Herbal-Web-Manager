@@ -139,7 +139,7 @@ li a {
     height: 250px;
     width: 100%;
     background-image: url("../assets/login-background.jpg");
-    background-size: cover;
+    background-size: 100% auto;
     background-position: center center;
     background-repeat: no-repeat;
 }
@@ -215,7 +215,7 @@ li a {
     position: absolute;
     background-image: url("../assets/login-background.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center 0px;
     background-repeat: no-repeat;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
@@ -301,14 +301,15 @@ li a {
 .button-container {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+    flex-direction: column;
     gap: 5px;
-    ;
-    
+    margin-bottom: 10px;
 }
 
-.add-btn,
-.like-btn {
+.remove-btn {
+    width: 35%;
     background-color: white;
     opacity: 0.6;
     color: black;
@@ -316,10 +317,14 @@ li a {
     outline: none;
     border: 1px solid white;
     border-radius: 6px;
-    padding: 5px 18px;
+    padding: 5px 5px;
     transition: 0.3s ease all;
     cursor: pointer;
+}
 
+.remove-btn:hover {
+    background-color: black;
+    color: white;
 }
 
 .modal-edit{
@@ -499,6 +504,7 @@ section > textarea {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
 
 }

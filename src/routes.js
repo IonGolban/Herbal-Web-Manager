@@ -7,6 +7,7 @@ import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
 import {editProfileInfo} from "./controllers/userController.js";
+import {getUser} from "./controllers/userController.js";
 
 const routes = {
     "/": async (req, res) => {
@@ -113,6 +114,16 @@ const routes = {
     "profile/change/cover-photo" : async (req, res, params) => {
         console.log("Request received for /profile/change/cover-photo");
         await authController.changeCoverPhoto(req, res, params);
+    },
+    "/getUserData" : async (req, res, params) => {
+        console.log("Request received for /getUserData");
+        await getUser(req, res, params);
+    },
+    "/collection/plants/remove" : async (req, res, params) => {
+        console.log("Request received for /collection/plant/remove");
+    },
+    "/like/remove" : async (req, res, params) => {
+        console.log("Request received for /like/remove");
     }
 
 
