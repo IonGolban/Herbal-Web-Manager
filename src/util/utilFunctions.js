@@ -1,4 +1,6 @@
 import formidable from "formidable";
+import fs from "fs";
+import PDFDocument from "pdfkit";
 export async function getBodyFromReq(req) {
     let data = "";
     await req.on("data", (chunk) => {
@@ -19,8 +21,39 @@ export async function getFormDataFromRequest(req) {
             }
             // console.log(fields,files);
             console.log(files);
-            resolve({ fields,files });
+            resolve({ fields, files });
         });
     });
+
+}
+
+export function parseToCSV(csvData) {
+    const path = "./data.csv";
+    fs.writeFileSync(path, csvData, (err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
+
+    return path;
+}
+
+export function parseToPDF(category, statistics, path) {
+    const doc = new PDFDocument;
+    const stream = fs.createWriteStream(path);
+    doc.pipe(stream);
+
+    doc.fontSize(20).text('Statistics', { align: 'center' });
+    doc.moveDown();
+
+    doc.fontSize(14).text(category, { aling : "center",underline: true });
+    doc.moveDown();
+
+    statistics.forEach((statistic, index) => {
+        doc.text(`${index + 1}. ${statistic.name}: ${statistic.value}`);
+        doc.moveDown();
+    });
+
+    doc.end();
 
 }

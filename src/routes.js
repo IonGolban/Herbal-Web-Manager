@@ -1,4 +1,4 @@
-    import { servePublicFiles, serveStaticFile } from "./handler.js";
+import { servePublicFiles, serveStaticFile } from "./handler.js";
 import catalogController from "./controllers/catalogController.js";
 import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
@@ -6,13 +6,12 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {editProfileInfo} from "./controllers/userController.js";
-import {getUser} from "./controllers/userController.js";
+import {editProfileInfo,downloadCSVLikedPlants,downloadPDFLikedPlants,getUser} from "./controllers/userController.js";
+
 
 const routes = {
     "/": async (req, res) => {
         console.log("Request received for /");
-        // await editService.addNameForPlants();
         serveStaticFile(res, "./public/index.html", "text/html");
     },
     "/login": async (req, res) => {
@@ -29,6 +28,13 @@ const routes = {
     },
     "/upload": async (req, res) => {
         serveStaticFile(res, "./public/upload.html", "text/html");
+    },
+    "/statistics" : async (req, res, params) => {
+        console.log("Request received for /statistics");
+        serveStaticFile(res, "./public/statistics.html", "text/html");
+    },
+    "/authorized": async (req, res) => {
+        await authController.isAuth(req, res);
     },
 
     "/catalog/random-img": async (req, res, params) => {
@@ -107,14 +113,22 @@ const routes = {
         console.log("Request received for /profile/uploaded");
         await plantController.getUploadedPlants(req, res, params);
     },
-    "/profile/change/profile-picture" : async (req, res, params) => {
-        console.log("Request received for /profile/change/profile-picture");
-        await authController.changeProfilePicture(req, res, params);
+    "/catalog/tags" : async (req, res, params) => {
+        console.log("Request received for /catalog/tags");
+        await plantController.getTags(req, res, params);
     },
-    "profile/change/cover-photo" : async (req, res, params) => {
-        console.log("Request received for /profile/change/cover-photo");
-        await authController.changeCoverPhoto(req, res, params);
+    "/catalog/search" : async (req, res, params) => {
+        console.log("Request received for /catalog/search");
+        await plantController.searchByTags(req, res, params);
     },
+    "/statistics/liked/download/csv" : async (req, res, params) => {
+        console.log("Request received for /statistics/liked/download");
+        downloadCSVLikedPlants(req, res, params);
+    },
+    "/statistics/liked/download/pdf" : async (req, res, params) => {
+        console.log("Request received for /statistics/liked/download");
+        downloadPDFLikedPlants(req, res, params);
+
     "/getUserData" : async (req, res, params) => {
         console.log("Request received for /getUserData");
         await getUser(req, res, params);

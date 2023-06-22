@@ -1,5 +1,5 @@
 import authService from "../services/authService.js";
-
+import TokenUtils from "../util/tokenUtils.js";
 class AuthController{
     async login(req,res){
         try{
@@ -50,6 +50,24 @@ class AuthController{
         }catch(err){
             console.error(err);
             res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: err.message }));
+        }
+    }
+
+    async isAuth(req,res){
+        try{
+            const token = req.headers.authorization.split(" ")[1];
+            const user_id = TokenUtils.verifyToken(token);
+            if(!user_id){
+                res.writeHead(401,{"Content-Type" : "text/plain"});
+                res.end(JSON.stringify({error:"Unauthorized"}));
+                return;
+            }
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({message:"Authorized"}));
+        }catch(err){
+            console.error(err);
+            res.writeHead(401, { "Content-Type": "text/plain" });
             res.end(JSON.stringify({ error: err.message }));
         }
     }

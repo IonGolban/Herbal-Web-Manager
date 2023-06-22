@@ -68,6 +68,34 @@ export async function getData(user_id){
 
 }
 
+export async function getStatLikedPlantsCSV(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({likes: -1}).limit(100);
+
+        let csv = "name,likes\n";
+        plants.forEach(plant => {
+            csv += `${plant.name},${plant.likes}\n`;
+        });
+
+        return csv;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getStatLikedPlantsJSON(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({likes: -1}).limit(100);
+
+        return plants;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 
 

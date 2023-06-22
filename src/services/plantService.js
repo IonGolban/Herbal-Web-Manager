@@ -77,9 +77,9 @@ class PlantService {
     }
     async getLikedPlants(_id){
         await connect();
+        console.log(_id);
         const user = await User.findById(_id.id);
         let photos = [];
-
         for(const id of user.liked_photos){
             const plant = await Plant.findOne({_id : id});
             photos.push({url:plant.urls.regular,description: plant.description}); 
@@ -152,6 +152,57 @@ class PlantService {
         }
     }
 
+    async getTags(){
+
+        try {
+            await connect();
+            const tagCounts = await Plant.aggregate([
+                { $unwind: "$tags" },
+                {
+                  $group: {
+                    _id: "$tags",
+                    count: { $sum: 1 }
+                  }
+                },
+                { $sort: { count: -1 } }
+              ]).limit(15);
+              
+            const popularTags = tagCounts.map(tagCount => tagCount._id);
+          
+
+            return popularTags;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+    async searchByTags(tags){
+        try {
+            await connect();
+            tags = tags.split(",");
+            const plants = await Plant.find({
+                $or: [
+                    { tags: { $in: tags } }
+                ]
+            }).sort({ likes: -1 }).limit(63);
+
+            if (plants.length === 0) {
+                return ["No results found"];
+            }
+
+            const response = plants.map(plant => ({
+                _id: plant._id,
+                name: plant.name,
+                url: plant.urls.regular,
+                desc: plant.alt_description
+            }));
+
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
 }
 
 export default new PlantService();
