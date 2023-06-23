@@ -6,8 +6,10 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-
-import {editProfileInfo,downloadStats,getStats,getUser, deleteLiked, deleteCollectionAdded, deleteUpdated, deleteCollection} from "./controllers/userController.js";
+import {getAllUsers,getAllPlants,deleteUser,deletePlant} from "./controllers/adminController.js";
+import {editProfileInfo,downloadStats,getStats,getUser, 
+    deleteLiked, deleteCollectionAdded, deleteUpdated,
+    deleteCollection} from "./controllers/userController.js";
 
 
 const routes = {
@@ -158,7 +160,24 @@ const routes = {
     "/collection/delete" : async (req, res, params) => {
         console.log("Request received for /collection/delete");
         await deleteCollection(req, res, params)
+    },
+    "/users/all" : async (req, res, params) => {
+        console.log("Request received for /users/all");
+        await getAllUsers(req, res, params)
+    },
+    "/user/delete" : async (req, res, params) => {
+        console.log("Request received for /user/delete");
+        await deleteUser(req, res, params)
+    },
+    "/plants/all" : async (req, res, params) => {
+        console.log("Request received for /plant/all");
+        await getAllPlants(req, res, params)
+    },
+    "/plant/delete" : async (req, res, params) => {
+        console.log("Request received for /plant/delete");
+        await deletePlant(req, res, params)
     }
+
 };
 
 export default routes;

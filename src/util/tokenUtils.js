@@ -5,7 +5,7 @@ const time = '1h';
 
 class TokenUtils {
     static generateToken(payload) {
-        return Jwt.sign({id: payload}, process.env.JWT_KEY, { expiresIn: time});
+        return Jwt.sign({id: payload.id , role: payload.role}, process.env.JWT_KEY, { expiresIn: time});
     }
 
     static verifyToken(token) {
@@ -13,6 +13,7 @@ class TokenUtils {
             if (err) {
                 return null;
             }
+            console.log("decoded = ",decoded);
             return decoded;
         });
     }

@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
     }],
     profile_img: { type: String },
     cover_img: { type: String },
-    email:{type:String,required:true}
+    email:{type:String,required:true},
+    role: { type: String},
 });
 
 const User = mongoose.model("User", userSchema);

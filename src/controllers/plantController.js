@@ -79,7 +79,7 @@ class plantController {
             }
             const token = req.headers.authorization.split(" ")[1];
             const user_id = TokenUtils.verifyToken(token);
-
+            console.log("decoded :", user_id);
             const photos = await plantService.getLikedPlants(user_id);
 
             res.writeHead(200, { "Content-Type": "application/json" });

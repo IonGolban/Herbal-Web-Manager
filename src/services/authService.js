@@ -19,9 +19,18 @@ class AuthService{
         if(!await PasswordUtils.comparePassword(password,user.password)){
             throw new Error("Invalid password");
         }
-        const token = TokenUtils.generateToken(user._id);
-
-        return token;
+        if(user.role == null){
+          user.role = "user";
+          await user.save();
+        }
+        const payload = {
+            id: user._id,
+            role: user.role,
+        };
+        const token = TokenUtils.generateToken(payload);
+        console.log(token);
+        console.log(user.role);
+        return {token, role : user.role};
 
 
     }
@@ -39,18 +48,25 @@ class AuthService{
             }
             
             const hashedPassword = await PasswordUtils.hashPassword(password);
-           
+            let role = "user";
+           if(username == "admin"){
+            role = "admin";
+           }
             const user = new User({
               username: username,
               password: hashedPassword,
               email: email,
+              role: role,
             });
         
             const savedUser = await user.save();
-
-            const token = TokenUtils.generateToken(2000);
+            const payload = {
+              id: savedUser._id,
+              role: savedUser.role,
+            };
+            const token = TokenUtils.generateToken(payload);
             
-            return token;
+            return {token, role : savedUser.role};
           } catch (error) {
             console.error(error);
             throw new Error(error);
@@ -60,8 +76,8 @@ class AuthService{
     async logout(){
     }
     async getUser(token){
-        const _id = TokenUtils.verifyToken(token);
-        const user = await User.findById(_id);
+        const payload = TokenUtils.verifyToken(token);
+        const user = await User.findById(payload.id);
         return user;
     }
 

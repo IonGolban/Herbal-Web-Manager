@@ -5,103 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script type="module" src="scripts/utilFunctions.js"></script>
+    <script type="module" src="scripts/admin.js"></script>
 </head>
 <body>
     <div class="admin-container">
-
+        
         <div class="title-admin">
-            WELCOME TO ADMIN PAGE
+            <div class = "title">
+                <h2>Admin page</h2>    
+            </div>
+            
+            <nav class="navbar">
+          
+                <div class="buttons">
+                    <button class="stats-button" onclick="window.location.href='/'">Home</button>
+                    <button class="profile-button" onclick="window.location.href='/profile'">Profile</button>
+                    <button class="login-button" onclick="window.location.href='/login'">Login</button>
+                    <button class="signup-button" onclick="window.location.href='/register'">Register</button>
+                    <button class = "admin-button" onclick="window.location.href='/admin'">Admin page</button>
+    
+                    <button class="logout-button">Logout</button>
+                </div>
+            </nav>
         </div>
         <div class="content-admin">
             <div class="plants-section">
                 <div class="titlu-list"><div><h1>Plants list</h1></div></div>
-                <ul class="list">
-                    <li>
-                        <img src="assets/plant2.avif" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
+                <ul class="list" id = "plants-list">
+                    
                 </ul>
-
-
             </div>
             <div class="users-section">
                 <div class="titlu-list"><div><h1>Users list</h1></div></div>
-                <ul class="list">
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    <li>
-                        <img src="assets/ion.jpg" alt="Imagine 1">
-                        <span>ID: 123sadasfaw123sad3553</span>
-                        <button class="delete-btn">Delete</button>
-                    </li>
-
-                    
+                <ul class="list" id = "users-list">
 
                 </ul>
             </div>

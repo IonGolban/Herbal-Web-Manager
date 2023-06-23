@@ -43,8 +43,10 @@ function register(event) {
                 if (data.error) {
                     throw new Error(data.error);
                 } else {
-                    console.log("data.token = ", data);
-                    window.localStorage.setItem("token", data);
+                    console.log("data.token = ", data.token);
+                    console.log("data = ", data);
+                    window.localStorage.setItem("token", data.token);
+                    window.localStorage.setItem("role", data.role);
                     const token = window.localStorage.getItem("token"); 
                     console.log("local storage token", token);
                     window.location.href = "/";
@@ -77,8 +79,10 @@ function login(event) {
                 console.log(data);
                 alert(data.error.toString());
             } else {
-                console.log("data.token = ", data);
-                localStorage.setItem("token", data);
+                console.log("data.token = ", data.token);
+                console.log("data = ", data);
+                localStorage.setItem("token", data.token);
+                window.localStorage.setItem("role", data.role);
                 console.log(window.localStorage.getItem("token"));
                 window.location.href = "/"; 
             }

@@ -18,8 +18,9 @@
     font-weight: 600;
     font-size: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    
 }
 
 .content-admin{
@@ -90,4 +91,32 @@ h1{
   .list .delete-btn:hover{
     background-color: #252222;
     color: white;
+  }
+  .list span {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .title-admin > .title{
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  @media screen and (max-width: 1140px) {
+    .content-admin {
+        display: block;
+        margin: 20px;
+      flex-direction: column;
+    }
+    .plants-section,
+    .users-section {
+      width: 100%;
+      margin : 10px;
+    }
+  
+    .users-section,
+    .plants-section {
+      width: 80%;
+    }
   }

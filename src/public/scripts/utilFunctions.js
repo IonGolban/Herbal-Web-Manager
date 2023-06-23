@@ -1,17 +1,24 @@
 
 export async function setButtons(){
+    document.querySelector(".admin-button").style.display = "none";
+    
     if(window.localStorage.getItem("token") === null || !await isLoggedIn()){
         window.localStorage.removeItem("token");
         document.querySelector(".logout-button").style.display = "none";
         document.querySelector(".login-button").style.display = "block";
         document.querySelector(".signup-button").style.display = "block";
         document.querySelector(".profile-button").style.display = "none";
+        
     }else{
         document.querySelector(".logout-button").style.display = "block";
         document.querySelector(".login-button").style.display = "none";
         document.querySelector(".signup-button").style.display = "none";
-        document.querySelector(".profile-button").style.display = "block";
         
+        if(localStorage.getItem("role") === "admin"){
+            document.querySelector(".admin-button").style.display = "block";
+            document.querySelector(".profile-button").style.display = "none";
+        }else document.querySelector(".profile-button").style.display = "block";
+        if(window.location.pathname === "/admin") document.querySelector(".admin-button").style.display = "none";
     }
 }
 const logoutButton = document.querySelector(".logout-button");

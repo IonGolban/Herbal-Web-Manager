@@ -3,6 +3,13 @@ import { appendTagsToDropDown, getPlantsByTags } from "./criteriaSearch.js";
 const modalLikeButton = document.querySelector(".like-btn-modal");
 const modalAddButton = document.querySelector(".add-btn-modal");
 const logoutButton = document.querySelector(".logout-button");
+const searchInputCatalog = document.querySelector("#search-input-catalog");  
+
+searchInputCatalog.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+      window.location.href = `/catalog?query=${searchInputCatalog.value}`;
+  }
+});
 
 logoutButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -318,18 +325,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function isLoggedIn() {
-  const res = await fetch(`/authorized`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-    }
-  })
-    .then(res => {
-      if (res.status == 401) {
-        return false;
+    const res = await fetch(`/authorized`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
       }
-      return true;
-    });
-  ;
+    })
+      .then(res => {
+        if (res.status == 401) {
+          return false;
+        }
+        return true;
+      });
+  
   return res;
 }
