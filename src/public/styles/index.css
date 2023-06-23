@@ -264,12 +264,14 @@ body {
   margin-bottom: 20px;
 }
 
-.about-us-text{
-  width: 50%;
-  font-size: 16px;
+.about-us-text {
+  width: 60%;
+  font-size: 1rem;
   line-height: 1.5;
+  text-align: justify;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
-
 
 .contact-us{
   height: 100vh;
@@ -372,8 +374,30 @@ body {
   color: white;
 }
 
+@media only screen and (max-width: 1200px){
 
+  .desc-ion, 
+  .desc-sebi{
+    display: none;
+  }
 
+  .about-us-text{
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+  .lastp{
+    display: none;
+  }
+  .lastp{
+    display: none;
+  }
+
+}
 
 @media only screen and (max-width: 600px) {
   .navbar2 {
@@ -402,6 +426,28 @@ body {
     padding: 0.8rem;
     font-size: 0.8rem;
   }
+
+  .poza-sebi,
+  .poza-ion{
+    margin-top: 50px;
+    height: 150px;
+    width: 150px;
+  }
+
+  .about-us-text {
+    font-size: 0.8rem;
+  }
+
+}
+
+@media only screen and (max-width: 500px){
+  
+  .poza-sebi,
+  .poza-ion{
+    height: 120px;
+    width: 120px;
+  }
+
 }
 
 @media only screen and (max-width: 400px){
@@ -419,6 +465,12 @@ body {
   .navbar2 {
 
     margin-top: 1.8rem ;
+  }
+
+  .poza-sebi,
+  .poza-ion{
+    height: 100px;
+    width: 100px;
   }
 
 }
