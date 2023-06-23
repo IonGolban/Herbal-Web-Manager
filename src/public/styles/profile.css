@@ -340,8 +340,8 @@ li a {
 }
 
 .modal-edit-container{
-    height: 90%;
-    width: 40%;
+    height: 700px;
+    width: 600px;
     background-color: #e0e0e0;
     border-radius: 20px;
     display: flex;
@@ -445,8 +445,8 @@ section > textarea {
 }
 
 .edit-cover-photo{
-    height: 70%;
-    width: 65%;
+    height: 170px;
+    width: 330px;
     background-color: #4caf50;
     border-radius: 10px;
     display: flex;
@@ -456,11 +456,18 @@ section > textarea {
 
 .change-cov-photo,
 .change-prof-photo{
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+#change-cover-photo-label,
+#change-profile-photo-label{
+    cursor: pointer;
 }
 
 .change-cov-photo{
@@ -537,6 +544,20 @@ section > textarea {
         width: 130px;
     }
 
+    .modal-edit-container{
+        height: 600px;
+        width: 500px;
+    }
+
+    .edit-profile-photo{
+        height: 150px;
+        width: 150px;
+    }
+    .edit-cover-photo{
+        height: 150px;
+        width: 260px;
+    }
+
 }
 
 @media only screen and (max-width: 650px) {
@@ -553,6 +574,23 @@ section > textarea {
     .logo2{
         display: block;
     }
+
+    .modal-edit-container{
+        height: 600px;
+        width: 400px;
+    }
+
+
+    .edit-profile-photo{
+        height: 120px;
+        width: 120px;
+    }
+    .edit-cover-photo{
+        height: 120px;
+        width: 200px;
+    }
+
+
 }
 
 @media only screen and (max-width: 450px) {
@@ -562,6 +600,26 @@ section > textarea {
         width: 90px;
         margin-bottom: 35px;
     }
+
+    .modal-edit-container{
+        height: 550px;
+        width: 350px;
+    }
+
+    .edit-profile-photo{
+        height: 100px;
+        width: 100px;
+    }
+    .edit-cover-photo{
+        height: 100px;
+        width: 150px;
+    }
+
+    .change-cov-photo,
+    .change-prof-photo{
+        width: 50px;
+    }
+
 }
 
 #profile-photo-edit {
