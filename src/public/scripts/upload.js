@@ -45,5 +45,5 @@ async function sendData(name,imageFile, description, altDescription, tags) {
     });
     const data = await res.json();
     console.log(data);
-    // window.location.href = "/profile";
+    window.location.href = "/profile";
 }

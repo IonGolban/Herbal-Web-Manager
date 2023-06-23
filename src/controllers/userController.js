@@ -1,6 +1,6 @@
 import TokenUtils from "../util/tokenUtils.js";
 import { getBodyFromReq, getFormDataFromRequest, parseToCSV, parseToPDF } from "../util/utilFunctions.js";
-import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON,getData } from "../services/userService.js";
+import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON, getData, deletePlantFromUser, deletePlantFromUserCollection, deletePhotoUpdated, deleteUserCollection} from "../services/userService.js";
 import fs from "fs";
 
 export async function editProfileInfo(req, res) {
@@ -85,6 +85,12 @@ export async function downloadPDFLikedPlants(req, res) {
             'Content-Disposition': 'attachment; filename=likedPlants.pdf'
         });
         fileStream.pipe(res);
+        } catch (err) {
+            console.log(err);
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end(JSON.stringify({ error: err.message }));
+        }
+    }
 
 export async function getUser(req, res) {
     try{
@@ -102,4 +108,88 @@ export async function getUser(req, res) {
         res.writeHead(500, { "Content-Type": "text/plain" });
         res.end(JSON.stringify({ error: err.message }));
     }
+}
+
+export async function deleteLiked(req, res, params) {
+    try{
+        
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const plantId = params.split("=")[1];
+        console.log(plantId);
+
+        const response = await deletePlantFromUser(user_id, plantId);
+        
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+export async function deleteCollectionAdded(req, res, params) {
+    try{
+
+        const plantId = params.split("=")[1].split("&&")[0];
+        const collectionId = params.split("&&")[1].split("=")[1];
+        // console.log(plantId, collectionId);
+
+        const response = await deletePlantFromUserCollection(collectionId, plantId);
+        
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+export async function deleteUpdated(req, res, params) {
+
+    const plantUpdateId = params.split("=")[1];
+
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const response = await deletePhotoUpdated(user_id, plantUpdateId);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+
+}
+
+export async function deleteCollection(req, res, params) {
+
+    const collectionId = params.split("=")[1];
+
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const response = await deleteUserCollection(collectionId, user_id);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+
 }
