@@ -6,7 +6,7 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {editProfileInfo,downloadCSVLikedPlants,downloadPDFLikedPlants,getUser} from "./controllers/userController.js";
+import {editProfileInfo,downloadStats,getStats,getUser} from "./controllers/userController.js";
 
 
 const routes = {
@@ -121,14 +121,10 @@ const routes = {
         console.log("Request received for /catalog/search");
         await plantController.searchByTags(req, res, params);
     },
-    "/statistics/liked/download/csv" : async (req, res, params) => {
+    "/statistics/liked/download" : async (req, res, params) => {
         console.log("Request received for /statistics/liked/download");
-        downloadCSVLikedPlants(req, res, params);
+        downloadStats(req, res, params);
     },
-    "/statistics/liked/download/pdf" : async (req, res, params) => {
-        console.log("Request received for /statistics/liked/download");
-        downloadPDFLikedPlants(req, res, params);
-
     "/getUserData" : async (req, res, params) => {
         console.log("Request received for /getUserData");
         await getUser(req, res, params);
@@ -138,9 +134,17 @@ const routes = {
     },
     "/like/remove" : async (req, res, params) => {
         console.log("Request received for /like/remove");
+        
+    },
+    "/statistics/download" : async (req, res, params) => {
+        console.log("Request received for /statistics/download");
+        await downloadStats(req, res, params);     
+    },
+    "/statistics/data" : async (req, res, params) => {
+        console.log("Request received for /statistics/data");
+        // await editController.setRandomNamesToPlants(req, res, params);
+        await getStats(req, res, params);     
     }
-
-
 };
 
 export default routes;

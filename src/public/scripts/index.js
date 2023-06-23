@@ -1,3 +1,5 @@
+import {setButtons,isLoggedIn} from "./utilFunctions.js";
+
 const searchInput = document.querySelector(".searchInput");
 const input = document.querySelector("input");
 const suggestions = document.querySelector(".suggestions");
@@ -8,42 +10,14 @@ console.log("token = ", window.localStorage.getItem("token"));
 let timeoutId;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if(window.localStorage.getItem("token") === null || !await isLoggedIn()){
-        window.localStorage.removeItem("token");
-        document.querySelector(".logout-button").style.display = "none";
-        document.querySelector(".login-button").style.display = "block";
-        document.querySelector(".signup-button").style.display = "block";
-        document.querySelector(".profile-button").style.display = "none";
-    }else{
-        document.querySelector(".logout-button").style.display = "block";
-        document.querySelector(".login-button").style.display = "none";
-        document.querySelector(".signup-button").style.display = "none";
-        document.querySelector(".profile-button").style.display = "block";
-        
-    }
+   await setButtons();
 });
 const getTagsImagesbyKey = async (key) => {
     const res = await fetch(`/img-by-tag?key=${key}`);
     const tags = await res.json();
     return photos;
 }
-async function isLoggedIn() {
-    const res = await fetch(`/authorized`, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-      }
-    })
-      .then(res => {
-        if (res.status == 401) {
-          return false;
-        }
-        return true;
-      });
-    ;
-    console.log("res = ", res); 
-    return res;
-  }
+
 const logout = async () => {
     window.localStorage.removeItem("token");
     window.location.href = "/login";
@@ -55,12 +29,12 @@ input.addEventListener("keydown", (event) => {
         window.location.href = `/catalog?query=${input.value}`;
     }
 });
-input.addEventListener("blur", () => {
-    console.log("blur");
-    suggestions.classList.remove("active");
-    trendings.style.display = "flex";
-}
-);
+// input.addEventListener("blur", () => {
+//     console.log("blur");
+//     suggestions.classList.remove("active");
+//     trendings.style.display = "flex";
+// }
+// );
 
 input.addEventListener("keyup", async () => {
     clearTimeout(timeoutId);
@@ -84,7 +58,6 @@ input.addEventListener("keyup", async () => {
             ul.innerHTML = "";
             for (let i = 0; i < tags.length; i++) {
                 const li = document.createElement("li");
-                //li.innerHTML = `<a href='/catalog?query=${tags[i]}>` + tags[i] + "</a>";
                 li.innerHTML = tags[i];
                 ul.appendChild(li);
             }
@@ -94,4 +67,13 @@ input.addEventListener("keyup", async () => {
         }, 1000);
     }
 
+});
+
+const elementList = document.querySelectorAll(".suggestions ul li");
+
+elementList.forEach((element) => {
+  element.addEventListener("click", (event) => {
+    console.log(event.target.innerHTML);
+    input.value = event.target.innerHTML;
+  });
 });
