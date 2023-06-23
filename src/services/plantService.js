@@ -82,7 +82,7 @@ class PlantService {
         let photos = [];
         for(const id of user.liked_photos){
             const plant = await Plant.findOne({_id : id});
-            photos.push({url:plant.urls.regular,description: plant.description}); 
+            photos.push({url:plant.urls.regular,description: plant.description, _id: plant._id}); 
         }
         console.log(photos);
         return photos;

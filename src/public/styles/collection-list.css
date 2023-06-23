@@ -11,6 +11,19 @@
     background-color: rgba(0, 0, 0, 0.8);
   }
   
+  .modal-container-collections1 {
+    height: 400px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aliceblue;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 20px;
+  }
+
   .modal-container-collections {
     height: 400px;
     width: 500px;
@@ -18,23 +31,43 @@
     justify-content: center;
     flex-direction: column;
     background-color: aliceblue;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     padding: 20px;
     overflow: auto;
   }
+  
   .modal-container-collections::-webkit-scrollbar {
+    width: 10px;
+  }
+  .modal-container-collections1::-webkit-scrollbar {
     width: 10px;
   }
   
   .modal-container-collections::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
+  .modal-container-collections1::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
   
   .modal-container-collections::-webkit-scrollbar-thumb {
     background: #888;
   }
+  .modal-container-collections1::-webkit-scrollbar-thumb {
+    background: #888;
+  }
   
   .modal-container-collections > span {
+    position: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .modal-container-collections1 > span {
     position: flex;
     font-size: 20px;
     font-weight: bold;
@@ -48,7 +81,8 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 50%;
+    overflow: auto;
   }
   
   #collection-list > li {
@@ -90,6 +124,22 @@
     position: relative;
   }
   
+  .dlt-btn{
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+  }
+
+  .dlt-btn:hover{
+    background-color: rgb(193, 192, 192);
+    color: black;
+  }
   
   
   .collection-close-btn {

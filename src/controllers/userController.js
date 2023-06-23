@@ -1,8 +1,10 @@
 import TokenUtils from "../util/tokenUtils.js";
 import { getBodyFromReq, getFormDataFromRequest, parseToCSV, parseToPDF } from "../util/utilFunctions.js";
+
 import { editInfo, getStatsViewsPlantsPDF, getStatLikedPlantsPDF
     ,getStatsViewsPlantsCSV,getStatLikedPlantsCSV,getData,
-    getStatsTagsPDF,getStatsTagsCSV,getStatsByType } from "../services/userService.js";
+    getStatsTagsPDF,getStatsTagsCSV,getStatsByType, deletePlantFromUser, deletePlantFromUserCollection, deletePhotoUpdated, deleteUserCollection} from "../services/userService.js";
+
 import fs from "fs";
 
 export async function editProfileInfo(req, res) {
@@ -95,6 +97,7 @@ export async function downloadStats(req,res,params){
     }
 }
 
+
 export async function getUser(req, res) {
     try{
         
@@ -124,4 +127,87 @@ export async function getStats(req,res,params){
         res.writeHead(500, { "Content-Type": "text/plain" });
         res.end(JSON.stringify({ error: err.message }));
     }
+}
+export async function deleteLiked(req, res, params) {
+    try{
+        
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const plantId = params.split("=")[1];
+        console.log(plantId);
+
+        const response = await deletePlantFromUser(user_id, plantId);
+        
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+export async function deleteCollectionAdded(req, res, params) {
+    try{
+
+        const plantId = params.split("=")[1].split("&&")[0];
+        const collectionId = params.split("&&")[1].split("=")[1];
+        // console.log(plantId, collectionId);
+
+        const response = await deletePlantFromUserCollection(collectionId, plantId);
+        
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
+
+export async function deleteUpdated(req, res, params) {
+
+    const plantUpdateId = params.split("=")[1];
+
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const response = await deletePhotoUpdated(user_id, plantUpdateId);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+
+}
+
+export async function deleteCollection(req, res, params) {
+
+    const collectionId = params.split("=")[1];
+
+    try {
+        const token = req.headers.authorization.split(" ")[1];
+        const user_id = TokenUtils.verifyToken(token);
+
+        const response = await deleteUserCollection(collectionId, user_id);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ response }));
+
+    } catch (err) {
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+
 }

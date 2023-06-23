@@ -6,7 +6,8 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {editProfileInfo,downloadStats,getStats,getUser} from "./controllers/userController.js";
+
+import {editProfileInfo,downloadStats,getStats,getUser, deleteLiked, deleteCollectionAdded, deleteUpdated, deleteCollection} from "./controllers/userController.js";
 
 
 const routes = {
@@ -32,6 +33,10 @@ const routes = {
     "/statistics" : async (req, res, params) => {
         console.log("Request received for /statistics");
         serveStaticFile(res, "./public/statistics.html", "text/html");
+    },
+    "/admin" : async (req, res, params) => {
+        console.log("Request received for /admin");
+        serveStaticFile(res, "./public/admin.html", "text/html");
     },
     "/authorized": async (req, res) => {
         await authController.isAuth(req, res);
@@ -131,10 +136,11 @@ const routes = {
     },
     "/collection/plants/remove" : async (req, res, params) => {
         console.log("Request received for /collection/plant/remove");
+        await deleteCollectionAdded(req, res, params);
     },
     "/like/remove" : async (req, res, params) => {
         console.log("Request received for /like/remove");
-        
+        await deleteLiked(req, res, params)        
     },
     "/statistics/download" : async (req, res, params) => {
         console.log("Request received for /statistics/download");
@@ -144,6 +150,14 @@ const routes = {
         console.log("Request received for /statistics/data");
         // await editController.setRandomNamesToPlants(req, res, params);
         await getStats(req, res, params);     
+    }, 
+    "/update/remove" : async (req, res, params) => {
+        console.log("Request received for /like/remove");
+        await deleteUpdated(req, res, params)
+    }, 
+    "/collection/delete" : async (req, res, params) => {
+        console.log("Request received for /collection/delete");
+        await deleteCollection(req, res, params)
     }
 };
 

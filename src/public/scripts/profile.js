@@ -70,7 +70,7 @@ if (searchParam === "?collection_id") {
 }
 
   console.log(plants);
-  displayPlants(plants);
+  await displayPlants(plants);
 
 });
 
@@ -100,45 +100,42 @@ async function getUploadedPhotos() {
   }
 }
 
-function displayPlants(plants) {
-  console.log(plants);
-  for (const plant of plants) {
 
+async function displayPlants(plants) {
+  console.log(plants);
+  plants.forEach((plant) => {
     const el = document.createElement("div");
     el.classList.add("photo");
     el.style.backgroundImage = `url(${plant.url})`;
     el.innerHTML = `
-    <div class="button-container">
-        <button class="remove-btn">remove</button>
-    </div>
+      <div class="button-container">
+          <button class="remove-btn">remove</button>
+      </div>
     `;
-    
-    document.addEventListener("click", async (event) => {
-      if (event.target.classList.contains("remove-btn")) {
 
-        const query = window.location.search;
-        const searchParam = query.split("=")[0];
-        
-        if(searchParam === "?collection_id"){
+    el.querySelector(".remove-btn").addEventListener("click", async (event) => {
+      
 
-        }
-        else if(searchParam === "?uploaded_photos") {
+      const query = window.location.search;
+      const searchParam = query.split("=")[0];
+      const idCollection = query.split("=")[1];
 
-        }
-        else {
-
-        }
-
-
+      if (searchParam === "?collection_id") {
+        const res = await deleteCollectionPhoto(plant._id, idCollection);
+        console.log(res);
+      } else if (searchParam === "?uploaded_photos") {
+        const res = await deleteUpdatePhoto(plant._id)
+        console.log(res);
+      } else {
+        const res = await deleteLikePhoto(plant._id);
+        console.log(res);
       }
-  });
-
-
-    
+    });
 
     photoStorage.appendChild(el);
-  }
+  });
 }
+
   async function createCollection(event) {
     event.preventDefault();
     const collectionName = document.getElementById("collection-name-input");
@@ -167,6 +164,11 @@ function displayPlants(plants) {
       };
       const res = fetchCreateCollection(collection);
       console.log(res);
+      const noc = document.querySelector(".number-of-collections");
+      const paragraf = noc.querySelector("p");
+      const numar = parseInt(paragraf.textContent);
+      const numarAdunat = numar + 1;
+      paragraf.textContent = numarAdunat;
       modal.style.display = "none";
     });
 
@@ -245,6 +247,23 @@ function displayPlants(plants) {
         console.log(collection._id);
         window.location.href = `/profile?collection_id=${collection._id}`;
       });
+
+      elementList.querySelector(".dlt-btn").addEventListener("click", async (event) => {
+        event.stopPropagation();
+
+
+        const noc = document.querySelector(".number-of-collections");
+        const paragraf = noc.querySelector("p");
+        const numar = parseInt(paragraf.textContent);
+        const numarSczut = numar - 1;
+        paragraf.textContent = numarSczut;
+        elementList.remove();
+
+        const res = await deleteUserCollection (collection._id);
+        console.log(res);
+
+      });
+      
       list.appendChild(elementList);
 
     }
@@ -271,10 +290,13 @@ function displayPlants(plants) {
     const collectionContainer = document.createElement("div");
     const collectionImage = document.createElement("img");
     const collectionName = document.createElement("span");
+    const deleteColectionButton = document.createElement("div");
 
     // collectionImage.src = item.imgSrc;
     collectionImage.src = collection.cover_img;
     collectionImage.classList.add("collection-image");
+    deleteColectionButton.classList.add("dlt-btn");
+    deleteColectionButton.innerHTML += `<p>&times;</p>`;
 
     collectionName.textContent = collection.name;
     collectionName.classList.add("collection-name");
@@ -282,6 +304,7 @@ function displayPlants(plants) {
     collectionContainer.classList.add("collection");
     collectionContainer.appendChild(collectionImage);
     collectionContainer.appendChild(collectionName);
+    collectionContainer.appendChild(deleteColectionButton);
 
     listCollection.appendChild(collectionContainer);
 
@@ -303,9 +326,9 @@ function displayPlants(plants) {
     return data;
   }
 
-  async function deleteLikePhoto(idPlant, idCollection) {
-    const res = await fetch(`/collection/plants/remove?id=${idPlant}`, {
-      method: "GET",
+  async function deleteLikePhoto(idPlant) {
+    const res = await fetch(`/like/remove?id=${idPlant}`, {
+      method: "POST",
       headers: {
         "Authorization": `Bearer ${window.localStorage.getItem("token")}`
       }
@@ -317,4 +340,52 @@ function displayPlants(plants) {
     });
     const data = await res.json();
     return data;
+  }
+
+  async function deleteCollectionPhoto(idPlant, idCollection) {
+      const res = await fetch(`/collection/plants/remove?idP=${idPlant}&&idC=${idCollection}`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+        }
+      }).then(res => {
+        if (res.status == 401) {
+          window.location.href = "/login";
+          alert("You are not logged in!");
+        } return res;
+      });
+      const data = await res.json();
+      return data;
+  }
+
+  async function deleteUpdatePhoto(idPlant) {
+    const res = await fetch(`/update/remove?id=${idPlant}`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+      }
+    }).then(res => {
+      if (res.status == 401) {
+        window.location.href = "/login";
+        alert("You are not logged in!");
+      } return res;
+    });
+    const data = await res.json();
+    return data;
+  }
+
+  async function deleteUserCollection(idCollection){
+      const res = await fetch(`/collection/delete?id=${idCollection}`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+        }
+      }).then(res => {
+        if (res.status == 401) {
+          window.location.href = "/login";
+          alert("You are not logged in!");
+        } return res;
+      });
+      const data = await res.json();
+      return data;
   }
