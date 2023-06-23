@@ -1,0 +1,55 @@
+.navbar2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .buttons button {
+    margin: 0 10px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .buttons button:hover {
+    border-bottom-color: white;
+  }
+  
+  .category-nav {
+  
+    justify-content: space-between;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .category {
+  
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .category>a {
+    color: white;
+  }
+  
+  .category>a:link {
+    text-decoration: none;
+  }
+  
+  .category > a:hover::after {
+    content: "";
+    display: block;
+    border-bottom: 2px solid white;
+  }

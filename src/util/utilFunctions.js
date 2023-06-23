@@ -27,15 +27,12 @@ export async function getFormDataFromRequest(req) {
 
 }
 
-export function parseToCSV(csvData) {
-    const path = "./data.csv";
+export function parseToCSV(csvData,path) {
     fs.writeFileSync(path, csvData, (err) => {
         if (err) {
             console.error(err);
         }
     });
-
-    return path;
 }
 
 export function parseToPDF(category, statistics, path) {
@@ -46,7 +43,7 @@ export function parseToPDF(category, statistics, path) {
     doc.fontSize(20).text('Statistics', { align: 'center' });
     doc.moveDown();
 
-    doc.fontSize(14).text(category, { aling : "center",underline: true });
+    doc.fontSize(14).text(`By ${category}s`, { align : "center",underline: true });
     doc.moveDown();
 
     statistics.forEach((statistic, index) => {

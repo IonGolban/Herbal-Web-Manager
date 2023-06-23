@@ -1,6 +1,10 @@
 import TokenUtils from "../util/tokenUtils.js";
 import { getBodyFromReq, getFormDataFromRequest, parseToCSV, parseToPDF } from "../util/utilFunctions.js";
-import { editInfo, getStatLikedPlantsCSV, getStatLikedPlantsJSON, getData, deletePlantFromUser, deletePlantFromUserCollection, deletePhotoUpdated, deleteUserCollection} from "../services/userService.js";
+
+import { editInfo, getStatsViewsPlantsPDF, getStatLikedPlantsPDF
+    ,getStatsViewsPlantsCSV,getStatLikedPlantsCSV,getData,
+    getStatsTagsPDF,getStatsTagsCSV,getStatsByType, deletePlantFromUser, deletePlantFromUserCollection, deletePhotoUpdated, deleteUserCollection} from "../services/userService.js";
+
 import fs from "fs";
 
 export async function editProfileInfo(req, res) {
@@ -42,55 +46,57 @@ export async function editProfileInfo(req, res) {
 
 }
 
-export async function downloadCSVLikedPlants(req, res) {
+export async function downloadStats(req,res,params){
     try {
-
-        const data = await getStatLikedPlantsCSV();
-        const path = parseToCSV(data);
-        console.log(path);
+        const splittedParams = params.split("&");
+        const type = splittedParams[0].split("=")[1];
+        const statsType = splittedParams[1].split("=")[1];
+        const path =`./util/${statsType}-stats.${type}`;
+        let data ;
+        if(type === "csv"){
+            console.log("csv");
+            if( statsType === "like"){
+                data = await getStatLikedPlantsCSV();
+            }
+            else if(statsType === "view"){
+                data = await getStatsViewsPlantsCSV();
+            }else if(statsType === "tag"){
+                data = await getStatsTagsCSV();
+            }
+            parseToCSV(data,path);
+        }
+        else if(type === "pdf"){
+            
+            if(statsType === "like"){
+                data = await getStatLikedPlantsPDF();
+            }
+            else if(statsType === "view"){
+                data = await getStatsViewsPlantsPDF();
+            }else if(statsType === "tag"){
+                data = await getStatsTagsPDF();
+            }
+            console.log(data);
+            parseToPDF(statsType,data,path);
+        }
 
         const fileStream = fs.createReadStream(`${path}`);
-        res.writeHead(200, {
-            'Content-Type': 'text/csv',
-            'Content-Disposition': 'attachment; filename=likedPlants.csv'
-        });
-        fileStream.pipe(res);
 
-    } catch (err) {
+        res.writeHead(200, {
+            'Content-Type': `application/${type}`,
+            'Content-Disposition': `attachment; filename= ${statsType}.${type}`
+        });
+         
+        await fileStream.pipe(res);
+
+
+
+    }catch(err){
         console.log(err);
         res.writeHead(500, { "Content-Type": "text/plain" });
         res.end(JSON.stringify({ error: err.message }));
     }
 }
 
-export async function downloadPDFLikedPlants(req, res) {
-    try {
-
-        const data = await getStatLikedPlantsJSON();
-        let stats = [];
-        data.forEach((plant) => {
-            let stat = {
-                name: plant.name,
-                value: `${plant.likes} likes, ${plant.views} views, ${plant.description}`
-            };
-            stats.push(stat);
-        });
-
-        const path = "./liked_plants.pdf";
-        parseToPDF("By Likes", stats, path);
-
-        const fileStream = fs.createReadStream(`${path}`);
-        res.writeHead(200, {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': 'attachment; filename=likedPlants.pdf'
-        });
-        fileStream.pipe(res);
-        } catch (err) {
-            console.log(err);
-            res.writeHead(500, { "Content-Type": "text/plain" });
-            res.end(JSON.stringify({ error: err.message }));
-        }
-    }
 
 export async function getUser(req, res) {
     try{
@@ -110,6 +116,18 @@ export async function getUser(req, res) {
     }
 }
 
+export async function getStats(req,res,params){
+    try{
+        const type = params.split("=")[1];
+        const response = await getStatsByType(type);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify( response ));
+    }catch(err){
+        console.log(err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end(JSON.stringify({ error: err.message }));
+    }
+}
 export async function deleteLiked(req, res, params) {
     try{
         

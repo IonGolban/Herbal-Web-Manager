@@ -74,10 +74,118 @@ export async function getStatLikedPlantsCSV(){
         await connect();
         const plants = await Plant.find().sort({likes: -1}).limit(100);
 
-        let csv = "name,likes\n";
+        let csv = "name,likes,description\n";
         plants.forEach(plant => {
-            csv += `${plant.name},${plant.likes}\n`;
+            let description = plant.description;
+            if(description == null){
+                if(plant.alt_description != null) description = plant.alt_description;
+                else description = "";
+            } 
+            csv += `${plant.name},${plant.likes},${description}\n`;
         });
+
+        return csv;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function getStatsViewsPlantsCSV(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({views: -1}).limit(100);
+
+        let csv = "name,views,description\n";
+        plants.forEach(plant => {
+            let description = plant.description;
+
+            if(description == null){
+                if(plant.alt_description != null) description = plant.alt_description;
+                else description = "";
+            } 
+            csv += `${plant.name},${plant.views},${description}\n`;
+        });
+
+        return csv;
+    }catch (error) {
+        console.log(error);
+        throw error;
+    }
+
+}
+
+export async function getStatLikedPlantsPDF(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({likes: -1}).limit(100);
+        let stats = [];
+
+        plants.forEach((plant) => {
+            let description = plant.description;
+
+            if(description == null){
+                if(plant.alt_description != null) description = plant.alt_description;
+                else description = "";
+            } 
+            let stat = {
+                name: plant.name,
+                value: `${plant.views} views, ${plant.likes} likes,  ${description}`
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getStatsViewsPlantsPDF(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({views: -1}).limit(100);
+        let stats = [];
+
+        plants.forEach((plant) => {
+            let description = plant.description;
+            if(description == null){
+                if(plant.alt_description != null) description = plant.alt_description;
+                else description = "";
+            } 
+            let stat = {
+                name: plant.name,
+                value: `${plant.views} views,${plant.likes} likes, ${description}`
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getStatsTagsCSV(){
+    try{
+        await connect();
+        const popularTags = await Plant.aggregate([
+            { $unwind: "$tags" },
+            {
+              $group: {
+                _id: "$tags",
+                count: { $sum: 1 }
+              }
+            },
+            { $sort: { count: -1 } }
+          ]).limit(100);
+          
+        
+        let csv = "name,count\n";
+        popularTags.forEach(tag => {
+            csv += `${tag._id},${tag.count}\n`;
+        });
+
 
         return csv;
     } catch (error) {
@@ -85,14 +193,122 @@ export async function getStatLikedPlantsCSV(){
     }
 }
 
-export async function getStatLikedPlantsJSON(){
+export async function getStatsTagsPDF(){
     try{
         await connect();
-        const plants = await Plant.find().sort({likes: -1}).limit(100);
+        const popularTags = await Plant.aggregate([
+            { $unwind: "$tags" },
+            {
+              $group: {
+                _id: "$tags",
+                count: { $sum: 1 }
+              }
+            },
+            { $sort: { count: -1 } }
+          ]).limit(100);
+          
+        let stats = [];
 
-        return plants;
-    } catch (error) {
+        popularTags.forEach((tag) => {
+            let stat = {
+                name: tag._id,
+                value: `${tag.count} plants with this tag`
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    }catch  (error) {
         console.log(error);
+        throw error;
+    }
+}
+
+export async function getStatsByType(type){
+    try{
+        
+        if(type == "like"){
+            return await getStatLiked();
+        }else if(type == "view"){
+            return await getStatViewed();
+        }else if(type == "tag"){
+            return await getStatTagged();
+        }
+    }catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function getStatLiked(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({likes: -1}).limit(20);
+        let stats = [];
+        plants.forEach((plant) => {
+            let stat = {
+                key: plant.name,
+                value: plant.likes
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    }catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function getStatViewed(){
+    try{
+        await connect();
+        const plants = await Plant.find().sort({views: -1}).limit(20);
+        let stats = [];
+        plants.forEach((plant) => {
+            let stat = {
+                key: plant.name,
+                value: plant.views
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    }catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export async function getStatTagged(){
+
+    try{
+        await connect();
+        const popularTags = await Plant.aggregate([
+            { $unwind: "$tags" },
+            {
+              $group: {
+                _id: "$tags",
+                count: { $sum: 1 }
+              }
+            },
+            { $sort: { count: -1 } }
+          ]).limit(20);
+          
+        let stats = [];
+
+        popularTags.forEach((tag) => {
+            let stat = {
+                key: tag._id,
+                value: tag.count
+            };
+            stats.push(stat);
+        });
+
+        return stats;
+    }catch  (error) {
+        console.log(error);
+        throw error;
     }
 }
 
@@ -202,8 +418,6 @@ export async function deleteUserCollection(collection_id, user_id){
 
 
 }
-
-
 
 
 

@@ -1,28 +1,138 @@
 body {
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #F9F5F6;
+
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative; 
+}
+
+
+.column {
+  margin: 20px 10px;
+  flex-basis: calc(33.33% - 40px);
+  background-color: #F2BED1;
+  border-radius: 20px;
+}
+
+
+h2 {
+  margin-top: 40px;
+  text-align: center;
+}
+
+table {
+  margin: 1em 0;
+  min-width: 300px;
+  width: 100%;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #F9F5F6;
+  font-weight: bold;
+}
+
+
+
+tbody td:last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.buttons button {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  th, td {
+    padding: 8px;
   }
-  
-  h1 {
-    text-align: center;
+
+  .container {
+    flex-wrap: wrap;
   }
-  
-  .stats-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+
+  .column {
+    flex-basis: 100%;
   }
-  
-  .stat-box {
-    padding: 20px;
-    margin: 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .download-btn {
-    display: block;
-    margin-top: 20px;
-    text-align: center;
-  }
-  
+}
+
+.navbar2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.buttons button {
+  margin: 0 10px;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  color: black;
+}
+
+.buttons button:hover {
+  border-bottom-color: white;
+}
+
+.category-nav {
+
+  justify-content: space-between;
+  display: flex;
+  gap: 20px;
+}
+
+
+
+.statistics-table {
+  background-color: #F2BED1;
+  border-radius: 20px;
+}
+
+.statistics-buttons {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #F2BED1;
+  margin-bottom: 15px;
+}
+.statistics-buttons button {
+  background-color: #F9F5F6;
+  cursor: pointer;
+  color: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.statistics-buttons button:hover {
+  border-bottom-color: white;
+  background-color: #F8E8EE;
+}

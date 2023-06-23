@@ -83,6 +83,7 @@ body {
   padding: 1rem;
   padding-right: 30; 
   opacity: 0;
+  z-index: 1;
 }
 .search-bar .suggestions.active{
   opacity: 1;

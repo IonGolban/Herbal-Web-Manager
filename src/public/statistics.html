@@ -1,27 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Statistici Plante</title>
-  <link rel="stylesheet" type="text/css" href="./styles/statistics.css">
-  <link rel=" stylesheet" type="text/css" href="./styles/style.css" />
-
+    <meta charset="UTF-8">
+    <title>Plant Statistics</title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/statistics.css" />
+    <script type="module" src="scripts/statistics.js"></script>
+    <script type="module" src="scripts/utilFunctions.js"></script>
 </head>
 <body>
-  <h1>Statistici Plante</h1>
-  <div class="stats-container">
-    <div class="stat-box">
-      <h2>Plante Apreciate</h2>
-      <p id="liked-plants-count"></p>
-    </div>
-    <div class="stat-box">
-      <h2>Plante Descărcate</h2>
-      <p id="downloaded-plants-count"></p>
-    </div>
-  </div>
-  <div class="download-btn">
-    <button id="download-btn">Descarcă Statistici (CSV)</button>
-  </div>
+    <header>
+        <nav class="navbar">
+          
+            <div class="buttons">
+                <button class="stats-button" onclick="window.location.href='/'">Home</button>
+                <button class="profile-button" onclick="window.location.href='/profile'">Profile</button>
+                <button class="login-button" onclick="window.location.href='/login'">Login</button>
+                <button class="signup-button" onclick="window.location.href='/register'">Register</button>
+                <button class="logout-button">Logout</button>
+            </div>
+        </nav>
+        
+    </header>
 
-  <script src="scripts/statistics.js"></script>
+    <div class="container">
+        
+        <div class="column">
+            <h2>Popularity by Tags</h2>
+            <table class="statistics-table" id="tag-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Number of Plants</th>
+                    </tr>
+                </thead>
+                <tbody id = "tags-table-body">
+                   
+                </tbody>
+            </table>
+            <div class="statistics-buttons">
+                <button id="tag-csv-button">Download as CSV</button>
+                <button id="tag-pdf-button">Download as PDF</button>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Popularity by Likes</h2>
+            <table class="statistics-table" id="like-table">
+                <thead>
+                    <tr>
+                        <th>Plant Name</th>
+                        <th>Number of Likes</th>
+                    </tr>
+                </thead>
+                <tbody id = "likes-table-body">
+                    
+                </tbody>
+            </table>
+            <div class="statistics-buttons">
+                <button id="like-csv-button">Download as CSV</button>
+                <button id="like-pdf-button">Download as PDF</button>
+            </div>
+        </div>
+        <div class="column">
+            <h2>Popularity by Views</h2>
+            <table class="statistics-table" id="view-table">
+                <thead>
+                    <tr>
+                        <th>Plant Name</th>
+                        <th>Number of Views</th>
+                    </tr>
+                </thead>
+                <tbody id = "views-table-body">
+                   
+                </tbody>
+            </table>
+            <div class="statistics-buttons">
+                <button id="view-csv-button">Download as CSV</button>
+                <button id="view-pdf-button">Download as PDF</button>
+            </div>
+        </div>
+    </div>
+  
+    
 </body>
 </html>

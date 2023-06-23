@@ -6,7 +6,8 @@ import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
 import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {editProfileInfo,downloadCSVLikedPlants,downloadPDFLikedPlants,getUser, deleteLiked, deleteCollectionAdded, deleteUpdated, deleteCollection} from "./controllers/userController.js";
+
+import {editProfileInfo,downloadStats,getStats,getUser, deleteLiked, deleteCollectionAdded, deleteUpdated, deleteCollection} from "./controllers/userController.js";
 
 
 const routes = {
@@ -125,13 +126,9 @@ const routes = {
         console.log("Request received for /catalog/search");
         await plantController.searchByTags(req, res, params);
     },
-    "/statistics/liked/download/csv" : async (req, res, params) => {
+    "/statistics/liked/download" : async (req, res, params) => {
         console.log("Request received for /statistics/liked/download");
-        downloadCSVLikedPlants(req, res, params);
-    },
-    "/statistics/liked/download/pdf" : async (req, res, params) => {
-        console.log("Request received for /statistics/liked/download");
-        downloadPDFLikedPlants(req, res, params);
+        downloadStats(req, res, params);
     },
     "/getUserData" : async (req, res, params) => {
         console.log("Request received for /getUserData");
@@ -143,7 +140,16 @@ const routes = {
     },
     "/like/remove" : async (req, res, params) => {
         console.log("Request received for /like/remove");
-        await deleteLiked(req, res, params)
+        await deleteLiked(req, res, params)        
+    },
+    "/statistics/download" : async (req, res, params) => {
+        console.log("Request received for /statistics/download");
+        await downloadStats(req, res, params);     
+    },
+    "/statistics/data" : async (req, res, params) => {
+        console.log("Request received for /statistics/data");
+        // await editController.setRandomNamesToPlants(req, res, params);
+        await getStats(req, res, params);     
     }, 
     "/update/remove" : async (req, res, params) => {
         console.log("Request received for /like/remove");
