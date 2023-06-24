@@ -1,9 +1,7 @@
 import { servePublicFiles, serveStaticFile } from "./handler.js";
-import catalogController from "./controllers/catalogController.js";
-import plantService from "./services/plantService.js";
-import plantController from "./controllers/plantController.js";
+import {getRandomImages,getImagesByTag,saveImages} from "./controllers/catalogController.js";
+import {serchByKey,viewPlant,likePlant,getLikedPlants,savePlant,getUploadedPlants,getTags,searchByTags} from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
-import editController from "./controllers/editController.js";
 import { createCollection, getCollectionOfCurrentUser, addPlantToCollection, getPlantsByCollectionId } from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
 import { getAllUsers, getAllPlants, deleteUser, deletePlant } from "./controllers/adminController.js";
@@ -57,21 +55,21 @@ const routes = {
 
     "/random-img": async (req, res, params) => {
         console.log("Request received for /random-img");
-        await catalogController.getRandomImages(req, res, params);
+        await getRandomImages(req, res, params);
     },
 
     "/img-by-tag": async (req, res, params) => {
         console.log(params);
-        await catalogController.getImagesByTag(req, res, params);
+        await getImagesByTag(req, res, params);
     },
     "/save-random-imgs": async (req, res) => {
         console.log("Request received for /save-random-imgs");
         console.log("Saving images");
-        await catalogController.saveImages(req, res);
+        await saveImages(req, res);
     },
     "/search": async (req, res, params) => {
         console.log("Request received for /search");
-        await plantController.serchByKey(req, res, params);
+        await serchByKey(req, res, params);
     },
     "/login-user": async (req, res, params) => {
         console.log("Request received for /login-user");
@@ -84,15 +82,15 @@ const routes = {
     },
     "/like": async (req, res, params) => {
         console.log("Request received for /like");
-        await plantController.likePlant(req, res, params);
+        await likePlant(req, res, params);
     },
     "/views": async (req, res, params) => {
         console.log("Request received for /views");
-        await plantController.viewPlant(req, res, params);
+        await viewPlant(req, res, params);
     },
     "/profile/liked": async (req, res, params) => {
         console.log("Request received for /profile/liked");
-        await plantController.getLikedPlants(req, res, params);
+        await getLikedPlants(req, res, params);
     },
     "/collection/create": async (req, res, params) => {
         console.log("Request received for /collection/create");
@@ -112,7 +110,7 @@ const routes = {
     },
     "/upload/photo": async (req, res, params) => {
         console.log("Request received for /uppload/photo");
-        await plantController.savePlant(req, res, params);
+        await savePlant(req, res, params);
     },
     "/edit": async (req, res, params) => {
         console.log("Request received for /edit");
@@ -120,15 +118,15 @@ const routes = {
     },
     "/profile/uploaded": async (req, res, params) => {
         console.log("Request received for /profile/uploaded");
-        await plantController.getUploadedPlants(req, res, params);
+        await getUploadedPlants(req, res, params);
     },
     "/catalog/tags": async (req, res, params) => {
         console.log("Request received for /catalog/tags");
-        await plantController.getTags(req, res, params);
+        await getTags(req, res, params);
     },
     "/catalog/search": async (req, res, params) => {
         console.log("Request received for /catalog/search");
-        await plantController.searchByTags(req, res, params);
+        await searchByTags(req, res, params);
     },
     "/statistics/liked/download": async (req, res, params) => {
         console.log("Request received for /statistics/liked/download");

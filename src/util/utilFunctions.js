@@ -35,7 +35,7 @@ export function parseToCSV(csvData,path) {
     });
 }
 
-export function parseToPDF(category, statistics, path) {
+export async function parseToPDF(category, statistics, path) {
     const doc = new PDFDocument;
     const stream = fs.createWriteStream(path);
     doc.pipe(stream);
