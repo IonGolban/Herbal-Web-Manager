@@ -62,16 +62,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       likeButton.addEventListener("click", like);
 
       const viewButton = el;
-      viewButton.addEventListener("click", viewPhoto);
+      viewButton.addEventListener("click", async (event) =>{
+          viewPhoto(event,photo._id)
+      });
       const addButton = el.querySelector(".add-btn");
       addButton.addEventListener("click", (event) => {
         addToCollection(event, photo._id);
       });
-      const addButtonModal = document.querySelector(".add-btn-modal");
-      addButtonModal.addEventListener("click", (event) => {
-        addToCollection(event, photo._id);
-
-      });
+     
 
     }
     await appendTagsToDropDown();
@@ -99,9 +97,15 @@ async function appendButtons() {
   }
 }
 
+let modalIsOpen = false;
 async function addToCollection(event, photoId) {
   event.stopPropagation();
   const modal = document.querySelector(".modal-collections");
+  // if (modalIsOpen) {
+  //   modal.style.display = "flex";
+  //   return;
+  // }
+  
   modal.style.display = "flex";
   const list = document.getElementById("collection-list");
   const closeBtn = document.querySelector(".collection-close-btn");
@@ -126,7 +130,7 @@ async function addToCollection(event, photoId) {
 
   }
 
-
+  modalIsOpen = true;
 
 }
 async function getListOfCollections() {
@@ -190,7 +194,7 @@ function createListItem(collection) {
 const likeButton = document.querySelector(".like-btn");
 
 
-async function viewPhoto(event) {
+async function viewPhoto(event, photoId ) {
   const plantDesc = event.target.closest(".plant");
   //console.log(plantDesc.style.backgroundImage);
 
@@ -210,6 +214,11 @@ async function viewPhoto(event) {
       "Authorization": `Bearer ${window.localStorage.getItem("token")}`
     },
     body: JSON.stringify({ url })
+  });
+  modalAddButton.addEventListener("click", (event) => {
+
+    addToCollection(event, photoId);
+
   });
 
   closeBut.addEventListener("click", function () {

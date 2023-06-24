@@ -1,6 +1,7 @@
 import editService from "../services/editService.js";
 import TokenUtils from "../util/tokenUtils.js";
 import Plant from "../models/PLantModel.js";
+import connect from "../db/mongoDatabase.js";
 class editController{
 
     async editData(req, res){
@@ -26,7 +27,7 @@ class editController{
 
     async setRandomNamesToPlants(req, res){
         try{
-
+            await connect();
             const plantNames = [
                 'Arborvitae',
                 'Begonia',
@@ -330,7 +331,7 @@ class editController{
                 'Ophiopogon planiscapus \'Nigrescens\''
               ];
             
-              const plants = await Plant.find().exec();
+              const plants = await Plant.find();
               plants.forEach((plant) => {
                 plant.name = plantNames[Math.floor(Math.random() * plantNames.length)];
                 plant.save();

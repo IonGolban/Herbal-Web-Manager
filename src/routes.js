@@ -4,12 +4,14 @@ import plantService from "./services/plantService.js";
 import plantController from "./controllers/plantController.js";
 import authController from "./controllers/authController.js";
 import editController from "./controllers/editController.js";
-import {createCollection,getCollectionOfCurrentUser,addPlantToCollection,getPlantsByCollectionId} from "./controllers/collectionController.js";
+import { createCollection, getCollectionOfCurrentUser, addPlantToCollection, getPlantsByCollectionId } from "./controllers/collectionController.js";
 import editService from "./services/editService.js";
-import {getAllUsers,getAllPlants,deleteUser,deletePlant} from "./controllers/adminController.js";
-import {editProfileInfo,downloadStats,getStats,getUser, 
+import { getAllUsers, getAllPlants, deleteUser, deletePlant } from "./controllers/adminController.js";
+import {
+    editProfileInfo, downloadStats, getStats, getUser,
     deleteLiked, deleteCollectionAdded, deleteUpdated,
-    deleteCollection} from "./controllers/userController.js";
+    deleteCollection
+} from "./controllers/userController.js";
 
 
 const routes = {
@@ -32,11 +34,11 @@ const routes = {
     "/upload": async (req, res) => {
         serveStaticFile(res, "./public/upload.html", "text/html");
     },
-    "/statistics" : async (req, res, params) => {
+    "/statistics": async (req, res, params) => {
         console.log("Request received for /statistics");
         serveStaticFile(res, "./public/statistics.html", "text/html");
     },
-    "/admin" : async (req, res, params) => {
+    "/admin": async (req, res, params) => {
         console.log("Request received for /admin");
         serveStaticFile(res, "./public/admin.html", "text/html");
     },
@@ -67,113 +69,113 @@ const routes = {
         console.log("Saving images");
         await catalogController.saveImages(req, res);
     },
-    "/search": async (req,res,params) => {
+    "/search": async (req, res, params) => {
         console.log("Request received for /search");
-        await plantController.serchByKey(req,res,params);
+        await plantController.serchByKey(req, res, params);
     },
-    "/login-user": async (req,res,params) => {
+    "/login-user": async (req, res, params) => {
         console.log("Request received for /login-user");
 
-        await authController.login(req,res,params);
+        await authController.login(req, res, params);
     },
-    "/register-user": async (req,res,params) => {
+    "/register-user": async (req, res, params) => {
         console.log("Request received for /register-user");
-        await authController.register(req,res,params);
+        await authController.register(req, res, params);
     },
-    "/like" : async (req,res,params) => {
+    "/like": async (req, res, params) => {
         console.log("Request received for /like");
-        await plantController.likePlant(req,res,params);
+        await plantController.likePlant(req, res, params);
     },
-    "/views" : async (req,res,params) => {
+    "/views": async (req, res, params) => {
         console.log("Request received for /views");
-        await plantController.viewPlant(req,res,params);
+        await plantController.viewPlant(req, res, params);
     },
-    "/profile/liked" : async (req,res,params) => {
+    "/profile/liked": async (req, res, params) => {
         console.log("Request received for /profile/liked");
-        await plantController.getLikedPlants(req,res,params);
+        await plantController.getLikedPlants(req, res, params);
     },
-    "/collection/create" : async (req,res,params) => {
+    "/collection/create": async (req, res, params) => {
         console.log("Request received for /collection/create");
-        await createCollection(req,res,params);
+        await createCollection(req, res, params);
     },
-    "/collection/getList" : async (req,res,params) => {
+    "/collection/getList": async (req, res, params) => {
         console.log("Request received for /collection/getList");
-        await getCollectionOfCurrentUser(req,res,params);
+        await getCollectionOfCurrentUser(req, res, params);
     },
-    "/collection/addPlant" : async (req,res,params) => {
+    "/collection/addPlant": async (req, res, params) => {
         console.log("Request received for /collection/addPlant");
-        await addPlantToCollection(req,res,params);
+        await addPlantToCollection(req, res, params);
     },
-    "/collection/plants" : async (req,res,params) => {
+    "/collection/plants": async (req, res, params) => {
         console.log("Request received for /collection/getPlants");
-        await getPlantsByCollectionId(req,res,params);
+        await getPlantsByCollectionId(req, res, params);
     },
-    "/upload/photo" : async (req,res,params) => {
+    "/upload/photo": async (req, res, params) => {
         console.log("Request received for /uppload/photo");
-        await plantController.savePlant(req,res,params);
+        await plantController.savePlant(req, res, params);
     },
-    "/edit" : async (req, res, params) => {
+    "/edit": async (req, res, params) => {
         console.log("Request received for /edit");
         await editProfileInfo(req, res, params);
     },
-    "/profile/uploaded" : async (req, res, params) => {
+    "/profile/uploaded": async (req, res, params) => {
         console.log("Request received for /profile/uploaded");
         await plantController.getUploadedPlants(req, res, params);
     },
-    "/catalog/tags" : async (req, res, params) => {
+    "/catalog/tags": async (req, res, params) => {
         console.log("Request received for /catalog/tags");
         await plantController.getTags(req, res, params);
     },
-    "/catalog/search" : async (req, res, params) => {
+    "/catalog/search": async (req, res, params) => {
         console.log("Request received for /catalog/search");
         await plantController.searchByTags(req, res, params);
     },
-    "/statistics/liked/download" : async (req, res, params) => {
+    "/statistics/liked/download": async (req, res, params) => {
         console.log("Request received for /statistics/liked/download");
         downloadStats(req, res, params);
     },
-    "/getUserData" : async (req, res, params) => {
+    "/getUserData": async (req, res, params) => {
         console.log("Request received for /getUserData");
         await getUser(req, res, params);
     },
-    "/collection/plants/remove" : async (req, res, params) => {
+    "/collection/plants/remove": async (req, res, params) => {
         console.log("Request received for /collection/plant/remove");
         await deleteCollectionAdded(req, res, params);
     },
-    "/like/remove" : async (req, res, params) => {
+    "/like/remove": async (req, res, params) => {
         console.log("Request received for /like/remove");
-        await deleteLiked(req, res, params)        
+        await deleteLiked(req, res, params)
     },
-    "/statistics/download" : async (req, res, params) => {
+    "/statistics/download": async (req, res, params) => {
         console.log("Request received for /statistics/download");
-        await downloadStats(req, res, params);     
+        await downloadStats(req, res, params);
     },
-    "/statistics/data" : async (req, res, params) => {
+    "/statistics/data": async (req, res, params) => {
         console.log("Request received for /statistics/data");
         // await editController.setRandomNamesToPlants(req, res, params);
-        await getStats(req, res, params);     
-    }, 
-    "/update/remove" : async (req, res, params) => {
+        await getStats(req, res, params);
+    },
+    "/update/remove": async (req, res, params) => {
         console.log("Request received for /like/remove");
         await deleteUpdated(req, res, params)
-    }, 
-    "/collection/delete" : async (req, res, params) => {
+    },
+    "/collection/delete": async (req, res, params) => {
         console.log("Request received for /collection/delete");
         await deleteCollection(req, res, params)
     },
-    "/users/all" : async (req, res, params) => {
+    "/users/all": async (req, res, params) => {
         console.log("Request received for /users/all");
         await getAllUsers(req, res, params)
     },
-    "/user/delete" : async (req, res, params) => {
+    "/user/delete": async (req, res, params) => {
         console.log("Request received for /user/delete");
         await deleteUser(req, res, params)
     },
-    "/plants/all" : async (req, res, params) => {
+    "/plants/all": async (req, res, params) => {
         console.log("Request received for /plant/all");
         await getAllPlants(req, res, params)
     },
-    "/plant/delete" : async (req, res, params) => {
+    "/plant/delete": async (req, res, params) => {
         console.log("Request received for /plant/delete");
         await deletePlant(req, res, params)
     }

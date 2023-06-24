@@ -1,15 +1,16 @@
 
 body{
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #F9F5F6;
 }
 
 .container {
+  margin-top: 30px;
     width: 50%;
-    margin: 0 auto;
     padding: 20px;
     background-color: #cecaca;
     border-radius: 20px;
@@ -59,3 +60,42 @@ body{
   .image{
     border: 5px solid black ;
   }
+
+
+  .navbar {
+    max-width: fit-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .buttons button {
+    margin: 0 10px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .buttons button:hover {
+    border-bottom-color: white;
+  }
+  
+  .category-nav {
+  
+    justify-content: space-between;
+    display: flex;
+    gap: 20px;
+  }
+  

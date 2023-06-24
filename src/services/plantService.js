@@ -11,9 +11,10 @@ class PlantService {
             await connect();
             const plants = await Plant.find({
                 $or: [
-                    { tags: { $regex: key , $options: 'i' } }
+                    { tags: { $regex: query, $options: 'i' } },
+                    { name: { $regex: query, $options: 'i' } }
                 ]
-            }).sort({ likes: -1 }).limit(10);
+            }).sort({ likes: -1 }).limit(42);
 
             if (plants.length === 0) {
                 return ["No results found"];

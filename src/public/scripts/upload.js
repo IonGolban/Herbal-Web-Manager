@@ -1,8 +1,9 @@
+
 const uploadForm = document.getElementById("uploadForm");
 const uploadButton = document.getElementById("uploadButton");
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    
 });
 
 uploadForm.addEventListener("submit", async (event) => {

@@ -135,23 +135,30 @@ async function displayPlants(plants) {
     photoStorage.appendChild(el);
   });
 }
+let isModalOpen = false;
+const modalCreateCollection = document.querySelector(".modal");
 
   async function createCollection(event) {
-    event.preventDefault();
     const collectionName = document.getElementById("collection-name-input");
     collectionName.value = "";
     const collectionDesc = document.getElementById("collection-description-input");
     collectionDesc.value = "";
+    if(isModalOpen){
+      modalCreateCollection.style.display = "flex";
+      return;
+    };
+    event.preventDefault();
+    
 
-    const modal = document.querySelector(".modal");
-    modal.style.display = "flex";
+    modalCreateCollection.style.display = "flex";
     const modalCloseButton = document.getElementById("collection-close-button");
+    isModalOpen = true;
     modalCloseButton.addEventListener("click", () => {
-      modal.style.display = "none";
+      modalCreateCollection.style.display = "none";
     });
 
     const modalAddButton = document.getElementById("collection-add-button");
-    modalAddButton.addEventListener("click", () => {
+    modalAddButton.addEventListener("click", async () => {
       const collectionName = document.getElementById("collection-name-input").value;
       const collectionDesc = document.getElementById("collection-description-input").value;
       if (!collectionName || !collectionDesc) {
@@ -162,14 +169,15 @@ async function displayPlants(plants) {
         name: collectionName,
         description: collectionDesc,
       };
-      const res = fetchCreateCollection(collection);
+      const res = await fetchCreateCollection(collection);
       console.log(res);
       const noc = document.querySelector(".number-of-collections");
       const paragraf = noc.querySelector("p");
       const numar = parseInt(paragraf.textContent);
       const numarAdunat = numar + 1;
       paragraf.textContent = numarAdunat;
-      modal.style.display = "none";
+      modalCreateCollection.style.display = "none";
+      isModalOpen = true;
     });
 
   }

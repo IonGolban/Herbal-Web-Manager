@@ -4,7 +4,7 @@ const dropdownContent = document.querySelector('.dropdown-content');
 const searchButton = document.getElementById('search-button');
 
 dropdownButton.addEventListener('click', () => {
-  dropdownContent.classList.toggle('show');
+  dropdownContent.style.display('block');
 });
 
 window.addEventListener('click', (event) => {

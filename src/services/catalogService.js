@@ -24,9 +24,10 @@ class CatalogService {
         await connect();
         const result = await Plant.find({
             $or: [
-                { tags: { $regex: query, $options: 'i' } }
+                { tags: { $regex: query, $options: 'i' } },
+                { name: { $regex: query, $options: 'i' } }  
             ]
-        }).sort({ likes: -1 }).limit(21);
+        }).sort({ likes: -1 }).limit(42);
 
         console.log(result.length + result[0]);
         console.log(result[0]);
