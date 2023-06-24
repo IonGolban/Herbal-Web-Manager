@@ -49,6 +49,7 @@
                 <li><a href="#login-page">Login and Sign up page</a></li>
                 <li><a href="#results-page"> Pagina de rezultate</a></li>
                 <li><a href="#plants-statistics-page"> Pagina de statistici a plantelor</a></li>
+                <li><a href="">Pagina de profil</a></li>
 
             </ol>
         </li>
@@ -72,7 +73,7 @@
                             să permită organizarea și gestionarea colecțiilor de plante presate și atributelor aferente.
                             Aceasta va oferi o serie de facilități de căutare multi-criterială și va permite
                             utilizatorilor să genereze, recomande și partajeze albume tematice, precum plante medicinale
-                            sau flori din zona montană.</p>
+                            sau flori din zona montană si multe altele.</p>
                     </section>
                 </li>
                 <li>
@@ -93,6 +94,7 @@
                             <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools HTML</a></li>
                             <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML" target="_blank">MDN Web
                                     Docs: Learn HTML</a></li>
+                            <li><a href="https://api.imgur.com/">Imgur API</a></li>
                         </ul>
                     </section>
                 </li>
@@ -119,7 +121,7 @@
                         <ul>
                             <li>Căutare multi-criterială a plantelor</li>
                             <li>Generarea de albume tematice</li>
-                            <li>Generarea de rapoarte statistice despre plante</li>
+                            <li>Generarea de rapoarte statistice despre plante in formate PDF si CSV</li>
                             <li>Clasamentul celor mai populare plante colectate</li>
                         </ul>
                     </section>
@@ -150,10 +152,10 @@
                         <p>Aplicația va fi dezvoltată folosind HTML, CSS și JavaScript, iar datele vor fi stocate într-o
                             bază de date MongoDB. Interfața va fi creată cu ajutorul vanilla JS și va fi
                             responsivă pentru a se adapta la diferite dimensiuni de ecran.</p>
-                        <p>Culori utilizate: 
+                        <p>Culori predominante utilizate: 
                             <span style="color: white; background-color: rgb(135, 135, 135);">white</span> 
                             <span style="color: green;background-color: rgb(102, 134, 105);">green</span> 
-                            <span style="color: black;">black</span> 
+                            <span style="color: black;background-color: rgb(102, 134, 105);">black</span> 
                         </p>
                     </section>
                 </li>
@@ -162,6 +164,7 @@
                     <section id="dependente">
                         <h2>Dependențe</h2>
                         <ul>
+                            <li>API-ul public Imgur pentru a uploadarea pozelor de catre utilizatori</li>
                             <li>API-ul public Unsplash pentru a obține fotografii ale plantelor</li>
                             <li>Baza de date MongoDB pentru a stoca datele</li>
                             <li>JavaScript</li>
@@ -185,40 +188,28 @@
                 <li>Interfață responsivă și adaptabilă la diferite dispozitive</li>
                 <li>Posibilitatea de a filtra și căuta plante</li>
                 <li>Posibilitatea de a crea albume tematice</li>
+                <li>Posibilitatea de a uploada o imagine</li>
                 <li>Posibilitatea de a vizualiza statistici despre colecție</li>
+                <li>Posibilitatea de a aprecia o fotografie</li>
+                <li>Posibilitatea de a vizualiza albumele, aprecierile si upload-urile</li>
             </ul>
         </section>
-        <ol>
-            <li>
+        
                 <section id="interfete-utilizator">
                     <h2>Interfețe Utilizator</h2>
                     <p>Interfața utilizator este formată din următoarele pagini:</p>
                     <ul>
-                        <li>Pagina principală - unde se pot căuta, filtra și vizualiza plante,
-                            și se pot accesa statistici despre colecție.</li>
-                        <li>Pagina profil - unde se pot crea noi albume tematice, vizualiza imaginile apreciate, informatii despre utilizator, vizualizare cataloage</li>
-                        <li>Pagina catolog - se pot vizualiza plantele de un anumit tip sau criteriu prin intermediul acestei pagini putem adauga fotografii in colectiile noastre</li>
+                        <li>Pagina principală - unde se pot căuta plante,
+                            și se pot accesa restul paginilor.</li>
+                        <li>Pagina profil - unde se pot crea albume propii, vizualiza imaginile apreciate, informatii despre utilizator, vizualizare albumelor, upload de imagini, editare a profiluli</li>
+                        <li>Pagina catolog - se pot vizualiza plantele de un anumit tip sau criteriu prin intermediul acestei pagini putem adauga fotografii in colectiile noastre si in sectiunea de like</li>
                         <li>Pagina de vizualizare a statisticilor - unde se pot vizualiza diverse statistici despre
-                            colecție, cum ar fi cele mai populare plante.</li>
+                            categorii de plante, cum ar fi cele mai populare plante.</li>
                     </ul>
                 </section>
-            </li>
+            
 
-            <li>
-                <section id="interfete-software">
-                    <h2>Interfețe Software</h2>
-                    <p>Produsul va rula pe un server web creat cu NodeJS și va fi accesat prin intermediul unui browser web. Este
-                        compatibil cu următoarele browsere:</p>
-                    <ul>
-                        <li>Google Chrome</li>
-                        <li>Mozilla Firefox</li>
-                        <li>Microsoft Edge</li>
-                        <li>Safari</li>
-                        <li>Etc</li>
-                    </ul>
-                </section>
-            </li>
-        </ol>
+        
 
         </section>
 
@@ -230,11 +221,14 @@
                 <li>
                     <section id="home-page">
                         <h2>Home Page</h2>
-                        <p>Aceasta sectiune va contine continutul paginii de start a aplicatiei, inclusiv:</p>
+                        <p>Aceasta reprezinta pagina de start a aplicatiei ce contine:</p>
                         <ul>
                             <li>Butoane pentru autentificare si inregistrare</li>
+                            <li>Buton de profil</li>
                             <li>Linkuri catre anumite colectii predefinite</li>
                             <li>Bara de cautare pentru plantele descrise</li>
+                            <li>Sectiune despre proiect</li>
+                            <li>Sectiune pentru contact</li>
                         </ul>
                     </section>
                 </li>
@@ -260,6 +254,37 @@
                             <li>Link de intoarcere la pagina de start</li>
                             <li>Buton de redirectionare catre campul de logare</li>
                         </ul>
+                        În implementarea paginilor de autentificare și înregistrare, au fost utilizate următoarele tehnologii și biblioteci:
+                        <ul>
+                            <li>JWT (JSON Web Tokens):
+                                <ol>
+                                    <li>
+                                        Pentru a asigura securitatea și integritatea datelor utilizatorilor, am folosit tehnologia JSON Web Tokens (JWT) pentru generarea unui token de autentificare.
+                                    </li>
+
+                                    <li>
+                                        Parola introdusă de utilizator a fost criptată înainte de a fi stocată în baza de date sau trimisă către server pentru verificare. Astfel, parolele utilizatorilor sunt păstrate în siguranță în cazul unui posibil compromis al sistemului.
+                                    </li>
+
+                                </ol>
+                            </li>
+                            <li>Bcrypt:
+                                <ol>
+                                    <li>    
+                                        Pentru criptarea parolelor utilizatorilor, am folosit biblioteca Bcrypt.
+                                    </li>
+
+                                    <li>
+                                        Bcrypt este o bibliotecă de hashing pentru parolă care adaugă un nivel suplimentar de securitate prin aplicarea unui algoritm puternic de hashing și prin adăugarea unui "salt" aleatoriu la parolă înainte de a o cripta.      
+                                    </li>
+
+                                    <li>
+                                        Utilizarea lui Bcrypt ajută la prevenirea atacurilor de tip brute force și la protejarea parolelor utilizatorilor în cazul în care baza de date este compromisă.
+                                    </li>
+
+                                </ol>
+                            </li>
+                        </ul>
                     </section>
                 </li>
 
@@ -271,8 +296,12 @@
                             <li>Taxonomia: <span class="result-taxonomy">Familia / Genul / Specia</span></li>
                             <li>Descriere: <span class="result-description">Descriere scurta a plantei</span></li>
                             <li>Imagine: img
-                            <li>Alte detalii: </li>
+                            <li>Alte detalii preluate din Unsplash </li>
                         </ul>
+                        In pagina de cautare vom avea niste albume predefinite practic aceste albume sunt mai multe fotografii care au un tag comun. Pe baza acestor 
+                        taguri putem realiza cautare criteriala. Utilizatorul poate alege mai multe taguri dupa care sa faca filtrarea. In urma acestei actiuni 
+                        utilizatorul va primi poze cu plantele respective. Toate plantele sunt stocate in baza de date si trimise pe front pe baza unor servicii. User-ul 
+                        poate adauga o poza in sectiunea de liker-uri si colectii. Acesta isi poate crea colectii personalizate si poate adauga plante.
                     </section>
                 </li>
 
@@ -280,13 +309,38 @@
                     <section id="plants-statistics-page">
                         <h2>Statistici plante</h2>
                         <ul>
-                            <li>Cele mai căutate plante: <span class="popular-plants">Numele plantei 1, Numele plantei
-                                    2, Numele plantei 3</span></li>
-                            <li>Plante adăugate recent: <span class="recent-plants">Numele plantei 1, Numele plantei 2,
-                                    Numele plantei 3</span></li>
-                            <li>Numărul total de plante: <span class="total-plants">X</span></li>
-                            <li>Numărul total de utilizatori: <span class="total-users">Y</span></li>
+                            <li>Numarul de plante a unui tag</li>
+                            <li>Cele mai populare taguri de plante dupa likes
+                            <li>Cele mai populare taguri de plante dupa views
                         </ul>
+                        In aceasta pagina utilizatorul poate descarca statistici in formate PDF si CSV. Pentru preluarea datelor am folosit
+                        modelul din baza de date unde stocam toate plantele
+                    </section>
+                </li>
+
+                <li>
+                    <section id="plants-profil-page">
+                        <h2>Pagina de profil</h2>
+                        <ul>
+                            <li>
+                                Poza de profil si de coperta
+                            </li>
+                            <li>
+                                O mica descriere personaliza
+                            </li>
+                            <li>
+                                Numarul de like-uri date, numarul de colectii create si numarul de imagini uploadate
+                            </li>
+                            <li>
+                                Sectiune de creare colectie
+                            </li>
+                            <li>
+                                Sectiune de edit profile (profile photo, cover photo, description, email)
+                            </li>
+                        </ul>
+                        Aceasta pagina este destinata user-ului. El si-o poate customiza in functie de cum doreste. In baza de date fiecare user este stocat alaturi de 
+                        cateva informatii precum email, descriere, un array de colectii, array de imagini apreciate, imagini postate si multe alte informatii necesare
+                        pentru gestionarea serviciilor.
                     </section>
                 </li>
 
